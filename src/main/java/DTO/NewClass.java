@@ -10,5 +10,5 @@ package DTO;
  * @author MARIO
  */
 public class NewClass {
-    
+
 }

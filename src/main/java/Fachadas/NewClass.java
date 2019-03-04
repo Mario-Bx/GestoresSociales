@@ -12,5 +12,5 @@ import DTO.*;
  * @author MARIO
  */
 public class NewClass {
-    
+
 }
