@@ -9,7 +9,7 @@ import DTO.*;
 
 /**
  *
- * @author MARIO
+ * @author jalba
  */
 public class NewClass {
     
