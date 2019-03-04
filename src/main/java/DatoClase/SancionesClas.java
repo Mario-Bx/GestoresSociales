@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author jalba
+ * @author Mario-Bx, jalba
  */
 @Entity
 @Table(name = "Sanciones")
