@@ -10,7 +10,7 @@ import DaoGenerico.ConexionException;
 
 /**
  *
- * @author MARIO
+ * @author MARIOBX,jalba,renan,enumpaque
  */
 @Path("/SancionesSv")
 public class SancionesSv {

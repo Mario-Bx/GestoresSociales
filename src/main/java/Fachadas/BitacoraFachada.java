@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 /**
  *
- * @author MARIO,jalba
+ * @author MARIOBX,jalba,renan,enumpaque
  */
 public class BitacoraFachada extends ServiceImpl<BitacoraClas> {
 

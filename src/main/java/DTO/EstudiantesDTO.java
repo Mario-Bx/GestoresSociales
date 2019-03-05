@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.*;
 
 /**
  *
- * @author MARIO
+ * @author MARIOBX,jalba,renan,enumpaque
  */
 @XmlRootElement(name = "EstudiantesDTO")
 @XmlAccessorType(XmlAccessType.FIELD)
