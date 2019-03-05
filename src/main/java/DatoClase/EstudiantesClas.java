@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author MARIOBX,jalba
+ * @author MARIOBX,jalba,renan,enumpaque
  */
 @Entity
 @Table(name = "Estudiantes")
@@ -21,10 +21,10 @@ public class EstudiantesClas implements Serializable {
 	private String Apellidos;
 	private String Correo;
 	private String Clave;
-	private int Documento;
 	private String FechaNacimiento;
-	private int Telefono;
-	private int Celular;
+	private String Documento;
+	private String Telefono;
+	private String Celular;
 	private String Escuela;
 	private String Carreara;
 	
@@ -39,10 +39,10 @@ String Nombre,
 String Apellidos,
 String Correo,
 String Clave,
-int Documento,
 String FechaNacimiento,
-int Telefono,
-int Celular,
+String Documento,
+String Telefono,
+String Celular,
 String Escuela,
 String Carreara
 		) {
@@ -50,8 +50,8 @@ String Carreara
     	this.Apellidos = Apellidos;
     	this.Correo = Correo;
     	this.Clave = Clave;
-    	this.Documento = Documento;
     	this.FechaNacimiento = FechaNacimiento;
+    	this.Documento = Documento;
     	this.Telefono = Telefono;
     	this.Celular = Celular;
     	this.Escuela = Escuela;
@@ -97,13 +97,6 @@ public void setClave(String Clave) {
 	this.Clave = Clave;
 }
 
-public int getDocumento() {
-	return Documento;
-}
-public void setDocumento(int Documento) {
-	this.Documento = Documento;
-}
-
 public String getFechaNacimiento() {
 	return FechaNacimiento;
 }
@@ -111,17 +104,24 @@ public void setFechaNacimiento(String FechaNacimiento) {
 	this.FechaNacimiento = FechaNacimiento;
 }
 
-public int getTelefono() {
+public String getDocumento() {
+	return Documento;
+}
+public void setDocumento(String Documento) {
+	this.Documento = Documento;
+}
+
+public String getTelefono() {
 	return Telefono;
 }
-public void setTelefono(int Telefono) {
+public void setTelefono(String Telefono) {
 	this.Telefono = Telefono;
 }
 
-public int getCelular() {
+public String getCelular() {
 	return Celular;
 }
-public void setCelular(int Celular) {
+public void setCelular(String Celular) {
 	this.Celular = Celular;
 }
 
@@ -147,8 +147,8 @@ public void setCarreara(String Carreara) {
             ", Apellidos=" + Apellidos + 
             ", Correo=" + Correo + 
             ", Clave=" + Clave + 
-            ", Documento=" + Documento + 
             ", FechaNacimiento=" + FechaNacimiento + 
+            ", Documento=" + Documento + 
             ", Telefono=" + Telefono + 
             ", Celular=" + Celular + 
             ", Escuela=" + Escuela + 

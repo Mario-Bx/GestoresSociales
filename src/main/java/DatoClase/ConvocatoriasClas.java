@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author MARIOBX,jalba
+ * @author MARIOBX,jalba,renan,enumpaque
  */
 @Entity
 @Table(name = "Convocatorias")
