@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author MARIOBX,jalba
+ * @author MARIOBX,jalba,renan,enumpaque
  */
 @Entity
 @Table(name = "Administrador")
@@ -22,9 +22,9 @@ public class AdministradorClas implements Serializable {
 	private String Correo;
 	private String Clave;
 	private String FechaNacimiento;
-	private int Documento;
-	private int Telefono;
-	private int Celular;
+	private String Documento;
+	private String Telefono;
+	private String Celular;
 	
 	public AdministradorClas() {
 		this.list_Convocatorias = new ArrayList<ConvocatoriasClas>();
@@ -36,9 +36,9 @@ String Apellidos,
 String Correo,
 String Clave,
 String FechaNacimiento,
-int Documento,
-int Telefono,
-int Celular
+String Documento,
+String Telefono,
+String Celular
 		) {
     	this.Nombre = Nombre;
     	this.Apellidos = Apellidos;
@@ -94,24 +94,24 @@ public void setFechaNacimiento(String FechaNacimiento) {
 	this.FechaNacimiento = FechaNacimiento;
 }
 
-public int getDocumento() {
+public String getDocumento() {
 	return Documento;
 }
-public void setDocumento(int Documento) {
+public void setDocumento(String Documento) {
 	this.Documento = Documento;
 }
 
-public int getTelefono() {
+public String getTelefono() {
 	return Telefono;
 }
-public void setTelefono(int Telefono) {
+public void setTelefono(String Telefono) {
 	this.Telefono = Telefono;
 }
 
-public int getCelular() {
+public String getCelular() {
 	return Celular;
 }
-public void setCelular(int Celular) {
+public void setCelular(String Celular) {
 	this.Celular = Celular;
 }
 
