@@ -93,4 +93,3 @@ ALTER TABLE Reserva ADD EstudiantesFK int(11);
 ALTER TABLE Reserva ADD FOREIGN KEY (EstudiantesFK) REFERENCES Estudiantes (EstudiantesID);
 ALTER TABLE Reserva ADD ConvocatoriasFK int(11);
 ALTER TABLE Reserva ADD FOREIGN KEY (ConvocatoriasFK) REFERENCES Convocatorias (ConvocatoriasID);
-administradoradministrador
