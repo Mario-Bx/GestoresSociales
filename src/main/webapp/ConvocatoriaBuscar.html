@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ConvocatoriaBuscar</title>
+        <meta charset="utf-8">
+        <!-- Bootstrap 4 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="funcion.js"></script>
+        <!-- w3schools.com -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Administrador</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="AdministradorCrear.html">AdministradorCrear</a>
+                            <a class="dropdown-item" href="AdministradorListar.html">AdministradorListar</a>
+                            <a class="dropdown-item" href="AdministradorBuscar.html">AdministradorBuscar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Estudiante</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="EstudianteCrear.html">EstudianteCrear</a>
+                            <a class="dropdown-item" href="EstudianteListar.html">EstudianteListar</a>
+                            <a class="dropdown-item" href="EstudianteBuscar.html">EstudianteBuscar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Convocatoria</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="ConvocatoriaCrear.html">ConvocatoriaCrear</a>
+                            <a class="dropdown-item" href="ConvocatoriaListar.html">ConvocatoriaListar</a>
+                            <a class="dropdown-item" href="ConvocatoriaBuscar.html">ConvocatoriaBuscar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Principales</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="PrincipalesCrear.html">PrincipalesCrear</a>
+                            <a class="dropdown-item" href="PrincipalesListar.html">PrincipalesListar</a>
+                            <a class="dropdown-item" href="PrincipalesBuscar.html">PrincipalesBuscar</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>  
+        </nav>
+        <div class="container">
+            <div class="form-group">
+
+                <label for="usr">Buscar EstudBusc por ID:</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="Search ID#" #idSh>
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit" (click)="buscar(idSh.value)">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="w3-container w3-card w3-white">
+                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle w3-margin-right w3-xxlarge w3-text-teal"></i>EstudBusc Id </h2>
+                    <div class="w3-container">
+                        <h5 class="w3-opacity"><b>Nombre: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Apellidos: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Correo: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Clave: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Documento: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>FechaNacimiento: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Telefono: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Celular: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Escuela: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Carreara: objetoIDb.fechaNacimiento</b></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </body>
+</html>

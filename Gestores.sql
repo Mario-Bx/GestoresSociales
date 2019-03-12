@@ -10,9 +10,9 @@ Apellidos varchar(150) NOT NULL,
 Correo varchar(150) NOT NULL,
 Clave varchar(150) NOT NULL,
 FechaNacimiento varchar(150) NOT NULL,
-Documento int(11),
-Telefono int(11),
-Celular int(11)
+Documento varchar(150) NOT NULL,
+Telefono varchar(150) NOT NULL,
+Celular varchar(150) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Estudiantes (
@@ -23,10 +23,10 @@ Nombre varchar(150) NOT NULL,
 Apellidos varchar(150) NOT NULL,
 Correo varchar(150) NOT NULL,
 Clave varchar(150) NOT NULL,
-Documento int(11),
+Documento varchar(150) NOT NULL,
 FechaNacimiento varchar(150) NOT NULL,
-Telefono int(11),
-Celular int(11),
+Telefono varchar(150) NOT NULL,
+Celular varchar(150) NOT NULL,
 Escuela varchar(150) NOT NULL,
 Carreara varchar(150) NOT NULL
 );
@@ -42,13 +42,6 @@ Hora varchar(150) NOT NULL,
 Encargado varchar(150) NOT NULL,
 Descripcion varchar(150) NOT NULL,
 HorasGanadas int(11)
-);
-
-CREATE TABLE IF NOT EXISTS Participantes (
-ParticipantesID int(11) NOT NULL AUTO_INCREMENT,
-PRIMARY KEY (ParticipantesID), 
-
-Nombre varchar(150) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Bitacora (
@@ -71,14 +64,33 @@ ConInicial int(11),
 ConFinal int(11)
 );
 
+CREATE TABLE IF NOT EXISTS Principal (
+PrincipalID int(11) NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (PrincipalID), 
+
+Nombre varchar(150) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Reserva (
+ReservaID int(11) NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (ReservaID), 
+
+Nombre varchar(150) NOT NULL
+);
+
 	
 ALTER TABLE Convocatorias ADD AdministradorFK int(11);
 ALTER TABLE Convocatorias ADD FOREIGN KEY (AdministradorFK) REFERENCES Administrador (AdministradorID);
-ALTER TABLE Participantes ADD EstudiantesFK int(11);
-ALTER TABLE Participantes ADD FOREIGN KEY (EstudiantesFK) REFERENCES Estudiantes (EstudiantesID);
-ALTER TABLE Participantes ADD ConvocatoriasFK int(11);
-ALTER TABLE Participantes ADD FOREIGN KEY (ConvocatoriasFK) REFERENCES Convocatorias (ConvocatoriasID);
 ALTER TABLE Bitacora ADD EstudiantesFK int(11);
 ALTER TABLE Bitacora ADD FOREIGN KEY (EstudiantesFK) REFERENCES Estudiantes (EstudiantesID);
 ALTER TABLE Sanciones ADD EstudiantesFK int(11);
 ALTER TABLE Sanciones ADD FOREIGN KEY (EstudiantesFK) REFERENCES Estudiantes (EstudiantesID);
+ALTER TABLE Principal ADD EstudiantesFK int(11);
+ALTER TABLE Principal ADD FOREIGN KEY (EstudiantesFK) REFERENCES Estudiantes (EstudiantesID);
+ALTER TABLE Principal ADD ConvocatoriasFK int(11);
+ALTER TABLE Principal ADD FOREIGN KEY (ConvocatoriasFK) REFERENCES Convocatorias (ConvocatoriasID);
+ALTER TABLE Reserva ADD EstudiantesFK int(11);
+ALTER TABLE Reserva ADD FOREIGN KEY (EstudiantesFK) REFERENCES Estudiantes (EstudiantesID);
+ALTER TABLE Reserva ADD ConvocatoriasFK int(11);
+ALTER TABLE Reserva ADD FOREIGN KEY (ConvocatoriasFK) REFERENCES Convocatorias (ConvocatoriasID);
+administradoradministrador

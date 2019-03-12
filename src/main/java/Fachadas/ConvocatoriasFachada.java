@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 /**
  *
- * @author MARIOBX,jalba,renan,enumpaque
+ * @author MARIO
  */
 public class ConvocatoriasFachada extends ServiceImpl<ConvocatoriasClas> {
 

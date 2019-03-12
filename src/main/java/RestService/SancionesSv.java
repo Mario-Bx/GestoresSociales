@@ -10,63 +10,102 @@ import DaoGenerico.ConexionException;
 
 /**
  *
- * @author MARIOBX,jalba,renan,enumpaque
+ * @author MARIO
  */
 @Path("/SancionesSv")
 public class SancionesSv {
-	
-	SancionesFachada sancionesFh = null;
-	EstudiantesFachada estudiantesFh = null;
-	SancionesDTO dto = null;
-	EstudiantesDTO estudiantesFk = null;
 
-	@GET
+    SancionesFachada sancionesFh = null;
+    EstudiantesFachada estudiantesFh = null;
+    SancionesDTO dto = null;
+    EstudiantesDTO estudiantesFk = null;
+
+    @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<SancionesDTO> getListaDto_JSON() throws ConexionException{
+    public List<SancionesDTO> getListaDto_JSON() throws ConexionException {
+        System.out.println("?????????????????????????????????????????????????????????????????????????????");
+        System.out.println("##############");
+        System.out.println("Se entro al servicio de SancionesSv, funcion Listar");
+        System.out.println("%%%%%%%%%%%%%%");
+
         sancionesFh = new SancionesFachada();
-        List<SancionesClas> objetoCl =  sancionesFh.buscarTodoObj();
+        System.out.println("##############");
+        System.out.println("Se inicio la Fachada");
+        System.out.println("%%%%%%%%%%%%%%");
+
+        List<SancionesClas> objetoCl = sancionesFh.buscarTodoObj();
         List<SancionesDTO> objetoDTO = new ArrayList<SancionesDTO>();
+        System.out.println("##############");
+        System.out.println("Se Llamo la funcion Lista en la Fachada");
+        System.out.println("%%%%%%%%%%%%%%");
+
         for (SancionesClas objetoCLS : objetoCl) {
             dto = new SancionesDTO(objetoCLS);
             objetoDTO.add(dto);
         }
+        System.out.println("##############");
+        System.out.println("Se Se convirtieron los Objetos en SancionesDTO");
+        System.out.println("%%%%%%%%%%%%%%");
         return objetoDTO;
     }
+
     /////
-        /////
-    	@GET
+    /////
+    @GET
     @Path("/{ID}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-        public SancionesDTO buscarObjeto(@PathParam("ID") String id) throws ConexionException {
-           sancionesFh = new SancionesFachada();
-            SancionesClas objetoCLS = sancionesFh.busacarObj(Integer.parseInt(id));
-            dto = new SancionesDTO(objetoCLS);
-            
-            
-            return dto;
-}
-//    
-//    
+    public SancionesDTO buscarObjeto(@PathParam("ID") String id) throws ConexionException {
+        System.out.println("?????????????????????????????????????????????????????????????????????????????");
+        System.out.println("##############");
+        System.out.println("Se entro al servicio de SancionesSv, funcion Buscar(ID)");
+        System.out.println("%%%%%%%%%%%%%%");
 
+        sancionesFh = new SancionesFachada();
+        SancionesClas objetoCLS = sancionesFh.busacarObj(Integer.parseInt(id));
+        dto = new SancionesDTO(objetoCLS);
+        System.out.println("##############");
+        System.out.println("Se inicio la Fachada y uso la funcion Buscar(ID)");
+        System.out.println("%%%%%%%%%%%%%%");
+
+        System.out.println("##############");
+        System.out.println("Se crearon las listas relacionales del Mapeo Uno a Muchos");
+        System.out.println("%%%%%%%%%%%%%%");
+
+        return dto;
+    }
+
+    /////
+    /////
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public SancionesDTO addObjeto(SancionesDTO objetoDto) throws ConexionException {
+    public void addObjeto(SancionesDTO objetoDto) throws ConexionException {
+        System.out.println("?????????????????????????????????????????????????????????????????????????????");
+        System.out.println("##############");
+        System.out.println("Se entro al servicio de SancionesSv, funcion Crear");
 
-         sancionesFh = new SancionesFachada();
+        sancionesFh = new SancionesFachada();
         SancionesClas objetoCLS = new SancionesClas();
-		
-objetoCLS.setDescripcion(objetoDto.getDescripcion());
-objetoCLS.setNumeroConvocatria(objetoDto.getNumeroConvocatria());
-objetoCLS.setConInicial(objetoDto.getConInicial());
-objetoCLS.setConFinal(objetoDto.getConFinal());
-    		
-    		estudiantesFh = new EstudiantesFachada();
-    		EstudiantesClas estudiantesCLS = estudiantesFh.busacarObj(objetoDto.getEstudiantesFk().getEstudiantesID());
-    		objetoCLS.setEstudiantesFK(estudiantesCLS);
+        System.out.println("##############");
+        System.out.println("Se inicio la Fachada y ObjetoClas");
+        System.out.println("%%%%%%%%%%%%%%");
 
-       sancionesFh.crearObj(objetoCLS);
-        return dto;
+        objetoCLS.setDescripcion(objetoDto.getDescripcion());
+        objetoCLS.setNumeroConvocatria(objetoDto.getNumeroConvocatria());
+        objetoCLS.setConInicial(objetoDto.getConInicial());
+        objetoCLS.setConFinal(objetoDto.getConFinal());
+
+        estudiantesFh = new EstudiantesFachada();
+        EstudiantesClas estudiantesCLS = estudiantesFh.busacarObj(objetoDto.getEstudiantesFk().getEstudiantesID());
+        objetoCLS.setEstudiantesFK(estudiantesCLS);
+        System.out.println("##############");
+        System.out.println("Se recivieron los parametros De SancionesDTO");
+        System.out.println("%%%%%%%%%%%%%%");
+
+        sancionesFh.crearObj(objetoCLS);
+        System.out.println("##############");
+        System.out.println("Se entro la Fachada y uso la funcion Crear");
+        System.out.println("%%%%%%%%%%%%%%");
     }
 
     /////
@@ -74,23 +113,36 @@ objetoCLS.setConFinal(objetoDto.getConFinal());
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public SancionesDTO actualizarObjeto(SancionesDTO objetoDto) throws ConexionException {
+    public void actualizarObjeto(SancionesDTO objetoDto) throws ConexionException {
+        System.out.println("?????????????????????????????????????????????????????????????????????????????");
+        System.out.println("##############");
+        System.out.println("Se entro al servicio de SancionesSv, funcion Editar");
+        System.out.println("%%%%%%%%%%%%%%");
 
         sancionesFh = new SancionesFachada();
         SancionesClas objetoCLS = new SancionesClas();
+        System.out.println("##############");
+        System.out.println("Se inicio la Fachada y ObjetoClas");
+        System.out.println("%%%%%%%%%%%%%%");
+
         objetoCLS.setSancionesID(objetoDto.getSancionesID());
-            		
-objetoCLS.setDescripcion(objetoDto.getDescripcion());
-objetoCLS.setNumeroConvocatria(objetoDto.getNumeroConvocatria());
-objetoCLS.setConInicial(objetoDto.getConInicial());
-objetoCLS.setConFinal(objetoDto.getConFinal());
-    		
-    		estudiantesFh = new EstudiantesFachada();
-    		EstudiantesClas estudiantesCLS = estudiantesFh.busacarObj(objetoDto.getEstudiantesFk().getEstudiantesID());
-    		objetoCLS.setEstudiantesFK(estudiantesCLS);
+
+        objetoCLS.setDescripcion(objetoDto.getDescripcion());
+        objetoCLS.setNumeroConvocatria(objetoDto.getNumeroConvocatria());
+        objetoCLS.setConInicial(objetoDto.getConInicial());
+        objetoCLS.setConFinal(objetoDto.getConFinal());
+
+        estudiantesFh = new EstudiantesFachada();
+        EstudiantesClas estudiantesCLS = estudiantesFh.busacarObj(objetoDto.getEstudiantesFk().getEstudiantesID());
+        objetoCLS.setEstudiantesFK(estudiantesCLS);
+        System.out.println("##############");
+        System.out.println("Se recivieron los parametros De SancionesDTO");
+        System.out.println("%%%%%%%%%%%%%%");
 
         sancionesFh.actualizarObj(objetoCLS);
-        return dto;
+        System.out.println("##############");
+        System.out.println("Se entro la Fachada y uso la funcion Actualizar");
+        System.out.println("%%%%%%%%%%%%%%");
     }
 
     /////
@@ -99,9 +151,27 @@ objetoCLS.setConFinal(objetoDto.getConFinal());
     @Path("/{ID}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public void deleteObjeto(@PathParam("ID") String id) throws ConexionException {
+        System.out.println("?????????????????????????????????????????????????????????????????????????????");
+        System.out.println("##############");
+        System.out.println("Se entro al servicio de SancionesSv, funcion Eliminar");
+        System.out.println("%%%%%%%%%%%%%%");
 
         sancionesFh = new SancionesFachada();
-       	SancionesClas objetoCLS =sancionesFh.busacarObj(Integer.parseInt(id));
-        sancionesFh.eliminarObje(objetoCLS);
+        System.out.println("##############");
+        System.out.println("Se inicio la Fachada y ObjetoClas");
+        System.out.println("%%%%%%%%%%%%%%");
+
+        SancionesClas objetoCLS = sancionesFh.busacarObj(Integer.parseInt(id));
+        System.out.println("##############");
+        System.out.println("Se entro la Fachada y uso la funcion BuscarID");
+        System.out.println("%%%%%%%%%%%%%%");
+
+        if (objetoCLS != null) {
+            sancionesFh.eliminarObje(objetoCLS);
+            System.out.println("##############");
+            System.out.println("Se entro la Fachada y uso la funcion Eliminar");
+            System.out.println("%%%%%%%%%%%%%%");
+        }
+
     }
 }

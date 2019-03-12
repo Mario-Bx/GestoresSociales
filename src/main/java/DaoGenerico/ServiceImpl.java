@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author MARIOBX,jalba
+ * @author MARIOBX
  */
 public class ServiceImpl<T> implements Service<T> {
 
