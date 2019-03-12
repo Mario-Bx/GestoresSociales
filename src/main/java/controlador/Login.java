@@ -5,10 +5,14 @@
  */
 package controlador;
 
+import DaoGenerico.ConexionException;
+import DatoClase.AdministradorClas;
+import Fachadas.AdministradorFachada;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -73,18 +77,34 @@ public class Login extends HttpServlet {
             String clave = request.getParameter("clave");
 
             UsuarioDAO usuariodao = new UsuarioDAO();
+            
+            
+            
+            
+            AdministradorFachada fh = new AdministradorFachada();
+//            
+            List<AdministradorClas> correoVX = fh.findByProperty("Correo", usuario);
+            if (correoVX.get(0).getClave().equals(clave2)){
+                
+            }
+            
+            
+            
+            
             String clave2 = usuariodao.getUsuarioById(usuario).getClave();
 
             if (clave.equals(clave2)) {
                 //si coincide usuario y password y además no hay sesión iniciada.
                 sesion.setAttribute("usuario", usuario);
                 //redirijo a página con información de login exitoso.
-                response.sendRedirect("index.html");
+                response.sendRedirect("index.jsp");
             } else {
                 response.sendRedirect("login_1.jsp");
             }
             
         } catch (URISyntaxException | SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ConexionException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
 
