@@ -65,11 +65,35 @@ function crearFormAdministrador() {
         }
     });
 }
-function listaAdminLista() {
+function BuscarlistaAdminLista() {
+    var LiataAdminstrador;
     $.ajax({
         url: api + "AdministradorSv",
         type: "Get",
         success: function (data) {
+            console.log(data);
+            LiataAdminstrador = data;
+            var listasDatos = data;
+            console.log(listasDatos.AdministradorDTO[0]);
+            console.log("Prueba");
+        },
+        error: function () {
+            alert('Error function listaAdminLista');
+        }
+    });
+    
+    return LiataAdminstrador;
+}
+
+function listaAdminLista() {
+    var ListaRecib = BuscarlistaAdminLista();
+    console.log("######################");
+    console.log("######################");
+    console.log("######################");
+    console.log(ListaRecib);
+    $.ajax({
+        data: ListaRecib;
+        success: function () {
             console.log(data);
             var listasDatos = data;
             console.log(listasDatos.AdministradorDTO[0]);
