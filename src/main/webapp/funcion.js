@@ -72,16 +72,18 @@ function BuscarlistaAdminLista() {
         type: "Get",
         success: function (data) {
             console.log(data);
-            LiataAdminstrador = data;
+            LiataAdminstrador = JSON.parse(data);
             var listasDatos = data;
-            console.log(listasDatos.AdministradorDTO[0]);
+            console.log(listasDatos.AdministradorDTO[0].Nombre);
             console.log("Prueba");
         },
         error: function () {
             alert('Error function listaAdminLista');
         }
     });
-    
+    console.log("*************************");
+    console.log(LiataAdminstrador);
+    console.log("*************************");
     return LiataAdminstrador;
 }
 
@@ -92,10 +94,9 @@ function listaAdminLista() {
     console.log("######################");
     console.log(ListaRecib);
     $.ajax({
-        data: ListaRecib;
         success: function () {
-            console.log(data);
-            var listasDatos = data;
+            console.log(ListaRecib);
+            var listasDatos = ListaRecib;
             console.log(listasDatos.AdministradorDTO[0]);
             console.log("Prueba");
 
