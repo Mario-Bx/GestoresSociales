@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>EstudianteBuscar</title>
+        <title>AdministradorBuscar</title>
         <meta charset="utf-8">
         <!-- Bootstrap 4 -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>
+    <%
+
+        HttpSession misession = request.getSession(true);
+
+        if (misession.getAttribute("usuario") == null) {
+            response.sendRedirect("login.jsp");
+        }
+
+    %>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -28,33 +37,57 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Administrador</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="AdministradorCrear.html">AdministradorCrear</a>
-                            <a class="dropdown-item" href="AdministradorListar.html">AdministradorListar</a>
-                            <a class="dropdown-item" href="AdministradorBuscar.html">AdministradorBuscar</a>
+                            <a class="dropdown-item" href="AdministradorCrear.jsp">AdministradorCrear</a>
+                            <a class="dropdown-item" href="AdministradorListar.jsp">AdministradorListar</a>
+                            <a class="dropdown-item" href="AdministradorBuscar.jsp">AdministradorBuscar</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Estudiante</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="EstudianteCrear.html">EstudianteCrear</a>
-                            <a class="dropdown-item" href="EstudianteListar.html">EstudianteListar</a>
-                            <a class="dropdown-item" href="EstudianteBuscar.html">EstudianteBuscar</a>
+                            <a class="dropdown-item" href="EstudianteCrear.jsp">EstudianteCrear</a>
+                            <a class="dropdown-item" href="EstudianteListar.jsp">EstudianteListar</a>
+                            <a class="dropdown-item" href="EstudianteBuscar.jsp">EstudianteBuscar</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Convocatoria</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="ConvocatoriaCrear.html">ConvocatoriaCrear</a>
-                            <a class="dropdown-item" href="ConvocatoriaListar.html">ConvocatoriaListar</a>
-                            <a class="dropdown-item" href="ConvocatoriaBuscar.html">ConvocatoriaBuscar</a>
+                            <a class="dropdown-item" href="ConvocatoriaCrear.jsp">ConvocatoriaCrear</a>
+                            <a class="dropdown-item" href="ConvocatoriaListar.jsp">ConvocatoriaListar</a>
+                            <a class="dropdown-item" href="ConvocatoriaBuscar.jsp">ConvocatoriaBuscar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Bitacora</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="BitacoraCrear.jsp">BitacoraCrear</a>
+                            <a class="dropdown-item" href="BitacoraListar.jsp">BitacoraListar</a>
+                            <a class="dropdown-item" href="BitacoraBuscar.jsp">BitacoraBuscar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Sanciones</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="SancionesCrear.jsp">SancionesCrear</a>
+                            <a class="dropdown-item" href="SancionesListar.jsp">SancionesListar</a>
+                            <a class="dropdown-item" href="SancionesBuscar.jsp">SancionesBuscar</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Principales</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="PrincipalesCrear.html">PrincipalesCrear</a>
-                            <a class="dropdown-item" href="PrincipalesListar.html">PrincipalesListar</a>
-                            <a class="dropdown-item" href="PrincipalesBuscar.html">PrincipalesBuscar</a>
+                            <a class="dropdown-item" href="PrincipalesCrear.jsp">PrincipalesCrear</a>
+                            <a class="dropdown-item" href="PrincipalesListar.jsp">PrincipalesListar</a>
+                            <a class="dropdown-item" href="PrincipalesBuscar.jsp">PrincipalesBuscar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Reserva</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="ReservaCrear.jsp">ReservaCrear</a>
+                            <a class="dropdown-item" href="ReservaListar.jsp">ReservaListar</a>
+                            <a class="dropdown-item" href="ReservaBuscar.jsp">ReservaBuscar</a>
                         </div>
                     </li>
                 </ul>
@@ -63,7 +96,7 @@
         <div class="container">
             <div class="form-group">
 
-                <label for="usr">Buscar EstudBusc por ID:</label>
+                <label for="usr">Buscar AdminBusc por ID:</label>
                 <div class="input-group">
                     <input type="number" class="form-control" placeholder="Search ID#" #idSh>
                     <div class="input-group-btn">
@@ -75,18 +108,16 @@
 
                 <hr>
                 <div class="w3-container w3-card w3-white">
-                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle w3-margin-right w3-xxlarge w3-text-teal"></i>EstudBusc Id </h2>
+                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle w3-margin-right w3-xxlarge w3-text-teal"></i>AdminBusc Id </h2>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><b>Nombre: objetoIDb.fechaNacimiento</b></h5>
                         <h5 class="w3-opacity"><b>Apellidos: objetoIDb.fechaNacimiento</b></h5>
                         <h5 class="w3-opacity"><b>Correo: objetoIDb.fechaNacimiento</b></h5>
                         <h5 class="w3-opacity"><b>Clave: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Documento: objetoIDb.fechaNacimiento</b></h5>
                         <h5 class="w3-opacity"><b>FechaNacimiento: objetoIDb.fechaNacimiento</b></h5>
+                        <h5 class="w3-opacity"><b>Documento: objetoIDb.fechaNacimiento</b></h5>
                         <h5 class="w3-opacity"><b>Telefono: objetoIDb.fechaNacimiento</b></h5>
                         <h5 class="w3-opacity"><b>Celular: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Escuela: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Carreara: objetoIDb.fechaNacimiento</b></h5>
                     </div>
                 </div>
             </div>

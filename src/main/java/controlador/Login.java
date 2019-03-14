@@ -77,36 +77,30 @@ public class Login extends HttpServlet {
             String clave = request.getParameter("clave");
 
             UsuarioDAO usuariodao = new UsuarioDAO();
-            
-            
-            
-            
-            AdministradorFachada fh = new AdministradorFachada();
+
+//            AdministradorFachada fh = new AdministradorFachada();
 //            
-            List<AdministradorClas> correoVX = fh.findByProperty("Correo", usuario);
-            if (correoVX.get(0).getClave().equals(clave2)){
-                
-            }
-            
-            
-            
-            
+//            List<AdministradorClas> correoVX = fh.findByProperty("Correo", usuario);
+//            if (correoVX.get(0).getClave().equals(clave2)){
+//                
+//            }
             String clave2 = usuariodao.getUsuarioById(usuario).getClave();
 
             if (clave.equals(clave2)) {
                 //si coincide usuario y password y además no hay sesión iniciada.
                 sesion.setAttribute("usuario", usuario);
                 //redirijo a página con información de login exitoso.
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("vistaloginprofesores.jsp");
             } else {
                 response.sendRedirect("login_1.jsp");
             }
-            
+
         } catch (URISyntaxException | SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ConexionException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        } catch (ConexionException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 

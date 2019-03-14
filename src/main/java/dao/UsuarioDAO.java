@@ -20,13 +20,14 @@ public class UsuarioDAO {
         connection = dao.MiConexion.getConnection();
     }
 
-    public Usuario getUsuarioById (String usuario) throws SQLException {
+    public Usuario getUsuarioById(String usuario) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from usuario where usuario=" + "\"" + usuario + "\"");
+        ResultSet rs = statement.executeQuery("select * from Administrador where Correo=" + "\"" + usuario + "\"");
         Usuario user = new Usuario();
         if (rs.next()) {
-            user.setUsuario(rs.getString("usuario"));
-            user.setClave(rs.getString("clave"));
+            user.setUsuario(rs.getString("Correo"));
+            user.setClave(rs.getString("Clave"));
+
         }
         return user;
     }
