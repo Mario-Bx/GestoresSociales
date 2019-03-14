@@ -73,7 +73,7 @@
                     <h3>Estudiantes</h3>
                     <p>Gestion completa</p>
 
-                    <button type="button" class="btn btn-dark" onclick="location.href = 'EstudianteListar.jsp'">Listar Estudiantes</button>
+                    <button type="button" class="btn btn-dark" onclick="location.href = 'PerfilGestor.html'">Vista Estudiantes</button>
                     <button type="button" class="btn btn-dark" onclick="location.href = 'EstudianteCrear.jsp'">Crear Estudiantes</button>
 
                 </div>

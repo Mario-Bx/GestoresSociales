@@ -1426,7 +1426,7 @@ function EditarAdministrador() {
 
     console.log("Servicio Editar");
     var Administrador = '{' +
-            '"AdministradorID": "6"' + ', ' +
+            '"AdministradorID": "' + $("#AdministradorID").val() + '"' + ', ' +
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Apellidos": "' + $("#Apellidos").val() + '"' + ', ' +
             '"Correo": "' + $("#Correo").val() + '"' + ', ' +
