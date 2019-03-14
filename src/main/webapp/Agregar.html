@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>EstudianteCrear</title>
+        <meta charset="utf-8">
+        <!-- Bootstrap 4 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="funcion.js"></script>
+        <!-- w3schools.com -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+            $(document).ready(crearFormPrincipal());
+        </script>
+
+
+    </head>
+    <body>
+
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+
+
+            <img src="https://image.flaticon.com/icons/svg/149/149071.svg" width="40%" style="display: block;margin-left: auto;margin-right: auto;margin-top: 3%;"> 
+            <h4>Administrador  </h4>
+            <button class="w3-bar-item w3-button w3-large"
+                    onclick="w3_close()">Close &times;</button>
+            <a  href="PerfilAdmin.html" class="w3-bar-item w3-button" >Inicio</a> 
+            <a href="Convocatorias.html" class="w3-bar-item w3-button">Crear Convocatoria</a>
+            <a href="#" class="w3-bar-item w3-button">Cerrar sesion</a>
+
+        </div>
+
+        <div id="main" >
+
+            <div class="w3-teal">
+                <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+
+                <div class="w3-container">
+
+                </div>
+            </div>
+
+            <div id="envoltura">
+                <div id="contenedor">
+
+
+
+                    <div id="cuerpo">
+                        <div class="container">
+                            <h2>Crear EstudCr</h2>
+                            <div class="container" id="Principalcrear">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="w3-container">
+
+            </div>
+
+        </div>
+
+        <script>
+            function w3_open() {
+                document.getElementById("main").style.marginLeft = "25%";
+                document.getElementById("mySidebar").style.width = "25%";
+                document.getElementById("mySidebar").style.display = "block";
+                document.getElementById("openNav").style.display = 'none';
+            }
+            function w3_close() {
+                document.getElementById("main").style.marginLeft = "0%";
+                document.getElementById("mySidebar").style.display = "none";
+                document.getElementById("openNav").style.display = "inline-block";
+            }
+        </script>
+
+    </body>
+</html>

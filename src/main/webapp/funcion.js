@@ -87,8 +87,6 @@ function listaAdminLista() {
     });
 
 }
-
-
 function PintarAdminLista(listasDatos) {
     console.log("Pintar la Lista de AdministradorSv");
 
@@ -284,8 +282,6 @@ function listaEstudiLista() {
     });
 
 }
-
-
 function PintarEstudiLista(listasDatos) {
     console.log("Pintar la Lista de EstudiantesSv");
 
@@ -516,8 +512,6 @@ function listaConvocatoriaLista() {
     });
 
 }
-
-
 function PintarConvocatoriaLista(listasDatos) {
     console.log("Pintar la Lista de ConvocatoriasSv");
 
@@ -722,8 +716,6 @@ function listaBitacoraLista() {
     });
 
 }
-
-
 function PintarBitacoraLista(listasDatos) {
     console.log("Pintar la Lista de BitacoraSv");
 
@@ -910,8 +902,6 @@ function listaSancionesLista() {
     });
 
 }
-
-
 function PintarSancionesLista(listasDatos) {
     console.log("Pintar la Lista de SancionesSv");
 
@@ -1090,8 +1080,6 @@ function listaPrincipalLista() {
     });
 
 }
-
-
 function PintarPrincipalLista(listasDatos) {
     console.log("Pintar la Lista de PrincipalSv");
 
@@ -1259,8 +1247,6 @@ function listaReservaLista() {
     });
 
 }
-
-
 function PintarReservaLista(listasDatos) {
     console.log("Pintar la Lista de ReservaSv");
 
@@ -1421,7 +1407,6 @@ function crearAdministrador() {
         }
     });
 }
-
 function EditarAdministrador() {
 
     console.log("Servicio Editar");
@@ -1454,6 +1439,8 @@ function EditarAdministrador() {
     });
 
 }
+
+
 function selectEstudiantes() {
     $.ajax({
         url: api + "EstudiantesSv",
@@ -1514,7 +1501,6 @@ function crearEstudiantes() {
         }
     });
 }
-
 function EditarEstudiantes() {
 
     console.log("Servicio Editar");
@@ -1576,6 +1562,7 @@ function selectConvocatorias() {
         }
     });
 }
+
 function crearConvocatorias() {
 
     console.log("crearDeporte");
@@ -1606,7 +1593,6 @@ function crearConvocatorias() {
         }
     });
 }
-
 function EditarConvocatorias() {
 
     console.log("Servicio Editar");
@@ -1638,6 +1624,7 @@ function EditarConvocatorias() {
     });
 
 }
+
 function selectBitacora() {
     $.ajax({
         url: api + "BitacoraSv",
@@ -1692,7 +1679,6 @@ function crearBitacora() {
         }
     });
 }
-
 function EditarBitacora() {
 
     console.log("Servicio Editar");
@@ -1721,6 +1707,7 @@ function EditarBitacora() {
     });
 
 }
+
 function selectSanciones() {
     $.ajax({
         url: api + "SancionesSv",
@@ -1775,7 +1762,6 @@ function crearSanciones() {
         }
     });
 }
-
 function EditarSanciones() {
 
     console.log("Servicio Editar");
@@ -1804,6 +1790,7 @@ function EditarSanciones() {
     });
 
 }
+
 function selectPrincipal() {
     $.ajax({
         url: api + "PrincipalSv",
