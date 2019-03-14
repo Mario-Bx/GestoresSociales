@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>AdministradorBuscar</title>
+        <title>Proyecyo</title>
         <meta charset="utf-8">
         <!-- Bootstrap 4 -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,9 +15,30 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <style>
+            .fakeimg {
+                height: 200px;
+                background: #aaa;
+            }
+        </style>
     </head>
+    <%
+
+        HttpSession misession = request.getSession(true);
+
+        if (misession.getAttribute("usuario") == null) {
+            response.sendRedirect("login.jsp");
+        }
+
+    %>
     <body>
+
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            <h1>My First Bootstrap 4 Page</h1>
+            <p>Resize this responsive page to see the effect!</p> 
+        </div>
+
+
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -29,7 +50,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Administrador</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="AdministradorCrear.html">AdministradorCrear</a>
-                            <a class="dropdown-item" href="AdministradorListar.html">AdministradorListar</a>
+                            <a class="dropdown-item" href="AdministradorListar.jsp">AdministradorListar</a>
                             <a class="dropdown-item" href="AdministradorBuscar.html">AdministradorBuscar</a>
                         </div>
                     </li>
@@ -60,39 +81,51 @@
                 </ul>
             </div>  
         </nav>
-        <div class="container">
-            <div class="form-group">
 
-                <label for="usr">Buscar AdminBusc por ID:</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Search ID#" #idSh>
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit" (click)="buscar(idSh.value)">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
+        <div class="container" style="margin-top:30px">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>About Me</h2>
+                    <h5>Photo of me:</h5>
+                    <div class="fakeimg">Fake Image</div>
+                    <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+                    <h3>Some Links</h3>
+                    <p>Lorem ipsum dolor sit ame.</p>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>
+                    </ul>
+                    <hr class="d-sm-none">
                 </div>
-
-                <hr>
-                <div class="w3-container w3-card w3-white">
-                    <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user-circle w3-margin-right w3-xxlarge w3-text-teal"></i>AdminBusc Id </h2>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Nombre: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Apellidos: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Correo: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Clave: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>FechaNacimiento: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Documento: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Telefono: objetoIDb.fechaNacimiento</b></h5>
-                        <h5 class="w3-opacity"><b>Celular: objetoIDb.fechaNacimiento</b></h5>
-                    </div>
+                <div class="col-sm-8">
+                    <h2>TITLE HEADING</h2>
+                    <h5>Title description, Dec 7, 2017</h5>
+                    <div class="fakeimg">Fake Image</div>
+                    <p>Some text..</p>
+                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                    <br>
+                    <h2>TITLE HEADING</h2>
+                    <h5>Title description, Sep 2, 2017</h5>
+                    <div class="fakeimg">Fake Image</div>
+                    <p>Some text..</p>
+                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
                 </div>
             </div>
         </div>
 
-
-
-
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            <p>Footer</p>
+        </div>
 
     </body>
 </html>

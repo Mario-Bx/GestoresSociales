@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>ingeniero Juan Albarracin</title>
+
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Fichiers CSS -->
+        <link rel="stylesheet" href="reset.css">
+        <!--[if lt IE 9]> 
+                <link rel="stylesheet" href="css/cv.css" media="screen">
+        <![endif]-->
+        <link rel="stylesheet" media="screen and (max-width:480px)" href="mobile.css">
+        <link rel="stylesheet" media="screen and (min-width:481px)" href="cv.css">
+        <link rel="stylesheet" media="print" href="print.css">
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header role="banner">
+            <div class="container_16">
+                <hgroup>
+                    <h1>Juan de Jesus Albarracin Barreto</h1>
+                    <h2>Ingeniero de sistemas y Telecomunicaciones</h2>
+                </hgroup>
+
+                <figure>
+                    <img src="avatar.jpg" alt="Sheldon COOPER">
+                </figure>
+            </div>
+        </header>
+
+        <!-- Contact -->
+        <section class="contactform clearfix">
+            <div class="container_16">
+                <h3> Contacto</h3>
+                <p>	Llena este formulario y la persona se contactara contigo lo mas pronto posible
+                    <br><em>Todos los campos son requeridos.</em></p>
+                <form novalidate="novalidate" method="post" action="#" name="contact" class="grid_16">
+                    <p class="grid_10"><textarea name="message" placeholder="Tu mensaje" class="required"></textarea></p>
+                    <p class="grid_6">
+                        <input name="nom" placeholder="Nombre" class="required" type="text">
+                        <input name="email" placeholder="Direccion de email" class="required" type="email">	
+                        <input name="envoi" value="Enviar Mensaje" class="required" onclick="myFunction()" type="submit">
+                        <span class="messageform"></span>
+                    </p>
+                </form>
+            </div>
+            <script>
+                function myFunction() {
+                    alert("Mensaje enviado");
+                }
+            </script>
+        </section>
+
+        <!-- Corps -->
+        <section role="main" class="container_16 clearfix">
+            <div class="grid_16">
+                <!-- A propos -->
+                <div class="grid_8 apropos">
+                    <h3>Descripcion</h3>
+                    <p>¿que es un ingeniro de sistemas y telecomunicaciones?</p>
+
+                    <button type="button" class="btn btn-dark" onclick="location.href = 'https://www.facebook.com'">Crear priyectos</button>
+                    <button type="button" class="btn btn-dark">Listar priyectos</button>
+                </div>
+
+                <div class="grid_8 competences">
+                    <h3>Mi presentacion</h3>
+                    <ul>
+                        <li>
+                            <h4> Mi Presentacion</h4>
+                            <button type="button" class="btn btn-dark" onclick="location.href = 'Sheldon.html'">Mi presentacion</button>
+
+
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+
+
+            </div>
+
+            <!-- Compétences -->
+
+            <!-- Scripts JavaScript -->
+            <script src="jquery-1.js"></script>
+            <script src="validate.js"></script>
+            <!--[if lt IE 9]>
+            <script src="scripts/placeholder.js"></script>
+            <![endif]-->
+            <script src="plugins.js"></script>
+
+    </body></html>
