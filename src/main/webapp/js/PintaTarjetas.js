@@ -1,8 +1,8 @@
     var api = "http://localhost:8090/indexRest/rest/";
     
-    function DatosEstudiLista(id) {
+    function DatosEstudiLista() {
     $.ajax({
-        url: api + "EstudiantesSv/" + id,
+        url: api + "EstudiantesSv" ,
         type: "Get",
         success: function (data) {
             console.log("Servicio ID EstudiantesSv");
@@ -37,36 +37,37 @@ function PintarTarjetas(Datos) {
                 
                       Datos.EstudiantesDTO.forEach(element => {
             $("#Tarjetas").append(
-                                 <div class="card">
+            
+                                 '<div class="card">'+
                 
                 
                
-                <div class="card-title">
+               ' <div class="card-title">'+
                     
-                    <a href="#" class="toggle-info btn">
-                        <span class="left"></span>
-                        <span class="right"></span>
-                    </a>
-                    <h2>
-                       element.Nombre + element.Apellido
-                        <small>element.carrera</small>
-                    </h2>
-                </div>
+                   ' <a href="#" class="toggle-info btn">'+
+                        '<span class="left"></span>'+
+                        '<span class="right"></span>'+
+                    '</a>'+
+                    '<h2>'+
+                       element.Nombre +' '+ element.Apellido+
+                        '<small>element.carrera</small>'+
+                    '</h2>'+
+               ' </div>'+
                 
-                <div class="card-flap flap1">
+               ' <div class="card-flap flap1">'+
                     
-                    <div class="card-description">
-                        element.Escuela
-                        element.Correo
-                        element.Telefono + element.Celular
-                    </div>
-                    <div class="card-flap flap2">
-                        <div class="card-actions">
-                            <a href="#" class="btn">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    '<div class="card-description">'+
+                        element.Escuela+
+                        element.Correo+
+                        element.Telefono + element.Celular+
+                    '</div>'+
+                    '<div class="card-flap flap2">'+
+                        '<div class="card-actions">'+
+                            '<a href="#" class="btn">Read more</a>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
             
             
                    );
