@@ -24,6 +24,23 @@ function listaConvocatoriaLista() {
 
 }
 
+function listaMisConvocatoriaLista() {
+    $.ajax({
+        url: api + "ConvocatoriasSv",
+        type: "Get",
+        success: function (data) {
+            console.log("Servicio Listar ConvocatoriasSv");
+            console.log(data);
+
+            PintarMisConvocatoriaLista(data);
+
+        },
+        error: function () {
+            alert('Error function listaConvocatoriaLista');
+        }
+    });
+
+}
 function PintarConvocatoriaLista(listasDatos) {
     console.log("Pintar la Lista de ConvocatoriasSv");
 
