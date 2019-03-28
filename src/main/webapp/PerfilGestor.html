@@ -91,93 +91,49 @@
 
                 <!-- Right Column -->
 
-                <div id="MisConvocatorias" class="w3-container w3-card w3-white w3-margin-bottom city">
-                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Mis convocatorias.</b></h1>
+                    <div id="Gestores" class="w3-container w3-card w3-white w3-margin-bottom city">
+                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Gestores.</b></h1>
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
                         <br>
-                        <div class="w3-container">
-
-                            <div class="col-md-4 col-sm-6 ">
-                                <div class="card-container w3-card">
-                                    <div class="card">
-                                        <div class="front">
-                                            <div class="cover">
-                                                <img src="http://static.wixstatic.com/media/8585a6_68fbf14130fe716fcc357e44a27d175e.png_512"/>
-                                            </div>
-
-                                            <div class="content">
-                                                <h3 class="name">Convocatoria Asistencia en Biblioteca</h3>
-                                                <h4  style="text-align: center"> Fecha: 10/03/2019 </h4>
-                                                <h4  style="color: green; text-align: center" >Estado: Activo </h4>
-                                                <h4>La biblioteca de la universidad Sergio Arboleda, solicita gestores que colaboren 
-                                                    con el prestamo y recepcion de libros de la biblioteca.
-                                                </h4>
-
-                                            </div>
-                                        </div> <!-- end front panel -->
-                                        <div class="back">
-                                            <div class="header">
-                                                <h5 class="motto">Gestores Sociales Universidad Sergio Arboleda </h5>
-                                            </div>
-                                            
-                                           <h4 class="text-center">Ubicacion: Biblioteca Universidad Sergio Arboleda</h4>
-
-                                            <h4 class="text-center">Hora de inicio: 9:00 AM</h4>
-                                            <h4 class="text-center">Hora de fin: 6:00 PM</h4>
-                                            <h4 class="text-center">Horas reconocidas: 32</h4>
-                                            <h4 class="text-center">Responsable: Maria Caceres (Directora Biblioteca)</h4>
+                        <div id ="Tarjetas" class="w3-container">
 
 
-                                            <div class="stats-container">
-                                                <div class="stats">
-                                                    <h4><button type="button" class="btn btn-outline-primary">Inscribirse</button></h4>
 
-                                                </div>
-                                                <div class="stats">
-                                                    <h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>
+                            <br>
+                        </div>
 
-                                                </div>
-                                                <div class="stats">
-                                                    <h4><button type="button" class="btn btn-outline-primary">otro boton</button></h4>
-
-                                                </div>
-
-                                        </div> 
-                                    </div> <!-- end card -->
-                                </div> <!-- end card-container -->
-                            </div> <!-- end col sm 3 -->
+                    </div>
+                </div>
+                <div id="Convocatorias" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Convocatorias.</b></h1>
+                    <hr style="width:50px;border:5px solid blue" class="w3-round">
+                    <div class="w3-responsive">
+                        <br>
+                        <div  id="Convocatoriaslista" class="w3-container">
 
                         </div>	
                         <br>
                     </div>
+                </div>
+                <div id="Sanciones" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Sanciones.</b></h1>
+                    <form class="example" action="/action_page.php">
+                        <input type="text" placeholder="Buscar.." name="search">
+                        
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                        
+                    </form>
+                    <button type="button" class="btn btn-outline-primary"><a  href="BitacoraCrear.html">Añadir Sanciones</a></button>
+                    <hr style="width:50px;border:5px solid blue" class="w3-round">
+                    <div class="w3-responsive">
+                        <br>
+                        <div id="SancionesLista" class="w3-container">
 
-                </div>
-                <div id="BuscarConvocatoria" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
-                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Buscar Convocatorias.</b></h1>
-                    <hr style="width:50px;border:5px solid blue" class="w3-round">
-                    <div class="w3-responsive">
-                        <br>
-                        <div class="w3-container">
-                            <table class="w3-table-all w3-card-4" id="Convocatoriaslista2">
-                            </table>
                         </div>	
                         <br>
                     </div>
                 </div>
-                <div id="Bitacora" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
-                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Bitacora.</b></h1>
-                    <hr style="width:50px;border:5px solid blue" class="w3-round">
-                    <div class="w3-responsive">
-                        <br>
-                        <div class="w3-container">
-                            <table class="w3-table-all w3-card-4" id="Bitacoralista">
-                            </table>
-                        </div>	
-                        <br>
-                    </div>
-                </div>
-            </div>
 
 
 
