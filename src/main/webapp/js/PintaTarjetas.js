@@ -1,14 +1,14 @@
-    var api = "http://localhost:8090/indexRest/rest/";
-    
-    function DatosEstudiLista() {
+    ar api = "http://localhost:8090/indexRest/rest/";
+
+function listaEstudiLista() {
     $.ajax({
-        url: api + "EstudiantesSv" ,
+        url: api + "EstudiantesSv",
         type: "Get",
         success: function (data) {
-            console.log("Servicio ID EstudiantesSv");
+            console.log("Servicio Listar ConvocatoriasSv");
             console.log(data);
 
-            PintarTarjetas(data);
+            PintarEstduaintesLista(data);
 
         },
         error: function () {
@@ -18,7 +18,7 @@
 
 }
 
-function PintarTarjetas(Datos) {
+function PintarEstudiantesLista(Datos) {
     console.log("Pintar la Lista de EstudiantesSv");
 
 
@@ -28,19 +28,14 @@ function PintarTarjetas(Datos) {
 
     $("#Tarjetas").empty();
 
+    if (Datos != null) {
+        console.log("Prueba " + Datos.length);
+        
 
-
-    if (Datos !== null) {
-  
-                  
-
-        $("#Tarjetas").append(
-                 console.log("Prueba " + Datos.length);
-                      Datos.EstudiantesDTO.forEach(element => {
-                         
+        Datos.ConvocatoriasDTO.forEach(element => {
             $("#Tarjetas").append(
-            
-                                 '<div class="card">'+
+                    
+               '<div class="card">'+
                 
                 
                
@@ -69,13 +64,10 @@ function PintarTarjetas(Datos) {
                         '</div>'+
                     '</div>'+
                 '</div>'+
-            '</div>'+
-            
-            
-                   );
+            '</div>'
+                           );
         });
-                    );
-
     }
-    }
+}
 
+ 
