@@ -36,6 +36,7 @@ function PintarTarjetas(Datos) {
         $("#Tarjetas").append(
                 
                       Datos.EstudiantesDTO.forEach(element => {
+                          console.log("Prueba2 " + Datos.length);
             $("#Tarjetas").append(
             
                                  '<div class="card">'+
