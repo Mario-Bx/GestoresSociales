@@ -2,7 +2,7 @@ var api = "http://localhost:8090/indexRest/rest/";
 
 function listaAdminLista(id) {
     $.ajax({
-        url: api + "AdministradorSv",+id
+        url: api + "AdministradorSv" + id,
         type: "Get",
         success: function (data) {
             console.log("Servicio Listar AdministradorSv");
@@ -27,40 +27,30 @@ function PintarAdminLista(listasDatos) {
 
     $("#Administradorlista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Administradorlista").append('<thead>' +Datos
-                '<tr class="w3-light-grey w3-hover-red">' + 
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>Apellidos</th>' +
-                '<th>Correo</th>' +
-                '<th>Clave</th>' +
-                '<th>FechaNacimiento</th>' +
-                '<th>Documento</th>' +
-                '<th>Telefono</th>' +
-                '<th>Celular</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
-        listasDatos.AdministradorDTO.forEach(element => {
-            $("#Administradorlista").append(
-                    '<tr class="cards">' +
-                    '<td>' + element.AdministradorID + ' </td>' +
-                    '<td>' + element.Nombre + ' </td>' +
-                    '<td>' + element.Apellidos + ' </td>' +
-                    '<td>' + element.Correo + ' </td>' +
-                    '<td>' + element.Clave + ' </td>' +
-                    '<td>' + element.FechaNacimiento + ' </td>' +
-                    '<td>' + element.Documento + ' </td>' +
-                    '<td>' + element.Telefono + ' </td>' +
-                    '<td>' + element.Celular + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarAdminLista(' + element.AdministradorID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarAdminLista(' + element.AdministradorID + ')" class="btn btn-secondary" (click)="editarDato(item.AdministradorID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
-        });
+
+    if (listaDatos !== null) {
+  
+                  
+
+        $("#Administradorlista").append(
+                
+                    '<p><i class="glyphicon glyphicon-user fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.Nombre +' '+listaDatos.Apellidos +'</p>'+
+                    '<p></p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.Correo +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.Clave +'</p>'+
+                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.FechaNacimiento +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Documento +'</p>'+
+                    '<p class="text"><span class="glyphicon glyphicon-dashboard"></span><em> horas realizadas : '+ '</em> </p>'+
+                    '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Telefono +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Celular +'</p>'+
+                    '<hr>'+
+                    '<a href="#" class="w3-bar-item w3-button">Cerrar sesion</a>'
+                    );
+
     }
-}
+    }
+    
+
 
 
