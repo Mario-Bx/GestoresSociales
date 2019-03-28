@@ -103,17 +103,17 @@ function PintarMisConvocatoriaLista(listasDatos) {
                                            '<h4 class="text-center">Responsable:'+ element.ConvocatoriasFk.Encargado +'</h4>'+
 
 
-                                           '<div class="stats-container">'+
+                                           '<div class="stats-container" >'+
                                                '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">Inscribirse</button></h4>'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Retirar</button></h4>'+
 
                                                '</div>'+
                                                '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>'+
+                                                  
 
                                                '</div>'+
                                                '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">otro boton</button></h4>'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>'+
 
                                                '</div>'+
 
@@ -159,27 +159,22 @@ function PintarMisBitacoraLista(listasDatos) {
 
                                            '</div>'+
                                        '</div>'+
-                                       '<div class="back">'+
+                                       '<div class="back ">'+
                                            '<div class="header">'+
                                                '<h5 class="motto">Gestores Sociales Universidad Sergio Arboleda</h5>'+
                                            '</div>'+
-
-                                           '<h4 class="text-center">'+ element.Descripcion +'</h4>'+
-
-
-                                           '<div class="stats-container">'+
-                                               '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">Inscribirse</button></h4>'+
-
-                                               '</div>'+
+                                           '<h4 style="text-align: center">'+ element.Descripcion +'</h4>'+
+                                           
+                                           '<div class="stats-container"align="center">'+
                                                '<div class="stats">'+
                                                    '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>'+
 
                                                '</div>'+
                                                '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">otro boton</button></h4>'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>'+
 
                                                '</div>'+
+                                               
 
                                        '</div> '+
                                    '</div>'+
