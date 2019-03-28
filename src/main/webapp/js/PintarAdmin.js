@@ -2,7 +2,7 @@ var api = "http://localhost:8090/indexRest/rest/";
 
 function listaAdminLista(id) {
     $.ajax({
-        url: api + "AdministradorSv" + id,
+        url: api + "AdministradorSv/" + id,
         type: "Get",
         success: function (data) {
             console.log("Servicio Listar AdministradorSv");
@@ -29,21 +29,21 @@ function PintarAdminLista(listasDatos) {
 
 
 
-    if (listaDatos !== null) {
+    if (listasDatos !== null) {
   
                   
 
         $("#Administradorlista").append(
                 
-                    '<p><i class="glyphicon glyphicon-user fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.Nombre +' '+listaDatos.Apellidos +'</p>'+
+                    '<p><i class="glyphicon glyphicon-user fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Nombre +' '+listasDatos.Apellidos +'</p>'+
                     '<p></p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.Correo +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.Clave +'</p>'+
-                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listaDatos.FechaNacimiento +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Documento +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Correo +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Clave +'</p>'+
+                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.FechaNacimiento +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Documento +'</p>'+
                     '<p class="text"><span class="glyphicon glyphicon-dashboard"></span><em> horas realizadas : '+ '</em> </p>'+
-                    '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Telefono +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Celular +'</p>'+
+                    '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Telefono +'</p>'+
+                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Celular +'</p>'+
                     '<hr>'+
                     '<a href="#" class="w3-bar-item w3-button">Cerrar sesion</a>'
                     );
