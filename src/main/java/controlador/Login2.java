@@ -9,14 +9,18 @@ import DaoGenerico.ConexionException;
 import DatoClase.AdministradorClas;
 import Fachadas.AdministradorFachada;
 import dao.UsuarioDAO1;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -89,7 +93,24 @@ public class Login2 extends HttpServlet {
             String clave2 = usuariodao1.getUsuarioById(usuario1).getClave();
             int iduser= usuariodao1.getUsuarioById(usuario1).getId();
             if (clave1.equals(clave2)) {
-                //si coincide usuario y password y además no hay sesión iniciada.
+               String cifclave= "estaeslaclavedecifraditp";
+                long tiempo= System.currentTimeMillis();
+               String jwt = Jwts.builder()
+                       
+                       .signWith(SignatureAlgorithm.HS512, cifclave)
+                       .setSubject("token")
+                       .setIssuedAt(new Date(tiempo))
+                       .setExpiration(new Date(tiempo+900000))
+                       .claim("usuario", usuario1)
+                       .claim("id", iduser)
+                       .compact();
+                Cookie vt = new Cookie("token",jwt);
+              
+                
+                response.addCookie(vt);
+                
+
+//si coincide usuario y password y además no hay sesión iniciada.
                 sesion1.setAttribute("usuario", usuario1);
                 //redirijo a página con información de login exitoso.
                  request.setAttribute("id", iduser);  

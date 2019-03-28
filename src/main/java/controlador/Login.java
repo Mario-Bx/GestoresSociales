@@ -8,23 +8,39 @@ package controlador;
 import DaoGenerico.ConexionException;
 import DatoClase.AdministradorClas;
 import Fachadas.AdministradorFachada;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
 import dao.UsuarioDAO;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author jalba
  */
+
+
 public class Login extends HttpServlet {
 
     /**
@@ -66,6 +82,8 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -85,14 +103,38 @@ public class Login extends HttpServlet {
 //                
 //            }
             String clave2 = usuariodao.getUsuarioById(usuario).getClave();
+            int iduser= usuariodao.getUsuarioById(usuario).getId();
 
             if (clave.equals(clave2)) {
+                String cifclave= "estaeslaclavedecifraditp";
+                long tiempo= System.currentTimeMillis();
+               String jwt = Jwts.builder()
+                       
+                       .signWith(SignatureAlgorithm.HS512, cifclave)
+                       .setSubject("token")
+                       .setIssuedAt(new Date(tiempo))
+                       .setExpiration(new Date(tiempo+900000))
+                       .claim("usuario", usuario)
+                       .claim("id", iduser)
+                       .compact();
+                Cookie vt = new Cookie("token",jwt);
+              
+                
+                response.addCookie(vt);
+              
+                
                 //si coincide usuario y password y además no hay sesión iniciada.
                 sesion.setAttribute("usuario", usuario);
                 //redirijo a página con información de login exitoso.
-                response.sendRedirect("vistaloginprofesores.jsp");
+                request.setAttribute("id", iduser);
+                
+                
+                RequestDispatcher rd = request.getRequestDispatcher("PerfilAdmin.jsp");
+                rd.forward(request, response);
+                
+                
             } else {
-                response.sendRedirect("login_1.jsp");
+                response.sendRedirect("login1.jsp");
             }
 
         } catch (URISyntaxException | SQLException ex) {

@@ -17,8 +17,25 @@
   
 </head>
 
-<body>
 
+<%
+
+        HttpSession misession = request.getSession(true);
+
+        misession.setAttribute("usuario", null);
+        
+        
+
+    %>
+
+
+
+
+<body>
+<div class="alert alert-warning">
+    <strong>Se ha cerrado sesiòn!</strong> Para ingresar de nuevo en el sistema porfavor introduzca de nuevo su usuario y contraseña.
+  </div>
+  
   <div class="login-page">
       
       
@@ -29,7 +46,7 @@
       <a class="nav-link active" data-toggle="pill" href="#home">Estudiantes</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="pill" href="#menu1"> Administrador</a>
+      <a class="nav-link" data-toggle="pill" href="#menu1">Administrador</a>
     </li>
    
   </ul>
@@ -39,7 +56,9 @@
       
        <div class="tab-content">
     <div id="home" class="container tab-pane active"><br>
-    <h3>Estudiantes</h3>
+    
+    
+      <h3>Estudiantes</h3>
       
     <form class="login-form" action="Login2" method="POST">
       <input type="text" placeholder="usuario" name="usuario1">
@@ -50,12 +69,14 @@
     </form>
     
     
-    
-    
-    
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
-     <h3>Administrador</h3>
+    
+    
+    
+      
+      
+        <h3>Administrador</h3>
       
     
        
@@ -68,7 +89,8 @@
       <p class="message">No registrado? <a href="#">Crear cuenta</a></p>
     </form>
     
-    
+      
+      
     
     </div>
     

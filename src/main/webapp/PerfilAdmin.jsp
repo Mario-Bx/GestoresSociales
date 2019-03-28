@@ -70,7 +70,7 @@
                     onclick="w3_close()"><<<< &times;</button>
             <a  href="Convocatorias.html" class="w3-bar-item w3-button" >Crear convocatoria</a> 
             <a href="Agregar.html" class="w3-bar-item w3-button">Agregar Gestores</a>
-            <a href="cerrarsesion.jsp" class="w3-bar-item w3-button">Cerrar sesion</a>
+            <a h " class="w3-bar-item w3-button">Cerrar sesion</a>
 
         </div>
 

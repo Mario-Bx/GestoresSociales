@@ -44,12 +44,12 @@ function PintarEstudiante(Datos) {
                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.FechaNacimiento +'</p>'+
                      '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Escuela +'</p>'+
                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Carreara +'</p>'+
-                    '<p class="text"><span class="glyphicon glyphicon-exclamation-sign"></span><em> Horas de penalizacion restantes : '+Datos.list_Sanciones[Datos.list_Sanciones.length-1].NumeroConvocatria +'</em></p>'+
+                    '<p class="text"><span class="glyphicon glyphicon-exclamation-sign"></span><em> Horas de penalizacion restantes : '+'</em></p>'+
                     '<p class="text"><span class="glyphicon glyphicon-dashboard"></span><em> horas realizadas : '+ '</em> </p>'+
                     '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Correo +'</p>'+
                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Telefono +'</p>'+
                     '<hr>'+
-                    '<a href="#" class="w3-bar-item w3-button">Cerrar sesion</a>'
+                    '<a href="cerrarsesion.jsp" class="w3-bar-item w3-button">Cerrar sesion</a>'
                     );
 
     }

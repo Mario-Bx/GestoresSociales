@@ -13,15 +13,29 @@ public class Usuario {
 
     private String usuario;
     private String clave;
+    private int id;
 
     public Usuario() {
     }
 
-    public Usuario(String usuario, String clave) {
+    public Usuario(String usuario, String clave , int id ) {
         this.usuario = usuario;
         this.clave = clave;
+        this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    
+    
+    
     public String getUsuario() {
         return usuario;
     }

@@ -1,4 +1,5 @@
-﻿<html>
+<%@page import="dao.UsuarioDAO1"%>
+?<html>
     <head>
         <title>Proyecyo</title>
 
@@ -34,8 +35,27 @@
 
     </head>
 
-    <body>
+    
+     <%
 
+        HttpSession misession = request.getSession(true);
+
+        if (misession.getAttribute("usuario") == null) {
+            response.sendRedirect("login.jsp");
+        }
+        
+
+
+    %>
+    
+    
+  
+    
+    <body>
+        
+ <h1>el id es </h1>
+        
+        <%out.print(request.getAttribute("id")); %>
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-indigo w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
             <br>
@@ -56,12 +76,17 @@
                 </div>
             </div><br>
         </nav>
+        
+        
+        
+        
+        <h1>Bienvenido <%= misession.getAttribute("usuario")%></h1>
 
 
 
         <!-- Top menu on small screens -->
         <header class="w3-container w3-top w3-hide-large w3-indigo w3-xlarge w3-padding">
-            <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">☰</a>
+            <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">?</a>
             <div class="w3-bar w3-black">
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Mis convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista2())">BuscarConvocatoria</button>
@@ -183,7 +208,7 @@
 
             <!-- Modal for full size images on click-->
             <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display = 'none'">
-                <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+                <span class="w3-button w3-black w3-xxlarge w3-display-topright">�</span>
                 <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
                     <img id="img01" class="w3-image">
                     <p id="caption"></p>
