@@ -8,7 +8,7 @@
             console.log("Servicio ID EstudiantesSv");
             console.log(data);
 
-            PintarEstudiante(data);
+            PintarTarjetas(data);
 
         },
         error: function () {
@@ -17,6 +17,7 @@
     });
 
 }
+
 function PintarTarjetas(Datos) {
     console.log("Pintar la Lista de EstudiantesSv");
 
