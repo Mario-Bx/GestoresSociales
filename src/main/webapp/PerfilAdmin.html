@@ -65,10 +65,10 @@
         <header class="w3-container w3-top w3-hide-large w3-indigo w3-xlarge w3-padding">
             <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">☰</a>
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Convocatorias</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Gestores', listaPrincipalLista())">Gestores</button>
+               <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Gestores', listaEstudiLista())">Gestores</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())">Convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones', listaSancionesLista())">Sanciones</button>
-            </div>
+             </div>
         </header>
 
         <!-- Overlay effect when opening sidebar on small screens -->
@@ -93,38 +93,49 @@
 
                 <!-- Right Column -->
 
-                <div id="MisConvocatorias" class="w3-container w3-card w3-white w3-margin-bottom city">
+               <div id="Gestores" class="w3-container w3-card w3-white w3-margin-bottom city">
                     <h1 class="w3-xxxlarge w3-text-indigo"><b>Gestores.</b></h1>
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
-                               <div id="Tarjetas" class="w3-container">
-
-                </div>
-
-                </div>
-                <div id="BuscarConvocatoria" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
-                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Buscar Convocatorias.</b></h1>
-                    <hr style="width:50px;border:5px solid blue" class="w3-round">
-                    <div class="w3-responsive">
                         <br>
-               	
-                        <br>
+                        <div id ="Tarjetas" class="w3-container">
+
+
+
+                            <br>
+                        </div>
+
                     </div>
                 </div>
-                <div id="Bitacora" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
-                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Bitacora.</b></h1>
+                <div id="MisConvocatorias" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Convocatorias.</b></h1>
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
                         <br>
-                        <div class="w3-container">
-                            <table class="w3-table-all w3-card-4" id="Bitacoralista">
-                            </table>
+                        <div  id="Convocatoriaslista" class="w3-container">
+
                         </div>	
                         <br>
                     </div>
                 </div>
-            </div>
+                <div id="Sanciones" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Sanciones.</b></h1>
+                    <form class="example" action="/action_page.php">
+                        <input type="text" placeholder="Buscar.." name="search">
+                        
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                        
+                    </form>
+                    <button type="button" class="btn btn-outline-primary"><a  href="BitacoraCrear.html">Añadir Sanciones</a></button>
+                    <hr style="width:50px;border:5px solid blue" class="w3-round">
+                    <div class="w3-responsive">
+                        <br>
+                        <div id="SancionesLista" class="w3-container">
 
+                        </div>	
+                        <br>
+                    </div>
+                </div>
 
 
             <!-- Modal for full size images on click-->
