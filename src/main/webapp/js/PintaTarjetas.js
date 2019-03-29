@@ -1,4 +1,4 @@
-    ar api = "http://localhost:8090/indexRest/rest/";
+    var api = "http://localhost:8090/indexRest/rest/";
 
 function listaEstudiLista() {
     $.ajax({

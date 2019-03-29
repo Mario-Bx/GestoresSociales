@@ -14,6 +14,8 @@ function DatosEstudiLista(id) {
             console.log(data);
 
             PintarEstudiante(data);
+            PintarMisConvocatoriaLista(data);
+            PintarMisBitacoraLista(data);
 
         },
         error: function () {
@@ -40,11 +42,12 @@ function PintarEstudiante(Datos) {
                 
                     '<p><i class="glyphicon glyphicon-user fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Nombre +' '+Datos.Apellidos +'</p>'+
                     '<p></p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Documento +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.FechaNacimiento +'</p>'+
-                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Escuela +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Carreara +'</p>'+
-                    '<p class="text"><span class="glyphicon glyphicon-dashboard"></span><em> horas realizadas : '+ '</em> </p>'+
+                    '<p><i class="fa fa fa-address-card-o fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Documento +'</p>'+
+                    '<p><i class="fa fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.FechaNacimiento +'</p>'+
+                     '<p><i class="fa fa fa-university fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Escuela +'</p>'+
+                    '<p><i class="fa fa-mortar-board fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Carreara +'</p>'+
+                    '<p><i class="fa  fa-exclamation-triangle fa-fw w3-margin-right w3-large w3-text-teal"></i>'+" convocatorias de penalizacion : "+'</p>'+
+                    '<p><i class="fa fa-tachometer fa-fw w3-margin-right w3-large w3-text-teal"></i>'+"horas realizadas : "+ " " +'</p>'+
                     '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Correo +'</p>'+
                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Telefono +'</p>'+
                     '<hr>'+
@@ -53,4 +56,135 @@ function PintarEstudiante(Datos) {
 
     }
 }
+
+function PintarMisConvocatoriaLista(listasDatos) {
+    console.log("Pintar la Lista de ConvocatoriasSv");
+
+
+    var m = "'id02'";
+    var b = "'block'";
+    var e = "'empty'";
+
+    $("#MisConvocatoriaslista").empty();
+
+    if (listasDatos != null) {
+        console.log("Prueba pintar mis convocatorias" + listasDatos.length);
+        console.log(listasDatos.list_Principal);
+        
+        listasDatos.list_Principal.forEach(element => {
+            $("#MisConvocatoriaslista").append(
+                    
+                ' <div  class="col-md-4 col-sm-6 ">'+ 
+               '<div class="card-container w3-card">'+
+                                   '<div class="card">'+
+                                       '<div class="front">'+
+                                           '<div class="cover">'+
+                                               '<img src="http://static.wixstatic.com/media/8585a6_68fbf14130fe716fcc357e44a27d175e.png_512"/>'+
+                                           '</div>'+
+
+                                           '<div class="content">'+
+                                               '<h3 class="name">'+ element.ConvocatoriasFk.Nombre +'</h3>'+
+                                               '<h4  style="text-align: center"> Fecha:'+ element.ConvocatoriasFk.FechaFin +'</h4>'+
+                                               '<h4  style="color: green; text-align: center" >Estado: Activo?</h4>'+
+                                               '<h4>'+ element.ConvocatoriasFk.Descripcion +'</h4>'+
+
+                                           '</div>'+
+                                       '</div>'+
+                                       '<div class="back">'+
+                                           '<div class="header">'+
+                                               '<h5 class="motto">Gestores Sociales Universidad Sergio Arboleda</h5>'+
+                                           '</div>'+
+                                            
+                                          '<h4 class="text-center">Ubicacion: Biblioteca Universidad Sergio Arboleda??</h4>'+
+
+                                           '<h4 class="text-center">'+ element.ConvocatoriasFk.Hora +'</h4>'+
+                                           '<h4 class="text-center">Hora de fin: 6:00 PM agregar</h4>'+
+                                           '<h4 class="text-center">Horas reconocidas:'+ element.ConvocatoriasFk.HorasGanadas +'</h4>'+
+                                           '<h4 class="text-center">Responsable:'+ element.ConvocatoriasFk.Encargado +'</h4>'+
+
+
+                                           '<div class="stats-container" >'+
+                                               '<div class="stats">'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Retirar</button></h4>'+
+
+                                               '</div>'+
+                                               '<div class="stats">'+
+                                                  
+
+                                               '</div>'+
+                                               '<div class="stats">'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>'+
+
+                                               '</div>'+
+
+                                       '</div> '+
+                                   '</div>'+
+                               '</div>'+
+                           '</div>'+
+                        '</div>'
+                           );
+        });
+    }
+}
+
+
+function PintarMisBitacoraLista(listasDatos) {
+    console.log("Pintar la Lista de ConvocatoriasSv");
+
+
+    var m = "'id02'";
+    var b = "'block'";
+    var e = "'empty'";
+
+    $("#MisBitacoralista").empty();
+
+    if (listasDatos != null) {
+        console.log("Prueba pintar mis convocatorias" + listasDatos.length);
+        
+        listasDatos.list_Bitacora.forEach(element => {
+            $("#MisBitacoralista").append(
+                    
+                ' <div  class="col-md-4 col-sm-6 ">'+ 
+               '<div class="card-container w3-card">'+
+                                   '<div class="card">'+
+                                       '<div class="front">'+
+                                           '<div class="cover">'+
+                                               '<img src="http://static.wixstatic.com/media/8585a6_68fbf14130fe716fcc357e44a27d175e.png_512"/>'+
+                                           '</div>'+
+
+                                           '<div class="content">'+
+                                               '<h3 class="name">'+ element.Nombre +'</h3>'+
+                                               '<h4  style="text-align: center"> Fecha:'+ element.Fecha +'</h4>'+
+                                               '<h4 style="text-align: center">'+ element.Hora +'</h4>'+
+
+                                           '</div>'+
+                                       '</div>'+
+                                       '<div class="back ">'+
+                                           '<div class="header">'+
+                                               '<h5 class="motto">Gestores Sociales Universidad Sergio Arboleda</h5>'+
+                                           '</div>'+
+                                           '<h4 style="text-align: center">'+ element.Descripcion +'</h4>'+
+                                           
+                                           '<div class="stats-container"align="center">'+
+                                               '<div class="stats">'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>'+
+
+                                               '</div>'+
+                                               '<div class="stats">'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>'+
+
+                                               '</div>'+
+                                               
+
+                                       '</div> '+
+                                   '</div>'+
+                               '</div>'+
+                           '</div>'+
+                        '</div>'
+                           );
+        });
+    }
+}
+
+
 

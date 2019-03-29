@@ -87,6 +87,8 @@ function listaAdminLista() {
     });
 
 }
+
+
 function PintarAdminLista(listasDatos) {
     console.log("Pintar la Lista de AdministradorSv");
 
@@ -216,9 +218,9 @@ function actualizarAdminLista(idN) {
     });
 }
 
-function crearFormPrincipal() {
+function crearFormEstudiantes() {
     $.ajax({
-        url: api + "PrincipalSv",
+        url: api + "EstudiantesSv",
         type: "Get",
         success: function (data) {
 
@@ -226,42 +228,72 @@ function crearFormPrincipal() {
             console.log("Funcion Pintar Formulario");
             console.log("*****************");
 
-            $("#Principalcrear").empty();
-            $("#Principalcrear").append(
+            $("#Estudiantescrear").empty();
+            $("#Estudiantescrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">Nombre Principal :</label>' +
+                    '<label for="usr">Nombre Estudiantes :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Nombre" placeholder="Ingrese Nombre">' +
-                    '</div>'
-                    );
-
-
-            $("#Principalcrear").append(
-                    '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="EstudianteslistaSELECT"> ' +
-                    '<OPTION value="errror">Error</OPTION>' +
-                    '</SELECT>' +
                     '</div>' +
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="ConvocatoriaslistaSELECT"> ' +
-                    '<OPTION value="errror">Error</OPTION>' +
-                    '</SELECT>' +
+                    '<label for="usr">Apellidos Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Apellidos" placeholder="Ingrese Apellidos">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Correo Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Correo" placeholder="Ingrese Correo">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Clave Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Clave" placeholder="Ingrese Clave">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Documento Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Documento" placeholder="Ingrese Documento">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">FechaNacimiento Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="FechaNacimiento" placeholder="Ingrese FechaNacimiento">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Telefono Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Telefono" placeholder="Ingrese Telefono">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Celular Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Celular" placeholder="Ingrese Celular">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Escuela Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Escuela" placeholder="Ingrese Escuela">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Carreara Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Carreara" placeholder="Ingrese Carreara">' +
                     '</div>'
                     );
 
 
+            $("#Estudiantescrear").append();
 
-            $("#Principalcrear").append(
-                    '<button type="submit" class="btn btn-primary" onclick="crearPrincipal()">Crear3</button>'
+
+
+            $("#Estudiantescrear").append(
+                    '<button type="submit" class="btn btn-primary" onclick="crearEstudiantes()">Crear3</button>'
                     );
-            selectEstudiantes();
-            selectConvocatorias();
         },
 
         error: function () {
-            alert('Error function selectPrincipal');
+            alert('Error function selectEstudiantes');
         }
     });
 }
@@ -282,6 +314,8 @@ function listaEstudiLista() {
     });
 
 }
+
+
 function PintarEstudiLista(listasDatos) {
     console.log("Pintar la Lista de EstudiantesSv");
 
@@ -512,23 +546,8 @@ function listaConvocatoriaLista() {
     });
 
 }
-function listaConvocatoriaLista2() {
-    $.ajax({
-        url: api + "ConvocatoriasSv",
-        type: "Get",
-        success: function (data) {
-            console.log("Servicio Listar ConvocatoriasSv #2");
-            console.log(data);
 
-            PintarConvocatoriaLista2(data);
 
-        },
-        error: function () {
-            alert('Error function listaConvocatoriaLista');
-        }
-    });
-
-}
 function PintarConvocatoriaLista(listasDatos) {
     console.log("Pintar la Lista de ConvocatoriasSv");
 
@@ -572,50 +591,6 @@ function PintarConvocatoriaLista(listasDatos) {
         });
     }
 }
-function PintarConvocatoriaLista2(listasDatos) {
-    console.log("Pintar la Lista de ConvocatoriasSv");
-
-
-    var m = "'id02'";
-    var b = "'block'";
-    var e = "'empty'";
-
-    $("#Convocatoriaslista2").empty();
-
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Convocatoriaslista2").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>FechaInicio</th>' +
-                '<th>FechaFin</th>' +
-                '<th>Hora</th>' +
-                '<th>Encargado</th>' +
-                '<th>Descripcion</th>' +
-                '<th>HorasGanadas</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
-
-        listasDatos.ConvocatoriasDTO.forEach(element => {
-            $("#Convocatoriaslista2").append(
-                    '<tr class="w3-hover-blue">' +
-                    '<td>' + element.ConvocatoriasID + ' </td>' +
-                    '<td>' + element.Nombre + ' </td>' +
-                    '<td>' + element.FechaInicio + ' </td>' +
-                    '<td>' + element.FechaFin + ' </td>' +
-                    '<td>' + element.Hora + ' </td>' +
-                    '<td>' + element.Encargado + ' </td>' +
-                    '<td>' + element.Descripcion + ' </td>' +
-                    '<td>' + element.HorasGanadas + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
-        });
-    }
-}
-
 function borrarConvocatoriaLista(idN) {
     $.ajax({
         url: api + "ConvocatoriasSv/" + idN,
@@ -777,6 +752,8 @@ function listaBitacoraLista() {
     });
 
 }
+
+
 function PintarBitacoraLista(listasDatos) {
     console.log("Pintar la Lista de BitacoraSv");
 
@@ -963,6 +940,8 @@ function listaSancionesLista() {
     });
 
 }
+
+
 function PintarSancionesLista(listasDatos) {
     console.log("Pintar la Lista de SancionesSv");
 
@@ -1141,6 +1120,8 @@ function listaPrincipalLista() {
     });
 
 }
+
+
 function PintarPrincipalLista(listasDatos) {
     console.log("Pintar la Lista de PrincipalSv");
 
@@ -1308,6 +1289,8 @@ function listaReservaLista() {
     });
 
 }
+
+
 function PintarReservaLista(listasDatos) {
     console.log("Pintar la Lista de ReservaSv");
 
@@ -1468,6 +1451,7 @@ function crearAdministrador() {
         }
     });
 }
+
 function EditarAdministrador() {
 
     console.log("Servicio Editar");
@@ -1500,8 +1484,6 @@ function EditarAdministrador() {
     });
 
 }
-
-
 function selectEstudiantes() {
     $.ajax({
         url: api + "EstudiantesSv",
@@ -1562,6 +1544,7 @@ function crearEstudiantes() {
         }
     });
 }
+
 function EditarEstudiantes() {
 
     console.log("Servicio Editar");
@@ -1623,7 +1606,6 @@ function selectConvocatorias() {
         }
     });
 }
-
 function crearConvocatorias() {
 
     console.log("crearDeporte");
@@ -1654,6 +1636,7 @@ function crearConvocatorias() {
         }
     });
 }
+
 function EditarConvocatorias() {
 
     console.log("Servicio Editar");
@@ -1685,7 +1668,6 @@ function EditarConvocatorias() {
     });
 
 }
-
 function selectBitacora() {
     $.ajax({
         url: api + "BitacoraSv",
@@ -1740,6 +1722,7 @@ function crearBitacora() {
         }
     });
 }
+
 function EditarBitacora() {
 
     console.log("Servicio Editar");
@@ -1768,7 +1751,6 @@ function EditarBitacora() {
     });
 
 }
-
 function selectSanciones() {
     $.ajax({
         url: api + "SancionesSv",
@@ -1823,6 +1805,7 @@ function crearSanciones() {
         }
     });
 }
+
 function EditarSanciones() {
 
     console.log("Servicio Editar");
@@ -1851,7 +1834,6 @@ function EditarSanciones() {
     });
 
 }
-
 function selectPrincipal() {
     $.ajax({
         url: api + "PrincipalSv",
@@ -1956,6 +1938,24 @@ function selectReserva() {
         }
     });
 }
+function listaConvocatoriaLista2() {
+    $.ajax({
+        url: api + "ConvocatoriasSv",
+        type: "Get",
+        success: function (data) {
+            console.log("Servicio Listar ConvocatoriasSv #2");
+            console.log(data);
+
+            PintarConvocatoriaLista2(data);
+
+        },
+        error: function () {
+            alert('Error function listaConvocatoriaLista');
+        }
+    });
+
+}
+
 function crearReserva() {
 
     console.log("crearDeporte");
@@ -2002,6 +2002,70 @@ function EditarReserva() {
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
+        }
+    });
+
+}
+function PintarConvocatoriaLista2(listasDatos) {
+    console.log("Pintar la Lista de ConvocatoriasSv");
+
+
+    var m = "'id02'";
+    var b = "'block'";
+    var e = "'empty'";
+
+    $("#Convocatoriaslista2").empty();
+
+    if (listasDatos != null) {
+        console.log("Prueba2 " + listasDatos.length);
+        $("#Convocatoriaslista2").append('<thead>' +
+                '<tr class="w3-light-grey w3-hover-red">' +
+                '<th>id</th>' +
+                '<th>Nombre</th>' +
+                '<th>FechaInicio</th>' +
+                '<th>FechaFin</th>' +
+                '<th>Hora</th>' +
+                '<th>Encargado</th>' +
+                '<th>Descripcion</th>' +
+                '<th>HorasGanadas</th>' +
+                '<th colspan=2>Acciones</th>' +
+                '</tr>' +
+                '</thead>');
+
+        listasDatos.ConvocatoriasDTO.forEach(element => {
+            $("#Convocatoriaslista2").append(
+                    '<tr class="w3-hover-blue">' +
+                    '<td>' + element.ConvocatoriasID + ' </td>' +
+                    '<td>' + element.Nombre + ' </td>' +
+                    '<td>' + element.FechaInicio + ' </td>' +
+                    '<td>' + element.FechaFin + ' </td>' +
+                    '<td>' + element.Hora + ' </td>' +
+                    '<td>' + element.Encargado + ' </td>' +
+                    '<td>' + element.Descripcion + ' </td>' +
+                    '<td>' + element.HorasGanadas + ' </td>' +
+                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
+                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
+                    '</tr>');
+        });
+    }
+}
+
+
+
+
+function listaConvocatoriaLista2() {
+    $.ajax({
+        url: api + "ConvocatoriasSv",
+        type: "Get",
+        success: function (data) {
+            console.log("Servicio Listar ConvocatoriasSv #2");
+            console.log(data);
+
+            PintarConvocatoriaLista2(data);
+
+        },
+        error: function () {
+            alert('Error function listaConvocatoriaLista');
         }
     });
 

@@ -39,10 +39,78 @@
 
     <body>
 
-        <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-indigo w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
-            <br>
-            <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+
+
+            <img src="https://image.flaticon.com/icons/svg/149/149071.svg" width="40%" style="display: block;margin-left: auto;margin-right: auto;margin-top: 3%;"> 
+            <h4>Administrador  </h4>
+            <button class="w3-bar-item w3-button w3-large"
+                    onclick="w3_close()"><<<< &times;</button>
+            <a  href="Convocatorias.html" class="w3-bar-item w3-button" >Crear convocatoria</a> 
+            <a href="Agregar.html" class="w3-bar-item w3-button">Agregar Gestores</a>
+            <a href="#" class="w3-bar-item w3-button">Cerrar sesion</a>
+
+        </div>
+
+        <div id="main">
+
+            <div class="w3-teal">
+                <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+                <button class="btn btn-outline-light" onclick="openCity('Convocatorias')"> Convocatorias </button>
+                <button class="btn btn-outline-light"onclick="openCity('Estudiantes')"> Estudiantes </button>
+                <button class="btn btn-outline-light"onclick="openCity('Sanciones')"> Sanciones </button>
+                <div class="w3-container">
+
+                </div>
+            </div>
+            <div id="Convocatorias" class="w3-container city">
+                <div class="w3-responsive">
+                    <br>
+                    <div class="w3-responsive">
+                        <br>
+                        <div class="w3-container">
+                            <table class="w3-table-all w3-card-4" id="Convocatoriaslista">
+
+                            </table>
+                        </div>	
+                        <br>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+            <div id="Estudiantes" class="w3-container city" style="display:none">
+                <div class="w3-responsive">
+                    <br>
+                    <div class="w3-responsive">
+                        <br>
+                        <div class="w3-container">
+                            <table class="w3-table-all w3-card-4" id="Estudianteslista">
+
+                            </table>
+                        </div>	
+                        <br>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+            <div id="Sanciones" class="w3-container city" style="display:none">
+                <div class="w3-responsive">
+                    <br>
+                    <div class="w3-responsive">
+                        <br>
+                        <div class="w3-container">
+                            <table class="w3-table-all w3-card-4" id="Sancioneslista">
+
+                            </table>
+                        </div>	
+                        <br>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
             <div class="w3-container">
             </div>
             <div class="w3-white w3-text-grey w3-card-4">
