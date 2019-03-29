@@ -46,7 +46,7 @@ function PintarEstudiante(Datos) {
                     '<p><i class="fa fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.FechaNacimiento +'</p>'+
                      '<p><i class="fa fa fa-university fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Escuela +'</p>'+
                     '<p><i class="fa fa-mortar-board fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Carreara +'</p>'+
-                    '<p><i class="fa  fa-exclamation-triangle fa-fw w3-margin-right w3-large w3-text-teal"></i>'+" convocatorias de penalizacion : "+Datos.list_Sanciones[Datos.list_Sanciones.length-1].NumeroConvocatria +'</p>'+
+                    '<p><i class="fa  fa-exclamation-triangle fa-fw w3-margin-right w3-large w3-text-teal"></i>'+" convocatorias de penalizacion : "+'</p>'+
                     '<p><i class="fa fa-tachometer fa-fw w3-margin-right w3-large w3-text-teal"></i>'+"horas realizadas : "+ " " +'</p>'+
                     '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Correo +'</p>'+
                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ Datos.Telefono +'</p>'+
