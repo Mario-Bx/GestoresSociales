@@ -39,8 +39,6 @@ import javax.ws.rs.core.MediaType;
  *
  * @author jalba
  */
-
-
 public class Login extends HttpServlet {
 
     /**
@@ -103,36 +101,31 @@ public class Login extends HttpServlet {
 //                
 //            }
             String clave2 = usuariodao.getUsuarioById(usuario).getClave();
-            int iduser= usuariodao.getUsuarioById(usuario).getId();
+            int iduser = usuariodao.getUsuarioById(usuario).getId();
 
             if (clave.equals(clave2)) {
-                String cifclave= "estaeslaclavedecifraditp";
-                long tiempo= System.currentTimeMillis();
-               String jwt = Jwts.builder()
-                       
-                       .signWith(SignatureAlgorithm.HS512, cifclave)
-                       .setSubject("token")
-                       .setIssuedAt(new Date(tiempo))
-                       .setExpiration(new Date(tiempo+900000))
-                       .claim("usuario", usuario)
-                       .claim("id", iduser)
-                       .compact();
-                Cookie vt = new Cookie("token",jwt);
-              
-                
+                String cifclave = "estaeslaclavedecifraditp";
+                long tiempo = System.currentTimeMillis();
+                String jwt = Jwts.builder()
+                        .signWith(SignatureAlgorithm.HS512, cifclave)
+                        .setSubject("token")
+                        .setIssuedAt(new Date(tiempo))
+                        .setExpiration(new Date(tiempo + 900000))
+                        .claim("usuario", usuario)
+                        .claim("id", iduser)
+                        .compact();
+                Cookie vt = new Cookie("token", jwt);
+
                 response.addCookie(vt);
-              
-                
+
                 //si coincide usuario y password y además no hay sesión iniciada.
                 sesion.setAttribute("usuario", usuario);
                 //redirijo a página con información de login exitoso.
                 request.setAttribute("id", iduser);
-                
-                
+
                 RequestDispatcher rd = request.getRequestDispatcher("PerfilAdmin.jsp");
                 rd.forward(request, response);
-                
-                
+
             } else {
                 response.sendRedirect("login1.jsp");
             }

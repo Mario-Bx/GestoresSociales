@@ -35,31 +35,31 @@
             }
         </style>
     </head>
-    
-    
-    
-    
-     <%
 
-        HttpSession misession = request.getSession(true);
 
-        if (misession.getAttribute("usuario") == null) {
-            response.sendRedirect("login.jsp");
-        }
+
+
+    <%
+
+       HttpSession misession = request.getSession(true);
+
+       if (misession.getAttribute("usuario") == null) {
+           response.sendRedirect("login.jsp");
+       }
 
     %>
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
     <body>
         <h1>el id es </h1>
-        
+
         <%out.print(request.getAttribute("id")); %>
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
 

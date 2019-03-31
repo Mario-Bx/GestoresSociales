@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author juanalbarracinbarreto
@@ -71,7 +70,7 @@ public class Login2 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -91,29 +90,26 @@ public class Login2 extends HttpServlet {
 //                
 //            }
             String clave2 = usuariodao1.getUsuarioById(usuario1).getClave();
-            int iduser= usuariodao1.getUsuarioById(usuario1).getId();
+            int iduser = usuariodao1.getUsuarioById(usuario1).getId();
             if (clave1.equals(clave2)) {
-               String cifclave= "estaeslaclavedecifraditp";
-                long tiempo= System.currentTimeMillis();
-               String jwt = Jwts.builder()
-                       
-                       .signWith(SignatureAlgorithm.HS512, cifclave)
-                       .setSubject("token")
-                       .setIssuedAt(new Date(tiempo))
-                       .setExpiration(new Date(tiempo+900000))
-                       .claim("usuario", usuario1)
-                       .claim("id", iduser)
-                       .compact();
-                Cookie vt = new Cookie("token",jwt);
-              
-                
+                String cifclave = "estaeslaclavedecifraditp";
+                long tiempo = System.currentTimeMillis();
+                String jwt = Jwts.builder()
+                        .signWith(SignatureAlgorithm.HS512, cifclave)
+                        .setSubject("token")
+                        .setIssuedAt(new Date(tiempo))
+                        .setExpiration(new Date(tiempo + 900000))
+                        .claim("usuario", usuario1)
+                        .claim("id", iduser)
+                        .compact();
+                Cookie vt = new Cookie("token", jwt);
+
                 response.addCookie(vt);
-                
 
 //si coincide usuario y password y además no hay sesión iniciada.
                 sesion1.setAttribute("usuario", usuario1);
                 //redirijo a página con información de login exitoso.
-                 request.setAttribute("id", iduser);  
+                request.setAttribute("id", iduser);
                 RequestDispatcher rd = request.getRequestDispatcher("PerfilGestor.jsp");
                 rd.forward(request, response);
             } else {

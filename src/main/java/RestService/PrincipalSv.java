@@ -105,7 +105,7 @@ public class PrincipalSv {
         System.out.println("%%%%%%%%%%%%%%");
 
         principalFh.crearObj(objetoCLS);
-        System.out.println("##############");
+        System.out.println("##############----" + objetoCLS);
         System.out.println("Se entro la Fachada y uso la funcion Crear");
         System.out.println("%%%%%%%%%%%%%%");
     }

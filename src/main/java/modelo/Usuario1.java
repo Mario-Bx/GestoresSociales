@@ -10,6 +10,7 @@ package modelo;
  * @author juanalbarracinbarreto
  */
 public class Usuario1 {
+
     private String usuario;
     private String clave;
     private int id;
@@ -17,14 +18,12 @@ public class Usuario1 {
     public Usuario1() {
     }
 
-    public Usuario1(String usuario, String clave , int id) {
+    public Usuario1(String usuario, String clave, int id) {
         this.usuario = usuario;
         this.clave = clave;
         this.id = id;
     }
-    
-    
-    
+
     public int getId() {
         return id;
     }

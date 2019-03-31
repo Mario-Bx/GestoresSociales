@@ -18,7 +18,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String usuario, String clave , int id ) {
+    public Usuario(String usuario, String clave, int id) {
         this.usuario = usuario;
         this.clave = clave;
         this.id = id;
@@ -32,10 +32,6 @@ public class Usuario {
         this.id = id;
     }
 
-    
-    
-    
-    
     public String getUsuario() {
         return usuario;
     }
