@@ -283,7 +283,7 @@ function crearFormEstudiantes() {
                     );
 
 
-            $("#Estudiantescrear").append();
+            $("#Estudiantescrear").append(						);
 
 
 
@@ -1861,9 +1861,9 @@ function selectPrincipal() {
         }
     });
 }
-function crearPrincipal() {
+function crearPrincipal( idGestor,idConvocatoria) {
 
-    console.log("crearDeporte");
+    console.log("CrearPrincipal");
     var Principal = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"'
 
@@ -1938,24 +1938,6 @@ function selectReserva() {
         }
     });
 }
-function listaConvocatoriaLista2() {
-    $.ajax({
-        url: api + "ConvocatoriasSv",
-        type: "Get",
-        success: function (data) {
-            console.log("Servicio Listar ConvocatoriasSv #2");
-            console.log(data);
-
-            PintarConvocatoriaLista2(data);
-
-        },
-        error: function () {
-            alert('Error function listaConvocatoriaLista');
-        }
-    });
-
-}
-
 function crearReserva() {
 
     console.log("crearDeporte");
@@ -2006,67 +1988,39 @@ function EditarReserva() {
     });
 
 }
-function PintarConvocatoriaLista2(listasDatos) {
-    console.log("Pintar la Lista de ConvocatoriasSv");
 
 
-    var m = "'id02'";
-    var b = "'block'";
-    var e = "'empty'";
+    function InscribirGestor(idG, idC) {
 
-    $("#Convocatoriaslista2").empty();
+        console.log("CrearPrincipal--------->"+idG+""+idC);
+        var Principal = '{' +
+                 '"Nombre": '+'" P'+idG+idC +'",'+
+        '"EstudiantesFk":'+'{'+
+                        '"EstudianteID":'+'"'+idG+'" '+'},'+
+        '"ConvocatoriasFk":'+'{'+
+                            '"ConvocatoriaID":'+'"'+idC+'"'+
+                    '}'+      
+            '}';
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Convocatoriaslista2").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>FechaInicio</th>' +
-                '<th>FechaFin</th>' +
-                '<th>Hora</th>' +
-                '<th>Encargado</th>' +
-                '<th>Descripcion</th>' +
-                '<th>HorasGanadas</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
+        console.log(Principal);
 
-        listasDatos.ConvocatoriasDTO.forEach(element => {
-            $("#Convocatoriaslista2").append(
-                    '<tr class="w3-hover-blue">' +
-                    '<td>' + element.ConvocatoriasID + ' </td>' +
-                    '<td>' + element.Nombre + ' </td>' +
-                    '<td>' + element.FechaInicio + ' </td>' +
-                    '<td>' + element.FechaFin + ' </td>' +
-                    '<td>' + element.Hora + ' </td>' +
-                    '<td>' + element.Encargado + ' </td>' +
-                    '<td>' + element.Descripcion + ' </td>' +
-                    '<td>' + element.HorasGanadas + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: api + "PrincipalSv",
+            data: Principal,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                alert('Error En el Servicio Crar PrincipalSv');
+            }
         });
-    }
+
+
+
+   
 }
 
-
-
-
-function listaConvocatoriaLista2() {
-    $.ajax({
-        url: api + "ConvocatoriasSv",
-        type: "Get",
-        success: function (data) {
-            console.log("Servicio Listar ConvocatoriasSv #2");
-            console.log(data);
-
-            PintarConvocatoriaLista2(data);
-
-        },
-        error: function () {
-            alert('Error function listaConvocatoriaLista');
-        }
-    });
-
-}
+   

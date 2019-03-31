@@ -11,7 +11,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <script src="js/funcion.js"></script>
         <script src="js/PintarGestor.js"></script>
-        <script src="js/TarjetaConvocatoria.js"></script>
+        <script src="js/TarjetaConvocatoria.js"></script>   
+        
         <!-- w3schools.com -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,6 +32,7 @@
         <script>
             $(document).ready(listaConvocatoriaLista());
             $(document).ready(DatosEstudiLista(1));
+            
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -107,8 +109,8 @@
         <header class="w3-container w3-top w3-hide-large w3-indigo w3-xlarge w3-padding">
             <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">☰</a>
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Mis convocatorias</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista2())">BuscarConvocatoria</button>
+                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaMisConvocatoriaLista())"> Mis convocatorias</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
         </header>
@@ -120,8 +122,8 @@
         <div class="w3-main" style="margin-left:340px;margin-right:40px">
             <br />
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())">MisConvocatorias</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista2())">BuscarConvocatoria</button>
+                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaMisConvocatoriaLista())"> Mis convocatorias</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
             <br />

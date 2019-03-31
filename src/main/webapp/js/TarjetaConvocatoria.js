@@ -24,23 +24,6 @@ function listaConvocatoriaLista() {
 
 }
 
-function listaMisConvocatoriaLista() {
-    $.ajax({
-        url: api + "ConvocatoriasSv",
-        type: "Get",
-        success: function (data) {
-            console.log("Servicio Listar ConvocatoriasSv");
-            console.log(data);
-
-            PintarMisConvocatoriaLista(data);
-
-        },
-        error: function () {
-            alert('Error function listaConvocatoriaLista');
-        }
-    });
-
-}
 function PintarConvocatoriaLista(listasDatos) {
     console.log("Pintar la Lista de ConvocatoriasSv");
 
@@ -52,7 +35,6 @@ function PintarConvocatoriaLista(listasDatos) {
     $("#Convocatoriaslista").empty();
 
     if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
         
 
         listasDatos.ConvocatoriasDTO.forEach(element => {
@@ -89,17 +71,15 @@ function PintarConvocatoriaLista(listasDatos) {
 
                                            '<div class="stats-container">'+
                                                '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">Inscribirse</button></h4>'+
+                                               
+                                                   '<h4><button type="button" class="btn btn-outline-primary"><a onclick="InscribirGestor('+1+""+','+ 1+""  +')">Inscribirse</a></button></h4>'+
 
                                                '</div>'+
                                                '<div class="stats">'+
-                                                  
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>'+
 
                                                '</div>'+
-                                               '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>'+
-
-                                               '</div>'+
+                                               
 
                                        '</div> '+
                                    '</div>'+
