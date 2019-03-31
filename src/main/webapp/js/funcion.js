@@ -1998,7 +1998,7 @@ function EditarReserva() {
         '"EstudiantesFk":'+'{'+
                         '"EstudianteID":'+'"'+idG+'" '+'},'+
         '"ConvocatoriasFk":'+'{'+
-                            '"ConvocatoriaID":'+'"'+idC+'"'+
+                            '"ConvocatoriaID" :'+'"'+idC+'"'+
                     '}'+      
             '}';
 
