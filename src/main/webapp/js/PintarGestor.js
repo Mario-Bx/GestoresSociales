@@ -164,15 +164,15 @@ function PintarMisBitacoraLista(listasDatos) {
                                            '<div class="stats-container"align="center">'+
                                                '<div class="stats">'+
                                                    '<div class="stats">'+
-                                                     '<button onclick="document.getElementById('+m+').style.display='+b+', actualizarBitacoraLista('+element.BitacoraID+')" class="btn btn-secondary" (click)="editarDato('+1+')"><i class="fa fa-edit"></i></button>'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Guardar</button></h4>'+
 
                                                '</div>'+
 
                                                '</div>'+
                                                '<div class="stats">'+
-                                                   '<button type="submit" class="btn btn-secondary" onclick="borrarBitacoraLista('+element.BitacoraID+')"><i class="fa fa-trash"></i></button>'+
-                                                 
-
+                                                  '<button type="submit" class="btn btn-secondary" onclick="borrarBitacoraLista('+element.BitacoraID+')"><i class="fa fa-trash"></i></button>'+
+                                                  '<button onclick="document.getElementById('+m+').style.display='+b+', actualizarBitacoraLista('+element.BitacoraID+')" class="btn btn-secondary" (click)="editarDato(item.BitacoraID)"><i class="fa fa-edit"></i></button>'+
+                                
                                                '</div>'+
                                                
 

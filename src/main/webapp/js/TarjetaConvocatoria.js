@@ -76,7 +76,7 @@ function PintarConvocatoriaLista(listasDatos) {
 
                                                '</div>'+
                                                '<div class="stats">'+
-                                                   '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>'+
+                                                   '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>'+
 
                                                '</div>'+
                                                
