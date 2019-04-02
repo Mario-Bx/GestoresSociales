@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS `administrador` (
 -- Volcando datos para la tabla gestores.administrador: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
 INSERT INTO `administrador` (`AdministradorID`, `Nombre`, `Apellidos`, `Correo`, `Clave`, `FechaNacimiento`, `Documento`, `Telefono`, `Celular`) VALUES
-	(1, 'Mario', 'Bolaños', '@correo', '123', '12/12/1233', '123', '123', '123'),
-	(2, 'juan', 'Albaracin', '@correo', '123', '12/12/1233', '123', '123', '123'),
-	(3, 'Renan', 'Albaracin', '@correo', '123', '12/12/1233', '123', '123', '123'),
-	(4, 'Leiva', 'Albaracin', '@correo', '123', '12/12/1233', '123', '123', '123'),
-	(5, 'Eduward', 'Albaracin', '@correo', '123', '12/12/1233', '123', '123', '123');
+	(1, 'Mario', 'Bolaños', 'm@correo', '123', '12/12/1233', '123', '123', '123'),
+	(2, 'juan', 'Albaracin', 'j@correo', '123', '12/12/1233', '123', '123', '123'),
+	(3, 'Renan', 'Albaracin', 'r@correo', '123', '12/12/1233', '123', '123', '123'),
+	(4, 'Leiva', 'Albaracin', 'l@correo', '123', '12/12/1233', '123', '123', '123'),
+	(5, 'Eduward', 'Albaracin', 'e@correo', '123', '12/12/1233', '123', '123', '123');
 /*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.bitacora
@@ -56,11 +56,11 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
 -- Volcando datos para la tabla gestores.bitacora: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
 INSERT INTO `bitacora` (`BitacoraID`, `Nombre`, `Fecha`, `Hora`, `Descripcion`, `EstudiantesFK`) VALUES
-	(1, 'sadas', '12/12/1212', '12:12', 'asdasdas', 1),
-	(2, 'sadas', '12/12/1212', '12:12', 'asdasdas', 1),
-	(3, 'sadas', '12/12/1212', '12:12', 'asdasdas', 1),
-	(4, 'sadas', '12/12/1212', '12:12', 'asdasdas', 1),
-	(5, 'sadas', '12/12/1212', '12:12', 'asdasdas', 1);
+	(1, 'BitacoraID1', '12/12/1212', '12:12', 'asdasdas', 1),
+	(2, 'BitacoraID2', '12/12/1212', '12:12', 'asdasdas', 1),
+	(3, 'BitacoraID3', '12/12/1212', '12:12', 'asdasdas', 2),
+	(4, 'BitacoraID4', '12/12/1212', '12:12', 'asdasdas', 2),
+	(5, 'BitacoraID5', '12/12/1212', '12:12', 'asdasdas', 1);
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.convocatorias
@@ -82,12 +82,12 @@ CREATE TABLE IF NOT EXISTS `convocatorias` (
 -- Volcando datos para la tabla gestores.convocatorias: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `convocatorias` DISABLE KEYS */;
 INSERT INTO `convocatorias` (`ConvocatoriasID`, `Nombre`, `FechaInicio`, `FechaFin`, `Hora`, `Encargado`, `Descripcion`, `HorasGanadas`, `AdministradorFK`) VALUES
-	(1, 'Mi convocatoria', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
-	(2, 'Mi convocatoria', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
-	(3, 'Mi convocatoria', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
-	(4, 'Mi convocatoria', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
-	(5, 'Mi convocatoria', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
-	(6, 'Mi convocatoria', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1);
+	(1, 'Mi convocatoria 1', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
+	(2, 'Mi convocatoria 2', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
+	(3, 'Mi convocatoria 3', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
+	(4, 'Mi convocatoria 4', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
+	(5, 'Mi convocatoria 5', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1),
+	(6, 'Mi convocatoria 6', '12/12/1212', '12/12/1212', '12:12', 'kely', 'no joda ', 5, 1);
 /*!40000 ALTER TABLE `convocatorias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.estudiantes
@@ -109,12 +109,12 @@ CREATE TABLE IF NOT EXISTS `estudiantes` (
 -- Volcando datos para la tabla gestores.estudiantes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
 INSERT INTO `estudiantes` (`EstudiantesID`, `Nombre`, `Apellidos`, `Correo`, `Clave`, `Documento`, `FechaNacimiento`, `Telefono`, `Celular`, `Escuela`, `Carreara`) VALUES
-	(1, 'Lieva', 'xxx', '@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
-	(2, 'juan', 'xxx', '@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
-	(3, 'juan', 'xxx', '@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
-	(4, 'juan', 'xxx', '@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
-	(5, 'juan', 'xxx', '@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
-	(6, 'juan', 'xxx', '@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas');
+	(1, 'Lieva', 'xxx', 'L@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
+	(2, 'juan1', 'xxx', 'j1@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
+	(3, 'juan2', 'xxx', 'j2@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
+	(4, 'juan3', 'xxx', 'j3@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
+	(5, 'juan4', 'xxx', 'j4@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas'),
+	(6, 'juan5', 'xxx', 'j5@correo', '123', '123', '12/12/1212', '123', '123', 'ingenieraia', 'sitemas');
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.principal
@@ -134,10 +134,10 @@ CREATE TABLE IF NOT EXISTS `principal` (
 /*!40000 ALTER TABLE `principal` DISABLE KEYS */;
 INSERT INTO `principal` (`PrincipalID`, `Nombre`, `EstudiantesFK`, `ConvocatoriasFK`) VALUES
 	(1, 'prin 1', 1, 2),
-	(2, 'prin 1', 2, 2),
-	(3, 'prin 1', 3, 2),
-	(4, 'prin 1', 4, 2),
-	(5, 'prin 1', 5, 2);
+	(2, 'prin 2', 2, 2),
+	(3, 'prin 3', 3, 2),
+	(4, 'prin 4', 1, 1),
+	(5, 'prin 5', 2, 1);
 /*!40000 ALTER TABLE `principal` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.reserva
@@ -156,11 +156,11 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 -- Volcando datos para la tabla gestores.reserva: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
 INSERT INTO `reserva` (`ReservaID`, `Nombre`, `EstudiantesFK`, `ConvocatoriasFK`) VALUES
-	(1, 'Putos', 5, 2),
-	(2, 'Putos', 3, 2),
-	(3, 'Putos', 4, 2),
-	(4, 'Putos', 2, 3),
-	(5, 'Putos', 5, 3);
+	(1, 'Putos 1', 2, 2),
+	(2, 'Putos 2', 3, 2),
+	(3, 'Putos 3', 1, 2),
+	(4, 'Putos 4', 1, 3),
+	(5, 'Putos 5', 2, 3);
 /*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.sanciones
@@ -179,11 +179,11 @@ CREATE TABLE IF NOT EXISTS `sanciones` (
 -- Volcando datos para la tabla gestores.sanciones: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `sanciones` DISABLE KEYS */;
 INSERT INTO `sanciones` (`SancionesID`, `Descripcion`, `NumeroConvocatria`, `ConInicial`, `ConFinal`, `EstudiantesFK`) VALUES
-	(1, 'asdsa', 5, 12, 12, 2),
-	(2, 'asdsa', 5, 12, 12, 2),
-	(3, 'asdsa', 5, 12, 12, 2),
-	(4, 'asdsa', 5, 12, 12, 2),
-	(5, 'asdsa', 5, 12, 12, 2);
+	(1, 'SancionesID 1', 5, 12, 12, 1),
+	(2, 'SancionesID 2', 5, 12, 12, 2),
+	(3, 'SancionesID 3', 5, 12, 12, 2),
+	(4, 'SancionesID 4', 5, 12, 12, 1),
+	(5, 'SancionesID 5', 5, 12, 12, 2);
 /*!40000 ALTER TABLE `sanciones` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

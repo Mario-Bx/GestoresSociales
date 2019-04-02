@@ -67,7 +67,7 @@ function PintarConvocatoriaLista(listasDatos) {
                     '<h4><button type="button" class="btn btn-outline-primary"><a onclick="InscribirGestor(' + 1 + "" + ',' + 1 + "" + ')">Inscribirse</a></button></h4>' +
                     '</div>' +
                     '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>' +
+                    '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>' +
                     '</div>' +
                     '</div> ' +
                     '</div>' +
@@ -79,4 +79,4 @@ function PintarConvocatoriaLista(listasDatos) {
     }
 }
 
- 
+

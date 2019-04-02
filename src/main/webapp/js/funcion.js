@@ -821,7 +821,6 @@ function actualizarBitacoraLista(idN) {
                         '</header>' +
                         '<div class="container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
                         '<input type="text" class="form-control" id="BitacoraID�" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
@@ -848,8 +847,7 @@ function actualizarBitacoraLista(idN) {
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarBitacora()">Actualizar</button>' +
-                        '</form>' +
+                        '<button class="btn btn-primary" onclick="EditarBitacora()">Actualizar</button>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
@@ -1161,9 +1159,9 @@ function borrarPrincipalLista(idN) {
     });
     console.log("borar: " + idN);
 }
-function actualizarPrincipalLista(idN) {
+function actualizarBitacoraLista(idN) {
     $.ajax({
-        url: api + "PrincipalSv/" + idN,
+        url: api + "BitacoraSv/" + idN,
         type: "Get",
         success: function (data) {
             console.log(data);
@@ -1183,14 +1181,26 @@ function actualizarPrincipalLista(idN) {
                         '</header>' +
                         '<div class="container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form >' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="PrincipalID�" value="' + datoEdit.PrincipalID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="BitacoraID" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Nombre:</label>' +
                         '<input type="text" class="form-control" id="Nombre" value="' + datoEdit.Nombre + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Fecha:</label>' +
+                        '<input type="text" class="form-control" id="Fecha" value="' + datoEdit.Fecha + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Hora:</label>' +
+                        '<input type="text" class="form-control" id="Hora" value="' + datoEdit.Hora + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Descripcion:</label>' +
+                        '<input type="text" class="form-control" id="Descripcion" value="' + datoEdit.Descripcion + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">deporte:</label>' +
@@ -1198,13 +1208,7 @@ function actualizarPrincipalLista(idN) {
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="ConvocatoriaslistaSELECT"> ' +
-                        '<OPTION value="errror">Error</OPTION>' +
-                        '</SELECT>' +
-                        '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarPrincipal()">Actualizar</button>' +
+                        '<button class="btn btn-primary" onclick="EditarBitacora(' + 1 + ')">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
@@ -1214,15 +1218,13 @@ function actualizarPrincipalLista(idN) {
             }
 
             selectEstudiantes();
-            selectConvocatorias();
 
         },
         error: function () {
-            alert('Errror El formulario actualizarPrincipalLista');
+            alert('Errror El formulario actualizarBitacoraLista');
         }
     });
 }
-
 function crearFormReserva() {
     $.ajax({
         url: api + "ReservaSv",
@@ -1723,7 +1725,7 @@ function crearBitacora() {
     });
 }
 
-function EditarBitacora() {
+function EditarBitacora(idG) {
 
     console.log("Servicio Editar");
     var Bitacora = '{' +
@@ -1731,8 +1733,10 @@ function EditarBitacora() {
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Fecha": "' + $("#Fecha").val() + '"' + ', ' +
             '"Hora": "' + $("#Hora").val() + '"' + ', ' +
-            '"Descripcion": "' + $("#Descripcion").val() + '"'
-            + '}';
+            '"Descripcion": "' + $("#Descripcion").val() + '",' +
+            '"EstudiantesFk":' + '{' +
+            '"EstudiantesID":' + '"' + idG + '" ' + '}' +
+            '}';
 
     console.log(Bitacora);
     $.ajax({
@@ -1996,9 +2000,9 @@ function InscribirGestor(idG, idC) {
     var Principal = '{' +
             '"Nombre": ' + '" P' + idG + idC + '",' +
             '"EstudiantesFk":' + '{' +
-            '"EstudianteID":' + '"' + idG + '" ' + '},' +
+            '"EstudiantesID":' + '"' + idG + '" ' + '},' +
             '"ConvocatoriasFk":' + '{' +
-            '"ConvocatoriaID" :' + '"' + idC + '"' +
+            '"ConvocatoriasID" :' + '"' + idC + '"' +
             '}' +
             '}';
 
@@ -2023,4 +2027,4 @@ function InscribirGestor(idG, idC) {
 
 }
 
-   
+

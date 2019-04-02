@@ -97,10 +97,10 @@ function PintarMisConvocatoriaLista(listasDatos) {
                     '<h4 class="text-center">Responsable:' + element.ConvocatoriasFk.Encargado + '</h4>' +
                     '<div class="stats-container">' +
                     '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary">Retirar</button></h4>' +
+                    '<h4><button type="button" class="btn btn-outline-primary"><a onclick="borrarPrincipalLista(' + 27 + ')">Retirar</a></button></h4>' +
                     '</div>' +
                     '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary">Editar</button></h4>' +
+                    '<h4><button type="button" class="btn btn-outline-primary">ver</button></h4>' +
                     '</div>' +
                     '</div> ' +
                     '</div>' +
@@ -148,10 +148,13 @@ function PintarMisBitacoraLista(listasDatos) {
                     '<center><textarea name="msg" required>' + element.Descripcion + '</textarea> </center>' +
                     '<div class="stats-container"align="center">' +
                     '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary">Inscribirse</button></h4>' +
-                    '</div>' +
                     '<div class="stats">' +
                     '<h4><button type="button" class="btn btn-outline-primary">Guardar</button></h4>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="stats">' +
+                    '<button type="submit" class="btn btn-secondary" onclick="borrarBitacoraLista(' + element.BitacoraID + ')"><i class="fa fa-trash"></i></button>' +
+                    '<button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarBitacoraLista(' + element.BitacoraID + ')" class="btn btn-secondary" (click)="editarDato(item.BitacoraID)"><i class="fa fa-edit"></i></button>' +
                     '</div>' +
                     '</div> ' +
                     '</div>' +

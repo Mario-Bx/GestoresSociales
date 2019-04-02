@@ -1,29 +1,26 @@
-<%@page import="dao.UsuarioDAO1"%>
-<html>
+?<html>
     <head>
         <title>Proyecyo</title>
 
         <meta charset="utf-8">
         <!-- Bootstrap 4 -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+        <!-- w3schools.com -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Funciones pera datos -->
         <script src="js/funcion.js"></script>
         <script src="js/PintarGestor.js"></script>
         <script src="js/TarjetaConvocatoria.js"></script>   
-
-        <!-- w3schools.com -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Tarjetas -->
         <link href='css/bootstrap.css' rel='stylesheet' />
@@ -34,9 +31,8 @@
             $(document).ready(listaConvocatoriaLista());
             $(document).ready(DatosEstudiLista(<%out.print(request.getAttribute("id"));%>));
         </script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>
 
@@ -69,7 +65,7 @@
         <header class="w3-container w3-top w3-hide-large w3-indigo w3-xlarge w3-padding">
             <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">=</a>
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaMisConvocatoriaLista())"> Mis convocatorias</button>
+                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Mis convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
@@ -82,7 +78,7 @@
         <div class="w3-main" style="margin-left:340px;margin-right:40px">
             <br />
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaMisConvocatoriaLista())"> Mis convocatorias</button>
+                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Mis convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
@@ -102,16 +98,15 @@
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
                         <br>
-
                         <div id ="MisConvocatoriaslista" class="w3-container">
 
 
 
-
+                            <br>
                         </div>
+
                     </div>
                 </div>
-
                 <div id="BuscarConvocatoria" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
                     <h1 class="w3-xxxlarge w3-text-indigo"><b>Buscar Convocatorias.</b></h1>
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
@@ -142,13 +137,18 @@
                     </div>
                 </div>
 
+
+
+
+
                 <!-- End page content -->
             </div>
 
             <!-- W3.CSS Container -->
 
+
             <script>
-                // Script to open and close sidebar el que despliega el menu de presentacion perfil
+                // Script to open and close sidebar
                 function w3_open() {
                     document.getElementById("mySidebar").style.display = "block";
                     document.getElementById("myOverlay").style.display = "block";
@@ -167,9 +167,8 @@
                     captionText.innerHTML = element.alt;
                 }
             </script>
-
             <script>
-                // Script to open and close Etiquetas  para cambiar las etiquetas de listas
+                // Script to open and close Etiquetas
                 function openCity(evt, cityName) {
                     var i, x, tablinks;
                     x = document.getElementsByClassName("city");
@@ -210,5 +209,12 @@
 
 
             </script>
+            <div class="w3-container">
+
+                <div id="id02" class="w3-modal">
+
+                </div>
+
+            </div>    
     </body>
 </html>
