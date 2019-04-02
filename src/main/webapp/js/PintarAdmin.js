@@ -37,11 +37,10 @@ function PintarAdminLista(listasDatos) {
                 
                     '<p><i class="glyphicon glyphicon-user fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Nombre +' '+listasDatos.Apellidos +'</p>'+
                     '<p></p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Correo +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Clave +'</p>'+
-                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.FechaNacimiento +'</p>'+
-                    '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Documento +'</p>'+
-                    '<p class="text"><span class="glyphicon glyphicon-dashboard"></span><em> horas realizadas : '+ '</em> </p>'+
+                   '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Correo +'</p>'+
+                    
+                    '<p><i class="fa fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.FechaNacimiento +'</p>'+
+                    '<p><i class="fa fa fa-address-card-o fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Documento +'</p>'+
                     '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Telefono +'</p>'+
                     '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>'+ listasDatos.Celular +'</p>'+
                     '<hr>'+
@@ -50,7 +49,3 @@ function PintarAdminLista(listasDatos) {
 
     }
     }
-    
-
-
-
