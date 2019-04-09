@@ -28,41 +28,46 @@ function PintarEstduaintesLista(Datos) {
 
     $("#Tarjetas").empty();
 
-    if (Datos != null) {
-        console.log("Prueba2" + Datos.length);
+    if (Datos !== null) {
+        console.log("Prueba" + Datos.length);
         
 
-        Datos.EstudiantesDTO.forEach(elemento => {
+        Datos.EstudiantesDTO.forEach(element => {
             $("#Tarjetas").append(
-                    '<div class="cards">'+
-                    '<div class="card">'+
-                        '<div class="card-title">'+
-
-                            '<a href="#" class="toggle-info btn">'+
-                                '<span class="left"></span>'+
-                                '<span class="right"></span>'+
-                            '</a>'+
-                            '<h2>'+
-                                'Mario Bolaños'+
-                                '<small>Ingenieria de Sistemas y Telecomunicaicones</small>'+
-                            '</h2>'+
-                        '</div>'+
-
-                        '<div class="card-flap flap1">'+
-
-                            '<div class="card-description">'+
-                                'Semestre: Sexto'+
-                                'Correo:Mario.Bolaños@correo.usa.edu.co'+
-                                'telefono:3165245125'+
-                            '</div>'+
-                            '<div class="card-flap flap2">'+
-                                '<div class="card-actions">'+
-                                    '<a href="#" class="btn">Read more</a>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'+
+                    ' <section class="container">'+
+                    '<div class="row active-with-click">'+
+                    ' <div class="col-md-4 col-sm-6 col-xs-12">'+
+                    ' <article class="material-card Red">'+
+                    '<h2>'+
+                    '<span>Christopher Walken</span>'+
+                    '<strong>'+
+                    '<i class="fa fa-fw fa-star"></i>'+
+                    'The Deer Hunter'+
+                    '</strong>'+
+                    '</h2>'+
+                    '<div class="mc-content">'+
+                    '<div class="img-container">'+
+                    '<img class="img-responsive" src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg">'+
                     '</div>'+
-                    '</div>'
+                    '<div class="mc-description">'+
+                    'He has appeared in more than 100 films and television shows, including The Deer Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...'+
+                    '</div>'+
+                    '</div>'+
+                    '<a class="mc-btn-action">'+
+                    ' <i class="fa fa-bars"></i>'+
+                    '</a>'+
+                    '<div class="mc-footer">'+
+                    '<h4>'+
+                    'Social'+
+                    '</h4>'+
+                    ' <a class="fa fa-fw fa-facebook"></a>'+
+                    ' <a class="fa fa-fw fa-twitter"></a>'+
+                    '<a class="fa fa-fw fa-linkedin"></a>'+
+                    '<a class="fa fa-fw fa-google-plus"></a>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</section>'
                      
                            );
         });

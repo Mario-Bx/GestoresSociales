@@ -1,4 +1,4 @@
-<html>
+?<html>
     <head>
         <title>Proyecyo</title>
 
@@ -29,7 +29,7 @@
 
         <script>
             $(document).ready(listaConvocatoriaLista());
-            $(document).ready(DatosEstudiLista(1));
+            $(document).ready(DatosEstudiLista(<%out.print(request.getAttribute("id"));%>));
         </script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

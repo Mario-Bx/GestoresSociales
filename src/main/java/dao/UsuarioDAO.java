@@ -27,6 +27,8 @@ public class UsuarioDAO {
         if (rs.next()) {
             user.setUsuario(rs.getString("Correo"));
             user.setClave(rs.getString("Clave"));
+            user.setId(rs.getInt("AdministradorID"));
+            System.out.println(rs.getInt("AdministradorID"));
 
         }
         return user;

@@ -1,4 +1,4 @@
-<html>
+?<html>
     <head>
         <title>Proyecyo</title>
 
@@ -29,7 +29,7 @@
 
         <script>
             $(document).ready(listaConvocatoriaLista());
-            $(document).ready(DatosEstudiLista(1));
+            $(document).ready(DatosEstudiLista(<%out.print(request.getAttribute("id"));%>));
         </script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -83,14 +83,8 @@
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
             <br />
-
-
-
             <!-- Header -->
             <div class="w3-container" style="margin-top:80px" id="showcase">
-
-
-
                 <!-- Right Column -->
 
                 <div id="MisConvocatorias" class="w3-container w3-card w3-white w3-margin-bottom city">
@@ -136,11 +130,6 @@
                         <br>
                     </div>
                 </div>
-
-
-
-
-
                 <!-- End page content -->
             </div>
 
@@ -206,9 +195,8 @@
                         $card.addClass('hover');
                     }
                 }
-
-
             </script>
+            
             <div class="w3-container">
 
                 <div id="id02" class="w3-modal">

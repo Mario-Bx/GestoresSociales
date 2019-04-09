@@ -283,7 +283,7 @@ function crearFormEstudiantes() {
                     );
 
 
-            $("#Estudiantescrear").append();
+            $("#Estudiantescrear").append(						);
 
 
 
@@ -821,7 +821,6 @@ function actualizarBitacoraLista(idN) {
                         '</header>' +
                         '<div class="container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
                         '<input type="text" class="form-control" id="BitacoraID�" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
@@ -848,8 +847,7 @@ function actualizarBitacoraLista(idN) {
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarBitacora()">Actualizar</button>' +
-                        '</form>' +
+                        '<button class="btn btn-primary" onclick="EditarBitacora()">Actualizar</button>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
@@ -1161,9 +1159,9 @@ function borrarPrincipalLista(idN) {
     });
     console.log("borar: " + idN);
 }
-function actualizarPrincipalLista(idN) {
+function actualizarBitacoraLista(idN) {
     $.ajax({
-        url: api + "PrincipalSv/" + idN,
+        url: api + "BitacoraSv/" + idN,
         type: "Get",
         success: function (data) {
             console.log(data);
@@ -1183,14 +1181,26 @@ function actualizarPrincipalLista(idN) {
                         '</header>' +
                         '<div class="container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form >' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="PrincipalID�" value="' + datoEdit.PrincipalID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="BitacoraID" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Nombre:</label>' +
                         '<input type="text" class="form-control" id="Nombre" value="' + datoEdit.Nombre + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Fecha:</label>' +
+                        '<input type="text" class="form-control" id="Fecha" value="' + datoEdit.Fecha + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Hora:</label>' +
+                        '<input type="text" class="form-control" id="Hora" value="' + datoEdit.Hora + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Descripcion:</label>' +
+                        '<input type="text" class="form-control" id="Descripcion" value="' + datoEdit.Descripcion + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">deporte:</label>' +
@@ -1198,13 +1208,7 @@ function actualizarPrincipalLista(idN) {
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="ConvocatoriaslistaSELECT"> ' +
-                        '<OPTION value="errror">Error</OPTION>' +
-                        '</SELECT>' +
-                        '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarPrincipal()">Actualizar</button>' +
+                        '<button class="btn btn-primary" onclick="EditarBitacora(' + 1 + ')">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
@@ -1214,15 +1218,13 @@ function actualizarPrincipalLista(idN) {
             }
 
             selectEstudiantes();
-            selectConvocatorias();
 
         },
         error: function () {
-            alert('Errror El formulario actualizarPrincipalLista');
+            alert('Errror El formulario actualizarBitacoraLista');
         }
     });
 }
-
 function crearFormReserva() {
     $.ajax({
         url: api + "ReservaSv",
@@ -1723,7 +1725,7 @@ function crearBitacora() {
     });
 }
 
-function EditarBitacora() {
+function EditarBitacora(idG) {
 
     console.log("Servicio Editar");
     var Bitacora = '{' +
@@ -1731,8 +1733,10 @@ function EditarBitacora() {
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Fecha": "' + $("#Fecha").val() + '"' + ', ' +
             '"Hora": "' + $("#Hora").val() + '"' + ', ' +
-            '"Descripcion": "' + $("#Descripcion").val() + '"'
-            + '}';
+            '"Descripcion": "' + $("#Descripcion").val() + '",' +
+            '"EstudiantesFk":' + '{' +
+            '"EstudiantesID":' + '"' + idG + '" ' + '}' +
+            '}';
 
     console.log(Bitacora);
     $.ajax({
@@ -1861,9 +1865,9 @@ function selectPrincipal() {
         }
     });
 }
-function crearPrincipal() {
+function crearPrincipal(idGestor, idConvocatoria) {
 
-    console.log("crearDeporte");
+    console.log("CrearPrincipal");
     var Principal = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"'
 
@@ -1938,24 +1942,6 @@ function selectReserva() {
         }
     });
 }
-function listaConvocatoriaLista2() {
-    $.ajax({
-        url: api + "ConvocatoriasSv",
-        type: "Get",
-        success: function (data) {
-            console.log("Servicio Listar ConvocatoriasSv #2");
-            console.log(data);
-
-            PintarConvocatoriaLista2(data);
-
-        },
-        error: function () {
-            alert('Error function listaConvocatoriaLista');
-        }
-    });
-
-}
-
 function crearReserva() {
 
     console.log("crearDeporte");
@@ -2006,67 +1992,39 @@ function EditarReserva() {
     });
 
 }
-function PintarConvocatoriaLista2(listasDatos) {
-    console.log("Pintar la Lista de ConvocatoriasSv");
 
 
-    var m = "'id02'";
-    var b = "'block'";
-    var e = "'empty'";
+function InscribirGestor(idG, idC) {
 
-    $("#Convocatoriaslista2").empty();
+    console.log("CrearPrincipal--------->" + idG + "" + idC);
+    var Principal = '{' +
+            '"Nombre": ' + '" P' + idG + idC + '",' +
+            '"EstudiantesFk":' + '{' +
+            '"EstudiantesID":' + '"' + idG + '" ' + '},' +
+            '"ConvocatoriasFk":' + '{' +
+            '"ConvocatoriasID" :' + '"' + idC + '"' +
+            '}' +
+            '}';
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Convocatoriaslista2").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>FechaInicio</th>' +
-                '<th>FechaFin</th>' +
-                '<th>Hora</th>' +
-                '<th>Encargado</th>' +
-                '<th>Descripcion</th>' +
-                '<th>HorasGanadas</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
+    console.log(Principal);
 
-        listasDatos.ConvocatoriasDTO.forEach(element => {
-            $("#Convocatoriaslista2").append(
-                    '<tr class="w3-hover-blue">' +
-                    '<td>' + element.ConvocatoriasID + ' </td>' +
-                    '<td>' + element.Nombre + ' </td>' +
-                    '<td>' + element.FechaInicio + ' </td>' +
-                    '<td>' + element.FechaFin + ' </td>' +
-                    '<td>' + element.Hora + ' </td>' +
-                    '<td>' + element.Encargado + ' </td>' +
-                    '<td>' + element.Descripcion + ' </td>' +
-                    '<td>' + element.HorasGanadas + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
-        });
-    }
-}
-
-
-
-
-function listaConvocatoriaLista2() {
     $.ajax({
-        url: api + "ConvocatoriasSv",
-        type: "Get",
+        type: "POST",
+        contentType: "application/json",
+        url: api + "PrincipalSv",
+        data: Principal,
+        dataType: "json",
         success: function (data) {
-            console.log("Servicio Listar ConvocatoriasSv #2");
             console.log(data);
-
-            PintarConvocatoriaLista2(data);
-
         },
-        error: function () {
-            alert('Error function listaConvocatoriaLista');
+        error: function (data) {
+            alert('Error En el Servicio Crar PrincipalSv');
         }
     });
 
+
+
+
 }
+
+
