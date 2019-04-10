@@ -9,7 +9,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <script src="js/funcion.js"></script>
         <script src="js/PintarAdmin.js"></script>
+        <script src="js/PintarGestor.js"></script>
         <script src="js/PintaTarjetas.js"></script>
+        <script src="js/TarjetaConvocatoria.js"></script>   
         
         <!-- w3schools.com -->
         <meta charset="utf-8">
@@ -35,7 +37,7 @@
 
 
         <script>
-            
+             $(document).ready(listaConvocatoriaLista());
             $(document).ready(listaAdminLista(1));
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +72,7 @@
             <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">☰</a>
             <div class="w3-bar w3-black">
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Estudiantes', listaEstudiLista())">Gestores</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatorias', listaConvocatoriaLista())">Convocatorias</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones', listaSancionesLista())">Sanciones</button>
             </div>
         </header>
@@ -83,7 +85,7 @@
             <br />
             <div class="w3-bar w3-black">
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Estudiantes', listaEstudiLista())">Gestores</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatorias', listaConvocatoriaLista())">BuscarConvocatorias</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones', listaSancionesLista())">Sanciones</button>
             </div>
             <br />
@@ -111,32 +113,27 @@
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
 
                     <div class="w3-responsive">
-                        <div id ="Tarjetas" class="w3-container">
-                            
+                        <br>
+                        <div id ="Tarjetas" class="container">
+                   
                         </div>
 
                     </div>
 
                 </div>
 
-                <div id="BuscarConvocatorias" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
-                    <h1 class="w3-xxxlarge w3-text-indigo"><b>BuscarConvocatorias.</b></h1>
-                    <form class="example" action="/action_page.php">
-                        <input type="text" placeholder="Buscar Convocatorias..." name="search">
-
-                        <button type="submit"><i class="fa fa-search"></i></button>
-
-                    </form>
-                    <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'CrearConvocatoria', CrearEstudiLista)">Crear Convocatoria</button>
-
+              <div id="BuscarConvocatoria" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <h1 class="w3-xxxlarge w3-text-indigo"><b>Buscar Convocatorias.</b></h1>
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
+                        <br>
                         <div  id="Convocatoriaslista" class="w3-container">
 
                         </div>	
                         <br>
                     </div>
                 </div>
+                
                 <div id="Sanciones" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
                     <h1 class="w3-xxxlarge w3-text-indigo"><b>Sanciones.</b></h1>
                     <form class="example" action="/action_page.php">

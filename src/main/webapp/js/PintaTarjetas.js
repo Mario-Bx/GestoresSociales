@@ -19,8 +19,8 @@ function listaEstudiLista() {
 }
 
 function PintarEstduaintesLista(Datos) {
-    console.log("Pintar la Lista de EstudiantesSv");
-
+console.log("Pintar la Lista de EstudiantesSv");
+ 
 
     var m = "'id02'";
     var b = "'block'";
@@ -28,26 +28,27 @@ function PintarEstduaintesLista(Datos) {
 
     $("#Tarjetas").empty();
 
-    if (Datos !== null) {
-        console.log("Prueba" + Datos.length);
-        
+    if (Datos != null) {
+       console.log("Prueba pintar Estudiantes" + Datos.length);
+        console.log(Datos.list_Principal);
+
 
         Datos.EstudiantesDTO.forEach(element => {
             $("#Tarjetas").append(
                     ' <section class="container">'+
                     '<div class="row active-with-click">'+
                     ' <div class="col-md-4 col-sm-6 col-xs-12">'+
-                    ' <article class="material-card Red">'+
+                    ' <article class="material-card Green">'+
                     '<h2>'+
-                    '<span>Christopher Walken</span>'+
+                    '<span>'+ element.Nombre+' '+element.Apellidos  +'</span>'+
                     '<strong>'+
-                    '<i class="fa fa-fw fa-star"></i>'+
-                    'The Deer Hunter'+
+                    '<i class="fa fa-mortar-board fa-fw w3-margin-right w3-large w3-text-teal"></i>'+
+                    element.Carreara+
                     '</strong>'+
                     '</h2>'+
                     '<div class="mc-content">'+
                     '<div class="img-container">'+
-                    '<img class="img-responsive" src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg">'+
+                    '<img class="img-responsive" src="https://pbs.twimg.com/profile_images/737629024919265281/c3xXF2Iw.jpg">'+
                     '</div>'+
                     '<div class="mc-description">'+
                     'He has appeared in more than 100 films and television shows, including The Deer Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...'+
