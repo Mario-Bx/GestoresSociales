@@ -12,10 +12,10 @@
         <class>DatoClase.ReservaClas</class>
     
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Gestores"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://gestores.cqkfsnsurroc.us-east-2.rds.amazonaws.com:3306/gestores"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.password" value="gestoresociales"/>
         </properties>
     </persistence-unit>
 </persistence>		

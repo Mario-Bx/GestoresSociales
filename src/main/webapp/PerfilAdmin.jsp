@@ -35,6 +35,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>
+      <%
+
+        HttpSession misession = request.getSession(true);
+
+        if (misession.getAttribute("usuario") == null) {
+            response.sendRedirect("login.jsp");
+        }
+
+    %>
 
     <body>
 

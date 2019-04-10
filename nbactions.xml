@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Copile war</actionName>
+            <displayName>Copile war</displayName>
+            <goals>
+                <goal>compile</goal>
+                <goal>war:war</goal>
+            </goals>
+        </action>
+    </actions>
