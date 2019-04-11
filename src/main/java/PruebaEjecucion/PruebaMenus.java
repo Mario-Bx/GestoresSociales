@@ -1,6 +1,8 @@
 package PruebaEjecucion;
 
 import DaoGenerico.ConexionException;
+import DatoClase.AdministradorClas;
+import Fachadas.AdministradorFachada;
 import java.io.IOException;
 
 public class PruebaMenus {
@@ -9,7 +11,11 @@ public class PruebaMenus {
 
     public static void main(String[] args) throws IOException, ConexionException {
 
-        menus menu = new menus();
-        menu.menu();
+        AdministradorClas b = new AdministradorClas();
+        AdministradorFachada mm = new AdministradorFachada();
+        
+        b= mm.busacarObj(1);
+        
+        System.out.println(b);
     }
 }
