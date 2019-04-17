@@ -12,43 +12,41 @@ import DaoGenerico.ConexionException;
  *
  * @author MARIO
  */
-@Path("/ConvocatoriasSv")
-public class ConvocatoriasSv {
+@Path("/DependenciaSv")
+public class DependenciaSv {
 	
-	ConvocatoriasFachada convocatoriasFh = null;
-	AdministradorFachada administradorFh = null;
 	DependenciaFachada dependenciaFh = null;
-	ConvocatoriasDTO dto = null;
-	AdministradorDTO administradorFk = null;
-	DependenciaDTO dependenciaFk = null;
+	EscuelaFachada escuelaFh = null;
+	DependenciaDTO dto = null;
+	EscuelaDTO escuelaFk = null;
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	   public List<ConvocatoriasDTO> getListaDto_JSON() throws ConexionException{
+	   public List<DependenciaDTO> getListaDto_JSON() throws ConexionException{
 	   System.out.println("?????????????????????????????????????????????????????????????????????????????");
 	   System.out.println("?????????????????????????????????????????????????????????????????????????????");
 	   System.out.println("##############");
-	   System.out.println("Se entro al servicio de ConvocatoriasSv, funcion Listar");
+	   System.out.println("Se entro al servicio de DependenciaSv, funcion Listar");
 	   System.out.println("%%%%%%%%%%%%%%");
 	   
-	      convocatoriasFh = new ConvocatoriasFachada();
+	      dependenciaFh = new DependenciaFachada();
 	      System.out.println("##############");
 	      System.out.println("Se inicio la Fachada");
 	      System.out.println("%%%%%%%%%%%%%%");
 	      
-	      List<ConvocatoriasClas> objetoCl =  convocatoriasFh.buscarTodoObj();
-	      List<ConvocatoriasDTO> objetoDTO = new ArrayList<ConvocatoriasDTO>();
+	      List<DependenciaClas> objetoCl =  dependenciaFh.buscarTodoObj();
+	      List<DependenciaDTO> objetoDTO = new ArrayList<DependenciaDTO>();
 	      System.out.println("##############");
 	      System.out.println("Se Llamo la funcion Lista en la Fachada");
 	      System.out.println("%%%%%%%%%%%%%%");
 	      
 	      
-	      for (ConvocatoriasClas objetoCLS : objetoCl) {
-	          dto = new ConvocatoriasDTO(objetoCLS);
+	      for (DependenciaClas objetoCLS : objetoCl) {
+	          dto = new DependenciaDTO(objetoCLS);
 	          objetoDTO.add(dto);
 	      }
 	      System.out.println("##############");
-	      System.out.println("Se Se convirtieron los Objetos en ConvocatoriasDTO");
+	      System.out.println("Se Se convirtieron los Objetos en DependenciaDTO");
 	      System.out.println("%%%%%%%%%%%%%%");
 	      return objetoDTO;
 	  }
@@ -59,22 +57,21 @@ public class ConvocatoriasSv {
 	  @GET
 	  @Path("/{ID}")
 	  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	     public ConvocatoriasDTO buscarObjeto(@PathParam("ID") String id) throws ConexionException {
+	     public DependenciaDTO buscarObjeto(@PathParam("ID") String id) throws ConexionException {
 	     	System.out.println("?????????????????????????????????????????????????????????????????????????????");
 	     	System.out.println("?????????????????????????????????????????????????????????????????????????????");
 	     	System.out.println("##############");
-	     	System.out.println("Se entro al servicio de ConvocatoriasSv, funcion Buscar(ID)");
+	     	System.out.println("Se entro al servicio de DependenciaSv, funcion Buscar(ID)");
 	     	System.out.println("%%%%%%%%%%%%%%");
 	     	
-	     	convocatoriasFh = new ConvocatoriasFachada();
-	     	   ConvocatoriasClas objetoCLS = convocatoriasFh.busacarObj(Integer.parseInt(id));
-	     	   dto = new ConvocatoriasDTO(objetoCLS);
+	     	dependenciaFh = new DependenciaFachada();
+	     	   DependenciaClas objetoCLS = dependenciaFh.busacarObj(Integer.parseInt(id));
+	     	   dto = new DependenciaDTO(objetoCLS);
 	     	   System.out.println("##############");
 	     	   System.out.println("Se inicio la Fachada y uso la funcion Buscar(ID)");
 	     	   System.out.println("%%%%%%%%%%%%%%");
 	     	   
-dto.list_Principal(objetoCLS.getList_Principal());
-dto.list_Reserva(objetoCLS.getList_Reserva());
+dto.list_Convocatorias(objetoCLS.getList_Convocatorias());
 	  System.out.println("##############");
 	  System.out.println("Se crearon las listas relacionales del Mapeo Uno a Muchos");
 	  System.out.println("%%%%%%%%%%%%%%");
@@ -87,40 +84,29 @@ dto.list_Reserva(objetoCLS.getList_Reserva());
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public void addObjeto(ConvocatoriasDTO objetoDto) throws ConexionException {
+    public void addObjeto(DependenciaDTO objetoDto) throws ConexionException {
     	System.out.println("?????????????????????????????????????????????????????????????????????????????");
     	System.out.println("?????????????????????????????????????????????????????????????????????????????");
     	System.out.println("##############");
-    	System.out.println("Se entro al servicio de ConvocatoriasSv, funcion Crear");
+    	System.out.println("Se entro al servicio de DependenciaSv, funcion Crear");
 
-        convocatoriasFh = new ConvocatoriasFachada();
-        ConvocatoriasClas objetoCLS = new ConvocatoriasClas();
+        dependenciaFh = new DependenciaFachada();
+        DependenciaClas objetoCLS = new DependenciaClas();
         System.out.println("##############");
         System.out.println("Se inicio la Fachada y ObjetoClas");
         System.out.println("%%%%%%%%%%%%%%");
 		
 		objetoCLS.setNombre(objetoDto.getNombre());
-		objetoCLS.setFechaInicio(objetoDto.getFechaInicio());
-		objetoCLS.setFechaFin(objetoDto.getFechaFin());
-		objetoCLS.setEncargado(objetoDto.getEncargado());
-		objetoCLS.setDescripcion(objetoDto.getDescripcion());
-		objetoCLS.setHorasGanadas(objetoDto.getHorasGanadas());
-		objetoCLS.setNoEstudienates(objetoDto.getNoEstudienates());
-		objetoCLS.setNoReserva(objetoDto.getNoReserva());
-		objetoCLS.setPeriodoAcademico(objetoDto.getPeriodoAcademico());
 		objetoCLS.setEstado(objetoDto.getEstado());
 
-   		administradorFh = new AdministradorFachada();
-   		AdministradorClas administradorCLS = administradorFh.busacarObj(objetoDto.getAdministradorFk().getAdministradorID());
-   		objetoCLS.setAdministradorFK(administradorCLS);
-   		dependenciaFh = new DependenciaFachada();
-   		DependenciaClas dependenciaCLS = dependenciaFh.busacarObj(objetoDto.getDependenciaFk().getDependenciaID());
-   		objetoCLS.setDependenciaFK(dependenciaCLS);
+   		escuelaFh = new EscuelaFachada();
+   		EscuelaClas escuelaCLS = escuelaFh.busacarObj(objetoDto.getEscuelaFk().getEscuelaID());
+   		objetoCLS.setEscuelaFK(escuelaCLS);
    		System.out.println("##############");
-   		System.out.println("Se recivieron los parametros De ConvocatoriasDTO");
+   		System.out.println("Se recivieron los parametros De DependenciaDTO");
    		System.out.println("%%%%%%%%%%%%%%");
    		
-   		convocatoriasFh.crearObj(objetoCLS);
+   		dependenciaFh.crearObj(objetoCLS);
    		System.out.println("##############");
    		System.out.println("Se entro la Fachada y uso la funcion Crear");
    		System.out.println("%%%%%%%%%%%%%%");
@@ -131,44 +117,33 @@ dto.list_Reserva(objetoCLS.getList_Reserva());
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public void actualizarObjeto(ConvocatoriasDTO objetoDto) throws ConexionException {
+    public void actualizarObjeto(DependenciaDTO objetoDto) throws ConexionException {
     	System.out.println("?????????????????????????????????????????????????????????????????????????????");
     	System.out.println("?????????????????????????????????????????????????????????????????????????????");
     	System.out.println("##############");
-    	System.out.println("Se entro al servicio de ConvocatoriasSv, funcion Editar");
+    	System.out.println("Se entro al servicio de DependenciaSv, funcion Editar");
     	System.out.println("%%%%%%%%%%%%%%");
 
-        convocatoriasFh = new ConvocatoriasFachada();
-        ConvocatoriasClas objetoCLS = new ConvocatoriasClas();
+        dependenciaFh = new DependenciaFachada();
+        DependenciaClas objetoCLS = new DependenciaClas();
         System.out.println("##############");
         System.out.println("Se inicio la Fachada y ObjetoClas");
         System.out.println("%%%%%%%%%%%%%%");
         
         
-        objetoCLS.setConvocatoriasID(objetoDto.getConvocatoriasID());
+        objetoCLS.setDependenciaID(objetoDto.getDependenciaID());
             		
         objetoCLS.setNombre(objetoDto.getNombre());
-        objetoCLS.setFechaInicio(objetoDto.getFechaInicio());
-        objetoCLS.setFechaFin(objetoDto.getFechaFin());
-        objetoCLS.setEncargado(objetoDto.getEncargado());
-        objetoCLS.setDescripcion(objetoDto.getDescripcion());
-        objetoCLS.setHorasGanadas(objetoDto.getHorasGanadas());
-        objetoCLS.setNoEstudienates(objetoDto.getNoEstudienates());
-        objetoCLS.setNoReserva(objetoDto.getNoReserva());
-        objetoCLS.setPeriodoAcademico(objetoDto.getPeriodoAcademico());
         objetoCLS.setEstado(objetoDto.getEstado());
         
-        administradorFh = new AdministradorFachada();
-        AdministradorClas administradorCLS = administradorFh.busacarObj(objetoDto.getAdministradorFk().getAdministradorID());
-        objetoCLS.setAdministradorFK(administradorCLS);
-        dependenciaFh = new DependenciaFachada();
-        DependenciaClas dependenciaCLS = dependenciaFh.busacarObj(objetoDto.getDependenciaFk().getDependenciaID());
-        objetoCLS.setDependenciaFK(dependenciaCLS);
+        escuelaFh = new EscuelaFachada();
+        EscuelaClas escuelaCLS = escuelaFh.busacarObj(objetoDto.getEscuelaFk().getEscuelaID());
+        objetoCLS.setEscuelaFK(escuelaCLS);
 		System.out.println("##############");
-		System.out.println("Se recivieron los parametros De ConvocatoriasDTO");
+		System.out.println("Se recivieron los parametros De DependenciaDTO");
 		System.out.println("%%%%%%%%%%%%%%");
 		
-		convocatoriasFh.actualizarObj(objetoCLS);
+		dependenciaFh.actualizarObj(objetoCLS);
 		System.out.println("##############");
 		System.out.println("Se entro la Fachada y uso la funcion Actualizar");
 		System.out.println("%%%%%%%%%%%%%%");
@@ -183,21 +158,21 @@ dto.list_Reserva(objetoCLS.getList_Reserva());
 	System.out.println("?????????????????????????????????????????????????????????????????????????????");
 	System.out.println("?????????????????????????????????????????????????????????????????????????????");
 	System.out.println("##############");
-	System.out.println("Se entro al servicio de ConvocatoriasSv, funcion Eliminar");
+	System.out.println("Se entro al servicio de DependenciaSv, funcion Eliminar");
 	System.out.println("%%%%%%%%%%%%%%");
 	
-	convocatoriasFh = new ConvocatoriasFachada();
+	dependenciaFh = new DependenciaFachada();
 	System.out.println("##############");
 	System.out.println("Se inicio la Fachada y ObjetoClas");
 	System.out.println("%%%%%%%%%%%%%%");
 	
-	ConvocatoriasClas objetoCLS =convocatoriasFh.busacarObj(Integer.parseInt(id));
+	DependenciaClas objetoCLS =dependenciaFh.busacarObj(Integer.parseInt(id));
 	System.out.println("##############");
 	System.out.println("Se entro la Fachada y uso la funcion BuscarID");
 	System.out.println("%%%%%%%%%%%%%%");
 	
 	if (objetoCLS != null) {
-		convocatoriasFh.eliminarObje(objetoCLS);
+		dependenciaFh.eliminarObje(objetoCLS);
 		System.out.println("##############");
 		System.out.println("Se entro la Fachada y uso la funcion Eliminar");
 		System.out.println("%%%%%%%%%%%%%%");

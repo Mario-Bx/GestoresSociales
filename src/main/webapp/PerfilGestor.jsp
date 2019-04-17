@@ -28,7 +28,8 @@
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
         <script>
-            $(document).ready(listaConvocatoriaLista());
+            $(document).ready(listaConvocatoriaLista(<%out.print(request.getAttribute("id"));%>));
+            $(document).ready(listaConvocatoriaLista2(<%out.print(request.getAttribute("id"));%>));
             $(document).ready(DatosEstudiLista(<%out.print(request.getAttribute("id"));%>));
         </script>
 
@@ -66,7 +67,7 @@
             <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()">=</a>
             <div class="w3-bar w3-black">
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Mis convocatorias</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista2())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
         </header>
@@ -79,7 +80,7 @@
             <br />
             <div class="w3-bar w3-black">
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'MisConvocatorias', listaConvocatoriaLista())"> Mis convocatorias</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista())">BuscarConvocatoria</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'BuscarConvocatoria', listaConvocatoriaLista2())">BuscarConvocatoria</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Bitacora', listaBitacoraLista())">Bitacora</button>
             </div>
             <br />
