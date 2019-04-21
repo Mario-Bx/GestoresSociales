@@ -17,27 +17,27 @@ import javax.persistence.Persistence;
 public class SingletonConnection {
 
     private static EntityManager em;
-        private static EntityManagerFactory emf;
-    
-        private static void initConnection() {
-            emf = Persistence.createEntityManagerFactory("Jpa");
+    private static EntityManagerFactory emf;
+
+    private static void initConnection() {
+        emf = Persistence.createEntityManagerFactory("Jpa");
+    }
+
+    public static EntityManager getConnection() {
+        if (em == null) {
+
+            initConnection();
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
         }
-    
-        public static EntityManager getConnection() {
-            if (em == null) {
-    
-                initConnection();
-                em = emf.createEntityManager();
-                em.getTransaction().begin();
-            }
-            return em;
+        return em;
+    }
+
+    public static void closeEmf() {
+        if (emf.isOpen() || emf != null) {
+            em.close();
+            emf.close();
         }
-    
-        public static void closeEmf() {
-            if (emf.isOpen() || emf != null) {
-                em.close();
-                emf.close();
-            }
-            emf = null;
-        }
+        emf = null;
+    }
 }

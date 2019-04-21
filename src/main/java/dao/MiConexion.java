@@ -20,7 +20,7 @@ public class MiConexion {
             }
 
             try {
-                CONEXION = DriverManager.getConnection("jdbc:mysql://localhost:3308/Gestores", "root", "");
+                CONEXION = DriverManager.getConnection("jdbc:mysql://localhost:3306/Gestores", "root", "");
             } catch (SQLException e) {
                 throw new SQLException(e);
             }
