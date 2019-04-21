@@ -35,7 +35,8 @@ function PinPerfilAdmin(idN) {
                         '</div>'+
                     '</div>'+
                     '<br>'+
-                '</div>'
+                '</div>'+
+                '<a href="cerrarsesion.jsp" class="w3-bar-item w3-button">Cerrar sesion</a>'
                 );
             }
             
