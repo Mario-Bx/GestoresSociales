@@ -10,12 +10,11 @@ function listaTarjetaEst() {
         type: "Get",
         success: function (data) {
             console.log("Servicio Listar EstudiantesSv");
-            console.log(data);
             
-            if (data !== undefined) {
+            if (data !== null) {
                 PintarTarjetaEstu(data);
             }else{
-                console.log("No Has Creado Convocatorias" );
+                console.log("No existen estudiantes" );
             }
 
         },
@@ -31,7 +30,8 @@ function PintarTarjetaEstu(listasDatos) {
     console.log("Pintar la Lista de EstudiantesSv");
     $("#TarjetaEst").empty();
 
-    if (listasDatos instanceof  Array !== false) {
+    if (listasDatos.EstudiantesDTO instanceof  Array !== false) {
+        console.log("Entro a Pintar la lista de EstudiantesSv");
         listasDatos.EstudiantesDTO.forEach(element => {
             $("#TarjetaEst").append(
                     '<hr>'+
@@ -74,36 +74,38 @@ function PintarTarjetaEstu(listasDatos) {
         });
     }
     else{
+        var element = listasDatos.EstudiantesDTO;
+        console.log("Entro a Pintar Un EstudiantesSv");
         $("#TarjetaEst").append(
                     '<hr>'+
                     '<div class="blog-card">'+
                         '<div class="meta">'+
                             '<div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"></div>'+
                                 '<ul class="details w3-medium w3-center">'+
-                                    '<li class="fa fa-graduation-cap w3-margin-top"><a href="#">'+listasDatos.Escuela+'</a></li>'+
+                                    '<li class="fa fa-graduation-cap w3-margin-top"><a href="#">'+element.Escuela+'</a></li>'+
                                     '<br>'+
-                                    '<li class="fa fa-calendar w3-margin-top">'+listasDatos.FechaNacimiento+'</li>'+
+                                    '<li class="fa fa-calendar w3-margin-top">'+element.FechaNacimiento+'</li>'+
                                     '<br>'+
-                                    '<li class="fa fa-comments w3-margin-top">'+listasDatos.Correo+'</li>'+
+                                    '<li class="fa fa-comments w3-margin-top">'+element.Correo+'</li>'+
                                     '<br>'+
                                     '<li class="fa fa-phone w3-margin-top">'+
                                         '<ul>'+
-                                            '<li><a href="#">'+listasDatos.Telefono+' - </a></li>'+
-                                            '<li><a href="#">'+listasDatos.Celular+'</a></li>'+
+                                            '<li><a href="#">'+element.Telefono+' - </a></li>'+
+                                            '<li><a href="#">'+element.Celular+'</a></li>'+
                                         '</ul>'+
                                     '</li>'+
                                     '<br>'+
                                     '<li class="fa fa-drivers-license-o w3-margin-top">'+
                                         '<ul>'+
-                                            '<li>'+listasDatos.TipoDocumento+': </li>'+
-                                            '<li>'+listasDatos.Documento+'</li>'+
+                                            '<li>'+element.TipoDocumento+': </li>'+
+                                            '<li>'+element.Documento+'</li>'+
                                         '</ul>'+
                                     '</li>'+
                                 '</ul>'+
                         '</div>'+
                             '<div class="description">'+
-                                '<h1>'+listasDatos.Nombre+' '+listasDatos.Apellidos+'</h1>'+
-                                '<h2>'+listasDatos.Carreara+' ('+listasDatos.Semestre+')</h2>'+
+                                '<h1>'+element.Nombre+' '+element.Apellidos+'</h1>'+
+                                '<h2>'+element.Carreara+' ('+element.Semestre+')</h2>'+
                                 '<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>'+
                                 '<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>'+
                                 '<p class="read-more">'+
@@ -238,8 +240,6 @@ function crearEstudiantes() {
 
             + '}';
 
-    console.log(Estudiantes);
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -248,6 +248,7 @@ function crearEstudiantes() {
         dataType: "json",
         success: function (data) {
             console.log(data);
+            console.log("Se ha creado un estudiante");
         },
         error: function () {
             alert('Error En el Servicio Crear EstudiantesSv');

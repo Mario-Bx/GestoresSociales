@@ -11,9 +11,8 @@ function listaTarjetaSan() {
         type: "Get",
         success: function (data) {
             console.log("Servicio Listar SancionesSv");
-            console.log(data);
 
-            if (data !== undefined) {
+            if (data !== null) {
                 PintarTarjetaSan(data);
             }else{
                 console.log("No Hay SancionesSv" );
@@ -29,14 +28,13 @@ function listaTarjetaSan() {
 function PintarTarjetaSan(listasDatos) {
     console.log("Pintar la Lista de SancionesSv");
 
-
     var m = "'id02'";
     var b = "'block'";
 
     $("#TarjetaSan").empty();
 
-    if (listasDatos instanceof  Array !== false) {
-
+    if (listasDatos.SancionesDTO instanceof  Array !== false) {
+        console.log("Entro a Pintar lista de SancionesSv" );
         listasDatos.SancionesDTO.forEach(element => {
             $("#TarjetaSan").append(
                     '<div  class="col-md-4 col-sm-8 ">'+
@@ -62,21 +60,23 @@ function PintarTarjetaSan(listasDatos) {
         });
     }
     else{
+        var element = listasDatos.SancionesDTO;
+        console.log("Entro a Pintar Una Sancion");
             $("#TarjetaSan").append(
                     '<div  class="col-md-4 col-sm-8 ">'+
                         '<div class="card border-primary mb-3" style="max-width: 100rem;">'+
                             '<div class="card-header bg-primary">Sancion</div>'+
                             '<div class="card-body text-success">'+
                                 '<h3 class="card-title">Descrippcion</h3>'+
-                                '<p class="card-text">'+listasDatos.Descripcion+'</p>'+
-                                '<p class="card-text">#Convocatorias: '+listasDatos.NumeroConvocatria+'</p>'+
+                                '<p class="card-text">'+element.Descripcion+'</p>'+
+                                '<p class="card-text">#Convocatorias: '+element.NumeroConvocatria+'</p>'+
                                 '<hr>'+
-                                '<p class="card-text">Estudiante: '+listasDatos.EstudiantesFk.Nombre+' '+listasDatos.EstudiantesFk.Apellidos+'</p>'+
+                                '<p class="card-text">Estudiante: '+element.EstudiantesFk.Nombre+' '+element.EstudiantesFk.Apellidos+'</p>'+
                             '</div>'+
                             '<div class="card-footer bg-transparent border-success">'+
                                 '<div class="w3-bar">'+
-                                    '<button class="w3-bar-item w3-button w3-ripple w3-cyan w3-hover-purple" onclick="document.getElementById('+m+').style.display = '+b+', actualizarSan('+listasDatos.SancionesID+')"> <i class="fa fa-edit"></i></button>'+
-                                    '<button class="w3-bar-item w3-button w3-ripple w3-red w3-hover-purple" onclick="borrarSan('+listasDatos.SancionesID+')"> <i class="fa fa-trash"></i></button>'+
+                                    '<button class="w3-bar-item w3-button w3-ripple w3-cyan w3-hover-purple" onclick="document.getElementById('+m+').style.display = '+b+', actualizarSan('+element.SancionesID+')"> <i class="fa fa-edit"></i></button>'+
+                                    '<button class="w3-bar-item w3-button w3-ripple w3-red w3-hover-purple" onclick="borrarSan('+element.SancionesID+')"> <i class="fa fa-trash"></i></button>'+
                                     '<button class="w3-bar-item w3-button w3-ripple w3-pink w3-hover-purple"> <i class="fa fa-external-link"></i></button>'+
                                 '</div>'+
                             '</div>'+
@@ -177,8 +177,6 @@ function crearSan() {
 
             + '}';
 
-    console.log(Sanciones);
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -186,7 +184,7 @@ function crearSan() {
         data: Sanciones,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Se ha creado una Sancion");
             listaTarjetaSan();
         },
         error: function () {
@@ -200,7 +198,7 @@ function borrarSan(idN) {
         url: api + "SancionesSv/" + idN,
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro la Sancion: #" + idN);
     listaTarjetaSan();
 }
 

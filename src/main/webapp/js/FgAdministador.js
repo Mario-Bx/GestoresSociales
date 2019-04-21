@@ -8,12 +8,10 @@ function PinPerfilAdmin(idN) {
         type: "Get",
         success: function (data) {
             console.log("Servicio Inf PerFil Administrador");
-            console.log(data);
             var DatoPerfil = data;
 
             $("#PinPerfilAdmin").empty();
             if (DatoPerfil !== null) {
-                console.log("Prueba2 " + DatoPerfil);
                 $("#PinPerfilAdmin").append(
                 '<br>'+
                 '<div  class="w3-white w3-card-4 w3-animate-zoom">'+
@@ -40,6 +38,7 @@ function PinPerfilAdmin(idN) {
                 '</div>'
                 );
             }
+            
             if (data.list_Convocatorias !== undefined) {
                 PintarTarjetaCon(data.list_Convocatorias);
             }else{

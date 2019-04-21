@@ -13,7 +13,7 @@ function PintarTarjetaCon(listasDatos) {
     var b = "'block'";
 
     if (listasDatos instanceof  Array !== false) {        
-
+        console.log("Se entro a pintar la lista de convocatorias");
         listasDatos.forEach(element => {
             $("#TarjetaCon").append(
                ' <div  class="col-md-4 col-sm-6 ">' +
@@ -57,6 +57,7 @@ function PintarTarjetaCon(listasDatos) {
         });
     }
     else{
+        console.log("Solo Se encontro una convocatoria");
         $("#TarjetaCon").append(
                ' <div  class="col-md-4 col-sm-6 ">' +
                 '<div class="card-container w3-card w3-hover-aqua">' +
@@ -104,7 +105,7 @@ function borrarCon(idN) {
         url: api + "ConvocatoriasSv/" + idN,
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borra la Convocatoria: #" + idN);
 }
 
 function FormConvocatoria(idA, iDEsc) {
@@ -201,7 +202,6 @@ function FormConvocatoria(idA, iDEsc) {
 }
 
 function crearConv(idAdm) {
-
     console.log("Servicio Crear ConvocatoriasSv");
     var Convocatorias = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
@@ -222,8 +222,6 @@ function crearConv(idAdm) {
             'DependenciaID": "' + $("#DependencialistaSELECT").val() + '"}'
 
             + '}';
-
-    console.log(Convocatorias);
 
     $.ajax({
         type: "POST",
@@ -263,9 +261,8 @@ function BuscarEscuela(idN) {
 function selectDependencia(IdEcu) {
 
     var listasDatos = IdEcu;
-    console.log(listasDatos);
     console.log("*****************");
-    console.log(listasDatos.list_Dependencia);
+    console.log("listasDatos.list_Dependencia");
     console.log("*****************");
 
     $("#DependencialistaSELECT").empty();
@@ -429,9 +426,7 @@ function DetallesCon(idN) {
     $.ajax({
         url: api + "ConvocatoriasSv/" + idN,
         type: "Get",
-        success: function (data) {
-            console.log(data);
-            
+        success: function (data) {            
             var ListPrin = data.list_Principal;
             var ListRes = data.list_Reserva;
 
@@ -461,7 +456,7 @@ function PintarTarjetaEstuPri(listasDatos) {
     
 
     if (listasDatos instanceof  Array !== false) {
-
+        console.log("Lista Estudiantes Inscritos" );
         listasDatos.forEach(element => {
             $("#TarjetaPri").append(
                     '<hr>'+
@@ -504,6 +499,7 @@ function PintarTarjetaEstuPri(listasDatos) {
         });
     }
     else{
+        console.log("Solo Un Estudiante Inscrito" );
         $("#TarjetaPri").append(
                     '<hr>'+
                     '<div class="blog-card">'+
@@ -549,7 +545,7 @@ function PintarTarjetaEstuRes(listasDatos) {
     $("#TarjetaRes").empty();
 
     if (listasDatos instanceof  Array !== false) {
-
+        console.log("Lista Estudiantes Inscritos De Reserva" );
         listasDatos.forEach(element => {
             $("#TarjetaRes").append(
                     '<hr>'+
@@ -592,6 +588,7 @@ function PintarTarjetaEstuRes(listasDatos) {
         });
     }
     else{
+        console.log("solo un Estudiante Inscrito De Reserva" );
         $("#TarjetaRes").append(
                     '<hr>'+
                     '<div class="blog-card">'+
