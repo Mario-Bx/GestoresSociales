@@ -18,10 +18,11 @@ public class AdministradorDTO {
     private String Correo;
     private String Clave;
     private String FechaNacimiento;
-    private String Documento;
     private String Telefono;
     private String Celular;
+    private boolean Estado;
     private List<ConvocatoriasDTO> list_Convocatorias;
+    private List<EscuelaDTO> list_Escuela;
 
     public AdministradorDTO() {
     }
@@ -33,10 +34,11 @@ public class AdministradorDTO {
         this.Correo = objCL.getCorreo();
         this.Clave = objCL.getClave();
         this.FechaNacimiento = objCL.getFechaNacimiento();
-        this.Documento = objCL.getDocumento();
         this.Telefono = objCL.getTelefono();
         this.Celular = objCL.getCelular();
+        this.Estado = objCL.getEstado();
         this.list_Convocatorias = new ArrayList<ConvocatoriasDTO>();
+        this.list_Escuela = new ArrayList<EscuelaDTO>();
     }
 
     public int getAdministradorID() {
@@ -87,14 +89,6 @@ public class AdministradorDTO {
         this.FechaNacimiento = FechaNacimiento;
     }
 
-    public String getDocumento() {
-        return Documento;
-    }
-
-    public void setDocumento(String Documento) {
-        this.Documento = Documento;
-    }
-
     public String getTelefono() {
         return Telefono;
     }
@@ -111,11 +105,27 @@ public class AdministradorDTO {
         this.Celular = Celular;
     }
 
+    public boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
+    }
+
     public List<ConvocatoriasDTO> list_Convocatorias(List<ConvocatoriasClas> list_Convocatorias) {
         for (ConvocatoriasClas list : list_Convocatorias) {
             ConvocatoriasDTO compDTO = new ConvocatoriasDTO(list);
             this.list_Convocatorias.add(compDTO);
         }
         return this.list_Convocatorias;
+    }
+
+    public List<EscuelaDTO> list_Escuela(List<EscuelaClas> list_Escuela) {
+        for (EscuelaClas list : list_Escuela) {
+            EscuelaDTO compDTO = new EscuelaDTO(list);
+            this.list_Escuela.add(compDTO);
+        }
+        return this.list_Escuela;
     }
 }

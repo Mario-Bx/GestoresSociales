@@ -6,7 +6,8 @@
 
 var api = "http://localhost:8090/indexRest/rest/";
 
-function listaConvocatoriaLista() {
+function listaConvocatoriaLista2(id) {
+console.log(id+"-0------------------0-");
     $.ajax({
         url: api + "ConvocatoriasSv",
         type: "Get",
@@ -14,7 +15,7 @@ function listaConvocatoriaLista() {
             console.log("Servicio Listar ConvocatoriasSv");
             console.log(data);
 
-            PintarConvocatoriaLista(data);
+            PintarConvocatoriaLista2(data, id);
 
         },
         error: function () {
@@ -24,7 +25,7 @@ function listaConvocatoriaLista() {
 
 }
 
-function PintarConvocatoriaLista(listasDatos) {
+function PintarConvocatoriaLista2(listasDatos,idg) {
     console.log("Pintar la Lista de ConvocatoriasSv");
 
 
@@ -64,7 +65,7 @@ function PintarConvocatoriaLista(listasDatos) {
                     '<h4 class="text-center">Responsable:' + element.Encargado + '</h4>' +
                     '<div class="stats-container">' +
                     '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary"><a onclick="InscribirGestor(' + 1 + "" + ',' + 1 + "" + ')">Inscribirse</a></button></h4>' +
+                    '<h4><button type="button" class="btn btn-outline-primary"><a onclick="InscribirGestor('+idg+','+ element.ConvocatoriasID  +')">Inscribirse</a></button></h4>'+
                     '</div>' +
                     '<div class="stats">' +
                     '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>' +

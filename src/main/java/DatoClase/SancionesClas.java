@@ -21,6 +21,7 @@ public class SancionesClas implements Serializable {
     private int NumeroConvocatria;
     private int ConInicial;
     private int ConFinal;
+    private Boolean Estado;
 
     public SancionesClas() {
     }
@@ -29,12 +30,14 @@ public class SancionesClas implements Serializable {
             String Descripcion,
             int NumeroConvocatria,
             int ConInicial,
-            int ConFinal
+            int ConFinal,
+            Boolean Estado
     ) {
         this.Descripcion = Descripcion;
         this.NumeroConvocatria = NumeroConvocatria;
         this.ConInicial = ConInicial;
         this.ConFinal = ConFinal;
+        this.Estado = Estado;
 
     }
 
@@ -78,6 +81,14 @@ public class SancionesClas implements Serializable {
         this.ConFinal = ConFinal;
     }
 
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos SancionesClas{" + "SancionesID=" + SancionesID
@@ -85,6 +96,7 @@ public class SancionesClas implements Serializable {
                 + ", NumeroConvocatria=" + NumeroConvocatria
                 + ", ConInicial=" + ConInicial
                 + ", ConFinal=" + ConFinal
+                + ", Estado=" + Estado
                 + '}';
     }
 

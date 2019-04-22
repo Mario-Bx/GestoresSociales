@@ -20,10 +20,13 @@ public class ConvocatoriasClas implements Serializable {
     private String Nombre;
     private String FechaInicio;
     private String FechaFin;
-    private String Hora;
     private String Encargado;
     private String Descripcion;
     private int HorasGanadas;
+    private int NoEstudienates;
+    private int NoReserva;
+    private String PeriodoAcademico;
+    private Boolean Estado;
 
     public ConvocatoriasClas() {
         this.list_Principal = new ArrayList<PrincipalClas>();
@@ -34,18 +37,24 @@ public class ConvocatoriasClas implements Serializable {
             String Nombre,
             String FechaInicio,
             String FechaFin,
-            String Hora,
             String Encargado,
             String Descripcion,
-            int HorasGanadas
+            int HorasGanadas,
+            int NoEstudienates,
+            int NoReserva,
+            String PeriodoAcademico,
+            Boolean Estado
     ) {
         this.Nombre = Nombre;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
-        this.Hora = Hora;
         this.Encargado = Encargado;
         this.Descripcion = Descripcion;
         this.HorasGanadas = HorasGanadas;
+        this.NoEstudienates = NoEstudienates;
+        this.NoReserva = NoReserva;
+        this.PeriodoAcademico = PeriodoAcademico;
+        this.Estado = Estado;
 
         this.list_Principal = new ArrayList<PrincipalClas>();
         this.list_Reserva = new ArrayList<ReservaClas>();
@@ -83,14 +92,6 @@ public class ConvocatoriasClas implements Serializable {
         this.FechaFin = FechaFin;
     }
 
-    public String getHora() {
-        return Hora;
-    }
-
-    public void setHora(String Hora) {
-        this.Hora = Hora;
-    }
-
     public String getEncargado() {
         return Encargado;
     }
@@ -115,16 +116,51 @@ public class ConvocatoriasClas implements Serializable {
         this.HorasGanadas = HorasGanadas;
     }
 
+    public int getNoEstudienates() {
+        return NoEstudienates;
+    }
+
+    public void setNoEstudienates(int NoEstudienates) {
+        this.NoEstudienates = NoEstudienates;
+    }
+
+    public int getNoReserva() {
+        return NoReserva;
+    }
+
+    public void setNoReserva(int NoReserva) {
+        this.NoReserva = NoReserva;
+    }
+
+    public String getPeriodoAcademico() {
+        return PeriodoAcademico;
+    }
+
+    public void setPeriodoAcademico(String PeriodoAcademico) {
+        this.PeriodoAcademico = PeriodoAcademico;
+    }
+
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos ConvocatoriasClas{" + "ConvocatoriasID=" + ConvocatoriasID
                 + ", Nombre=" + Nombre
                 + ", FechaInicio=" + FechaInicio
                 + ", FechaFin=" + FechaFin
-                + ", Hora=" + Hora
                 + ", Encargado=" + Encargado
                 + ", Descripcion=" + Descripcion
                 + ", HorasGanadas=" + HorasGanadas
+                + ", NoEstudienates=" + NoEstudienates
+                + ", NoReserva=" + NoReserva
+                + ", PeriodoAcademico=" + PeriodoAcademico
+                + ", Estado=" + Estado
                 + '}';
     }
 
@@ -175,5 +211,17 @@ public class ConvocatoriasClas implements Serializable {
     public void addReserva(ReservaClas reserva) {
         reserva.setConvocatoriasFK(this);
         this.list_Reserva.add(reserva);
+    }
+    //Realacoin de 1---1 entrew (Convocatorias --- Dependencia)
+    @ManyToOne
+    @JoinColumn(name = "DependenciaFK")
+    private DependenciaClas dependenciaFK;
+
+    public DependenciaClas getDependenciaFK() {
+        return dependenciaFK;
+    }
+
+    public void setDependenciaFK(DependenciaClas dependenciaFK) {
+        this.dependenciaFK = dependenciaFK;
     }
 }

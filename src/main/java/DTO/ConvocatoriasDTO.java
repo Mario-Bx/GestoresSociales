@@ -16,13 +16,17 @@ public class ConvocatoriasDTO {
     private String Nombre;
     private String FechaInicio;
     private String FechaFin;
-    private String Hora;
     private String Encargado;
     private String Descripcion;
     private int HorasGanadas;
+    private int NoEstudienates;
+    private int NoReserva;
+    private String PeriodoAcademico;
+    private boolean Estado;
     private AdministradorDTO AdministradorFk;
     private List<PrincipalDTO> list_Principal;
     private List<ReservaDTO> list_Reserva;
+    private DependenciaDTO DependenciaFk;
 
     public ConvocatoriasDTO() {
     }
@@ -32,11 +36,15 @@ public class ConvocatoriasDTO {
         this.Nombre = objCL.getNombre();
         this.FechaInicio = objCL.getFechaInicio();
         this.FechaFin = objCL.getFechaFin();
-        this.Hora = objCL.getHora();
         this.Encargado = objCL.getEncargado();
         this.Descripcion = objCL.getDescripcion();
         this.HorasGanadas = objCL.getHorasGanadas();
+        this.NoEstudienates = objCL.getNoEstudienates();
+        this.NoReserva = objCL.getNoReserva();
+        this.PeriodoAcademico = objCL.getPeriodoAcademico();
+        this.Estado = objCL.getEstado();
         this.AdministradorFk = new AdministradorDTO(objCL.getAdministradorFK());
+        this.DependenciaFk = new DependenciaDTO(objCL.getDependenciaFK());
         this.list_Principal = new ArrayList<PrincipalDTO>();
         this.list_Reserva = new ArrayList<ReservaDTO>();
     }
@@ -73,14 +81,6 @@ public class ConvocatoriasDTO {
         this.FechaFin = FechaFin;
     }
 
-    public String getHora() {
-        return Hora;
-    }
-
-    public void setHora(String Hora) {
-        this.Hora = Hora;
-    }
-
     public String getEncargado() {
         return Encargado;
     }
@@ -105,12 +105,52 @@ public class ConvocatoriasDTO {
         this.HorasGanadas = HorasGanadas;
     }
 
+    public int getNoEstudienates() {
+        return NoEstudienates;
+    }
+
+    public void setNoEstudienates(int NoEstudienates) {
+        this.NoEstudienates = NoEstudienates;
+    }
+
+    public int getNoReserva() {
+        return NoReserva;
+    }
+
+    public void setNoReserva(int NoReserva) {
+        this.NoReserva = NoReserva;
+    }
+
+    public String getPeriodoAcademico() {
+        return PeriodoAcademico;
+    }
+
+    public void setPeriodoAcademico(String PeriodoAcademico) {
+        this.PeriodoAcademico = PeriodoAcademico;
+    }
+
+    public boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
+    }
+
     public AdministradorDTO getAdministradorFk() {
         return AdministradorFk;
     }
 
     public void setAdministradorFk(AdministradorDTO administradorFk) {
         this.AdministradorFk = administradorFk;
+    }
+
+    public DependenciaDTO getDependenciaFk() {
+        return DependenciaFk;
+    }
+
+    public void setDependenciaFk(DependenciaDTO dependenciaFk) {
+        this.DependenciaFk = dependenciaFk;
     }
 
     public List<PrincipalDTO> list_Principal(List<PrincipalClas> list_Principal) {

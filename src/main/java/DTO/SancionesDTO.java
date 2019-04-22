@@ -17,6 +17,7 @@ public class SancionesDTO {
     private int NumeroConvocatria;
     private int ConInicial;
     private int ConFinal;
+    private boolean Estado;
     private EstudiantesDTO EstudiantesFk;
 
     public SancionesDTO() {
@@ -28,6 +29,7 @@ public class SancionesDTO {
         this.NumeroConvocatria = objCL.getNumeroConvocatria();
         this.ConInicial = objCL.getConInicial();
         this.ConFinal = objCL.getConFinal();
+        this.Estado = objCL.getEstado();
         this.EstudiantesFk = new EstudiantesDTO(objCL.getEstudiantesFK());
     }
 
@@ -69,6 +71,14 @@ public class SancionesDTO {
 
     public void setConFinal(int ConFinal) {
         this.ConFinal = ConFinal;
+    }
+
+    public boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
     }
 
     public EstudiantesDTO getEstudiantesFk() {
