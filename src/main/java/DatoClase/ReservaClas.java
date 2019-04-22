@@ -18,14 +18,17 @@ public class ReservaClas implements Serializable {
     private int ReservaID;
 
     private String Nombre;
+    private Boolean Estado;
 
     public ReservaClas() {
     }
 
     public ReservaClas(
-            String Nombre
+            String Nombre,
+            Boolean Estado
     ) {
         this.Nombre = Nombre;
+        this.Estado = Estado;
 
     }
 
@@ -45,10 +48,19 @@ public class ReservaClas implements Serializable {
         this.Nombre = Nombre;
     }
 
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos ReservaClas{" + "ReservaID=" + ReservaID
                 + ", Nombre=" + Nombre
+                + ", Estado=" + Estado
                 + '}';
     }
 

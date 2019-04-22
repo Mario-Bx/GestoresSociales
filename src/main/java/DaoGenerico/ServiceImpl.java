@@ -21,6 +21,17 @@ public class ServiceImpl<T> implements Service<T> {
     }
 
     public T busacarObj(Object id) {
+        if (!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
+
+        try {
+            entityManager.flush();
+            entityManager.clear();
+
+        } catch (PersistenceException exception) {
+            throw new RuntimeException(exception);
+        }
         return (T) entityManager.find(type, id);
     }
 
@@ -69,6 +80,7 @@ public class ServiceImpl<T> implements Service<T> {
         T t = entityManager.merge(object);
         try {
             entityManager.flush();
+            entityManager.clear();
         } catch (PersistenceException exception) {
             throw new RuntimeException(exception);
         }

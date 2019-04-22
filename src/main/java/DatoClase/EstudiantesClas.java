@@ -21,12 +21,15 @@ public class EstudiantesClas implements Serializable {
     private String Apellidos;
     private String Correo;
     private String Clave;
+    private String TipoDocumento;
     private String Documento;
     private String FechaNacimiento;
-    private String Telefono;
     private String Celular;
+    private String Telefono;
     private String Escuela;
     private String Carreara;
+    private String Semestre;
+    private Boolean Estado;
 
     public EstudiantesClas() {
         this.list_Sanciones = new ArrayList<SancionesClas>();
@@ -40,23 +43,29 @@ public class EstudiantesClas implements Serializable {
             String Apellidos,
             String Correo,
             String Clave,
+            String TipoDocumento,
             String Documento,
             String FechaNacimiento,
-            String Telefono,
             String Celular,
+            String Telefono,
             String Escuela,
-            String Carreara
+            String Carreara,
+            String Semestre,
+            Boolean Estado
     ) {
         this.Nombre = Nombre;
         this.Apellidos = Apellidos;
         this.Correo = Correo;
         this.Clave = Clave;
+        this.TipoDocumento = TipoDocumento;
         this.Documento = Documento;
         this.FechaNacimiento = FechaNacimiento;
-        this.Telefono = Telefono;
         this.Celular = Celular;
+        this.Telefono = Telefono;
         this.Escuela = Escuela;
         this.Carreara = Carreara;
+        this.Semestre = Semestre;
+        this.Estado = Estado;
 
         this.list_Sanciones = new ArrayList<SancionesClas>();
         this.list_Bitacora = new ArrayList<BitacoraClas>();
@@ -104,6 +113,14 @@ public class EstudiantesClas implements Serializable {
         this.Clave = Clave;
     }
 
+    public String getTipoDocumento() {
+        return TipoDocumento;
+    }
+
+    public void setTipoDocumento(String TipoDocumento) {
+        this.TipoDocumento = TipoDocumento;
+    }
+
     public String getDocumento() {
         return Documento;
     }
@@ -120,20 +137,20 @@ public class EstudiantesClas implements Serializable {
         this.FechaNacimiento = FechaNacimiento;
     }
 
-    public String getTelefono() {
-        return Telefono;
-    }
-
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
-    }
-
     public String getCelular() {
         return Celular;
     }
 
     public void setCelular(String Celular) {
         this.Celular = Celular;
+    }
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
     }
 
     public String getEscuela() {
@@ -152,6 +169,22 @@ public class EstudiantesClas implements Serializable {
         this.Carreara = Carreara;
     }
 
+    public String getSemestre() {
+        return Semestre;
+    }
+
+    public void setSemestre(String Semestre) {
+        this.Semestre = Semestre;
+    }
+
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos EstudiantesClas{" + "EstudiantesID=" + EstudiantesID
@@ -159,12 +192,15 @@ public class EstudiantesClas implements Serializable {
                 + ", Apellidos=" + Apellidos
                 + ", Correo=" + Correo
                 + ", Clave=" + Clave
+                + ", TipoDocumento=" + TipoDocumento
                 + ", Documento=" + Documento
                 + ", FechaNacimiento=" + FechaNacimiento
-                + ", Telefono=" + Telefono
                 + ", Celular=" + Celular
+                + ", Telefono=" + Telefono
                 + ", Escuela=" + Escuela
                 + ", Carreara=" + Carreara
+                + ", Semestre=" + Semestre
+                + ", Estado=" + Estado
                 + '}';
     }
 

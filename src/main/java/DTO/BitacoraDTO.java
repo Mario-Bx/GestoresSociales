@@ -17,6 +17,7 @@ public class BitacoraDTO {
     private String Fecha;
     private String Hora;
     private String Descripcion;
+    private boolean Estado;
     private EstudiantesDTO EstudiantesFk;
 
     public BitacoraDTO() {
@@ -28,6 +29,7 @@ public class BitacoraDTO {
         this.Fecha = objCL.getFecha();
         this.Hora = objCL.getHora();
         this.Descripcion = objCL.getDescripcion();
+        this.Estado = objCL.getEstado();
         this.EstudiantesFk = new EstudiantesDTO(objCL.getEstudiantesFK());
     }
 
@@ -69,6 +71,14 @@ public class BitacoraDTO {
 
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
+    }
+
+    public boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
     }
 
     public EstudiantesDTO getEstudiantesFk() {

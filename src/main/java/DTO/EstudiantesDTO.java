@@ -17,12 +17,15 @@ public class EstudiantesDTO {
     private String Apellidos;
     private String Correo;
     private String Clave;
+    private String TipoDocumento;
     private String Documento;
     private String FechaNacimiento;
-    private String Telefono;
     private String Celular;
+    private String Telefono;
     private String Escuela;
     private String Carreara;
+    private String Semestre;
+    private boolean Estado;
     private List<SancionesDTO> list_Sanciones;
     private List<BitacoraDTO> list_Bitacora;
     private List<PrincipalDTO> list_Principal;
@@ -37,12 +40,15 @@ public class EstudiantesDTO {
         this.Apellidos = objCL.getApellidos();
         this.Correo = objCL.getCorreo();
         this.Clave = objCL.getClave();
+        this.TipoDocumento = objCL.getTipoDocumento();
         this.Documento = objCL.getDocumento();
         this.FechaNacimiento = objCL.getFechaNacimiento();
-        this.Telefono = objCL.getTelefono();
         this.Celular = objCL.getCelular();
+        this.Telefono = objCL.getTelefono();
         this.Escuela = objCL.getEscuela();
         this.Carreara = objCL.getCarreara();
+        this.Semestre = objCL.getSemestre();
+        this.Estado = objCL.getEstado();
         this.list_Sanciones = new ArrayList<SancionesDTO>();
         this.list_Bitacora = new ArrayList<BitacoraDTO>();
         this.list_Principal = new ArrayList<PrincipalDTO>();
@@ -89,6 +95,14 @@ public class EstudiantesDTO {
         this.Clave = Clave;
     }
 
+    public String getTipoDocumento() {
+        return TipoDocumento;
+    }
+
+    public void setTipoDocumento(String TipoDocumento) {
+        this.TipoDocumento = TipoDocumento;
+    }
+
     public String getDocumento() {
         return Documento;
     }
@@ -105,20 +119,20 @@ public class EstudiantesDTO {
         this.FechaNacimiento = FechaNacimiento;
     }
 
-    public String getTelefono() {
-        return Telefono;
-    }
-
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
-    }
-
     public String getCelular() {
         return Celular;
     }
 
     public void setCelular(String Celular) {
         this.Celular = Celular;
+    }
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
     }
 
     public String getEscuela() {
@@ -135,6 +149,22 @@ public class EstudiantesDTO {
 
     public void setCarreara(String Carreara) {
         this.Carreara = Carreara;
+    }
+
+    public String getSemestre() {
+        return Semestre;
+    }
+
+    public void setSemestre(String Semestre) {
+        this.Semestre = Semestre;
+    }
+
+    public boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
     }
 
     public List<SancionesDTO> list_Sanciones(List<SancionesClas> list_Sanciones) {

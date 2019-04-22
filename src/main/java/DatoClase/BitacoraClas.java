@@ -21,6 +21,7 @@ public class BitacoraClas implements Serializable {
     private String Fecha;
     private String Hora;
     private String Descripcion;
+    private Boolean Estado;
 
     public BitacoraClas() {
     }
@@ -29,12 +30,14 @@ public class BitacoraClas implements Serializable {
             String Nombre,
             String Fecha,
             String Hora,
-            String Descripcion
+            String Descripcion,
+            Boolean Estado
     ) {
         this.Nombre = Nombre;
         this.Fecha = Fecha;
         this.Hora = Hora;
         this.Descripcion = Descripcion;
+        this.Estado = Estado;
 
     }
 
@@ -78,6 +81,14 @@ public class BitacoraClas implements Serializable {
         this.Descripcion = Descripcion;
     }
 
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos BitacoraClas{" + "BitacoraID=" + BitacoraID
@@ -85,6 +96,7 @@ public class BitacoraClas implements Serializable {
                 + ", Fecha=" + Fecha
                 + ", Hora=" + Hora
                 + ", Descripcion=" + Descripcion
+                + ", Estado=" + Estado
                 + '}';
     }
 

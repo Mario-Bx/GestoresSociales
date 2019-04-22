@@ -18,14 +18,17 @@ public class PrincipalClas implements Serializable {
     private int PrincipalID;
 
     private String Nombre;
+    private Boolean Estado;
 
     public PrincipalClas() {
     }
 
     public PrincipalClas(
-            String Nombre
+            String Nombre,
+            Boolean Estado
     ) {
         this.Nombre = Nombre;
+        this.Estado = Estado;
 
     }
 
@@ -45,10 +48,19 @@ public class PrincipalClas implements Serializable {
         this.Nombre = Nombre;
     }
 
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos PrincipalClas{" + "PrincipalID=" + PrincipalID
                 + ", Nombre=" + Nombre
+                + ", Estado=" + Estado
                 + '}';
     }
 

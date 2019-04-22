@@ -22,12 +22,13 @@ public class AdministradorClas implements Serializable {
     private String Correo;
     private String Clave;
     private String FechaNacimiento;
-    private String Documento;
     private String Telefono;
     private String Celular;
+    private Boolean Estado;
 
     public AdministradorClas() {
         this.list_Convocatorias = new ArrayList<ConvocatoriasClas>();
+        this.list_Escuela = new ArrayList<EscuelaClas>();
     }
 
     public AdministradorClas(
@@ -36,20 +37,21 @@ public class AdministradorClas implements Serializable {
             String Correo,
             String Clave,
             String FechaNacimiento,
-            String Documento,
             String Telefono,
-            String Celular
+            String Celular,
+            Boolean Estado
     ) {
         this.Nombre = Nombre;
         this.Apellidos = Apellidos;
         this.Correo = Correo;
         this.Clave = Clave;
         this.FechaNacimiento = FechaNacimiento;
-        this.Documento = Documento;
         this.Telefono = Telefono;
         this.Celular = Celular;
+        this.Estado = Estado;
 
         this.list_Convocatorias = new ArrayList<ConvocatoriasClas>();
+        this.list_Escuela = new ArrayList<EscuelaClas>();
     }
 
     public int getAdministradorID() {
@@ -100,14 +102,6 @@ public class AdministradorClas implements Serializable {
         this.FechaNacimiento = FechaNacimiento;
     }
 
-    public String getDocumento() {
-        return Documento;
-    }
-
-    public void setDocumento(String Documento) {
-        this.Documento = Documento;
-    }
-
     public String getTelefono() {
         return Telefono;
     }
@@ -124,6 +118,14 @@ public class AdministradorClas implements Serializable {
         this.Celular = Celular;
     }
 
+    public Boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(Boolean Estado) {
+        this.Estado = Estado;
+    }
+
     @Override
     public String toString() {
         return "Datos AdministradorClas{" + "AdministradorID=" + AdministradorID
@@ -132,9 +134,9 @@ public class AdministradorClas implements Serializable {
                 + ", Correo=" + Correo
                 + ", Clave=" + Clave
                 + ", FechaNacimiento=" + FechaNacimiento
-                + ", Documento=" + Documento
                 + ", Telefono=" + Telefono
                 + ", Celular=" + Celular
+                + ", Estado=" + Estado
                 + '}';
     }
 
@@ -155,5 +157,23 @@ public class AdministradorClas implements Serializable {
     public void addConvocatorias(ConvocatoriasClas convocatorias) {
         convocatorias.setAdministradorFK(this);
         this.list_Convocatorias.add(convocatorias);
+    }
+    //Bi-dirreccional
+    // Relacion de 1-M entre (Administrador-Escuela)
+    @OneToMany(mappedBy = "administradorFK", cascade = CascadeType.ALL)
+    private List<EscuelaClas> list_Escuela;
+
+    ///Metodos de (Administrador-Escuela)
+    public List<EscuelaClas> getList_Escuela() {
+        return list_Escuela;
+    }
+
+    public void setList_Escuela(List<EscuelaClas> list_Escuela) {
+        this.list_Escuela = list_Escuela;
+    }
+
+    public void addEscuela(EscuelaClas escuela) {
+        escuela.setAdministradorFK(this);
+        this.list_Escuela.add(escuela);
     }
 }

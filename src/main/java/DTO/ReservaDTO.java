@@ -14,6 +14,7 @@ public class ReservaDTO {
 
     private int ReservaID;
     private String Nombre;
+    private boolean Estado;
     private EstudiantesDTO EstudiantesFk;
     private ConvocatoriasDTO ConvocatoriasFk;
 
@@ -23,6 +24,7 @@ public class ReservaDTO {
     public ReservaDTO(ReservaClas objCL) {
         this.ReservaID = objCL.getReservaID();
         this.Nombre = objCL.getNombre();
+        this.Estado = objCL.getEstado();
         this.EstudiantesFk = new EstudiantesDTO(objCL.getEstudiantesFK());
         this.ConvocatoriasFk = new ConvocatoriasDTO(objCL.getConvocatoriasFK());
     }
@@ -41,6 +43,14 @@ public class ReservaDTO {
 
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
+    }
+
+    public boolean getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
     }
 
     public EstudiantesDTO getEstudiantesFk() {

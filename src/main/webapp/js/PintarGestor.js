@@ -91,7 +91,7 @@ function PintarMisConvocatoriaLista(listasDatos) {
                     '<h5 class="motto">Gestores Sociales Universidad Sergio Arboleda</h5>' +
                     '</div>' +
                     '<h4 class="text-center">Ubicacion: Biblioteca Universidad Sergio Arboleda??</h4>' +
-                    '<h4 class="text-center">' + element.ConvocatoriasFk.Hora + '</h4>' +
+                    '<h4 class="text-center">' + element.ConvocatoriasFk + '</h4>' +
                     '<h4 class="text-center">Hora de fin: 6:00 PM agregar</h4>' +
                     '<h4 class="text-center">Horas reconocidas:' + element.ConvocatoriasFk.HorasGanadas + '</h4>' +
                     '<h4 class="text-center">Responsable:' + element.ConvocatoriasFk.Encargado + '</h4>' +
