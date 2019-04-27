@@ -21,17 +21,6 @@ public class ServiceImpl<T> implements Service<T> {
     }
 
     public T busacarObj(Object id) {
-        if (!entityManager.getTransaction().isActive()) {
-            entityManager.getTransaction().begin();
-        }
-
-        try {
-            entityManager.flush();
-            entityManager.clear();
-
-        } catch (PersistenceException exception) {
-            throw new RuntimeException(exception);
-        }
         return (T) entityManager.find(type, id);
     }
 
@@ -92,6 +81,8 @@ public class ServiceImpl<T> implements Service<T> {
     /// Crea una consulta especifica
     public List<T> findByProperty(String prop, Object val) {
         Query query = entityManager.createQuery("select x from " + getEntityName() + " x where x." + prop + " = ?1");
+        query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        query.setHint("eclipselink.refresh", "true");
         query.setParameter(1, val);
         return (List<T>) query.getResultList();
     }

@@ -41,7 +41,7 @@ function PinPerfilAdmin(idN) {
             }
             
             if (data.list_Convocatorias !== undefined) {
-                PintarTarjetaCon(data.list_Convocatorias);
+                PintarTarjetaCon(data.list_Convocatorias, idN);
             }else{
                 $("#TarjetaRes").empty();
                 console.log("No Has Creado Convocatorias" );
