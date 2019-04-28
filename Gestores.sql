@@ -28,22 +28,13 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   `Celular` varchar(150) NOT NULL,
   `Estado` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`AdministradorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestores.administrador: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla gestores.administrador: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
 INSERT INTO `administrador` (`AdministradorID`, `Nombre`, `Apellidos`, `Correo`, `Clave`, `FechaNacimiento`, `Telefono`, `Celular`, `Estado`) VALUES
 	(1, 'Carlos', 'Corzo', 'C@correo', 'ISEA', 'ISEA', 'ISEA', 'ISEA', 0),
-	(2, 'Sebastian', 'Leiva', 'S@correo', '123', '12-12-1212', '65454', '3123213223', 1),
-	(3, '098', '098', '098', '098', '098', '098', '098', 1),
-	(4, '8', '8', '8', '8', '8', '8', '8', 1),
-	(5, '98', '98', '98', '98', '89', '98', '98', 1),
-	(6, '98', '89', '98', '98', '98', '98', '98', 1),
-	(7, '86', '86', '68', '68', '86', '86', '86', 1),
-	(8, '98', 'bolaños', '@corress', '9878', '98', '982345', '98', 1),
-	(9, 'mario', 'bolaños', '1', '1', '1', '1', '1', 1),
-	(10, '098', '098', '098', '098', '098', '098', '098', 1),
-	(11, '098', '098', '098', '098', '098', '098', '098', 1);
+	(2, 'Sebastian', 'Leiva', 'S@correo', '123', '12-12-1212', '6545409', '3123213223', 1);
 /*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.bitacora
@@ -58,13 +49,15 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
   PRIMARY KEY (`BitacoraID`),
   KEY `EstudiantesFK` (`EstudiantesFK`),
   CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`EstudiantesFK`) REFERENCES `estudiantes` (`EstudiantesID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestores.bitacora: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla gestores.bitacora: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
 INSERT INTO `bitacora` (`BitacoraID`, `Nombre`, `Fecha`, `Hora`, `Descripcion`, `Estado`, `EstudiantesFK`) VALUES
-	(1, 'Bitacorea 1', '12-12-212', '12:;12', 'Hice coasas', 1, 1),
-	(2, 'Bitacorea', '13-13-1313', '13:13', 'alGUNA COASA ', 1, 1);
+	(1, 'Bitacorea 1', '12-12-212', '12:;12', 'Se realizo un actividad en el observatorio', 1, 1),
+	(2, 'Bitacorea 2', '13-13-1313', '13:13', 'participamos en la feria de enprendimiento', 1, 1),
+	(3, 'Bitacorea 2', '13-13-1313', '13:13', 'Se realizo un actividad en el observatorio', 1, 2),
+	(4, 'Bitacorea 1', '12-12-2122', '12:;12', 'participamos en la feria de enprendimiento', 1, 2);
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.convocatorias
@@ -87,17 +80,15 @@ CREATE TABLE IF NOT EXISTS `convocatorias` (
   KEY `DependenciaFK` (`DependenciaFK`),
   CONSTRAINT `convocatorias_ibfk_1` FOREIGN KEY (`AdministradorFK`) REFERENCES `administrador` (`AdministradorID`),
   CONSTRAINT `convocatorias_ibfk_2` FOREIGN KEY (`DependenciaFK`) REFERENCES `dependencia` (`DependenciaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestores.convocatorias: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla gestores.convocatorias: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `convocatorias` DISABLE KEYS */;
 INSERT INTO `convocatorias` (`ConvocatoriasID`, `Nombre`, `FechaInicio`, `FechaFin`, `Encargado`, `Descripcion`, `HorasGanadas`, `NoEstudienates`, `NoReserva`, `PeriodoAcademico`, `Estado`, `AdministradorFK`, `DependenciaFK`) VALUES
-	(1, 'Trabajo', '12-12-1212 12:12', '12-12-1212 12:12', 'profesor', 'practiva', 2, 2, 1, '2019-1', 1, 2, 1),
-	(2, 'Trabajo 2', '13-13-1313 13;13', '13-13-1313 13;13', 'Funcionarios', 'evento', 3, 3, 2, '2019-1', 1, 2, 2),
-	(3, '2', '2', '2', '2', '2', 2, 2, 2, '2', 1, 2, 1),
-	(4, '8', '8', '8', '8', '8', 8, 8, 8, '8', 1, 2, 1),
-	(5, '', '', '', '', '', 0, 0, 0, '', 1, 2, 1),
-	(6, '', '', '', '', '', 0, 0, 0, '', 1, 2, 1);
+	(1, 'viendo estrellas', '12-12-1212 12:12.p.m', '12-12-1212 12:12.p.m', 'Decano', 'practiva', 2, 2, 1, '2019-1', 1, 2, 1),
+	(2, 'festival tecnologia', '13-13-1313 13;13 .p.m', '13-13-1313 13;13 .p.m', 'Adminitracion', 'mostrar todos llos proyectos,  con fines tecnologicos', 3, 3, 2, '2019-1', 1, 2, 2),
+	(3, 'cosas perdiadas', '12-12-1212 12:12.p.m', '13-13-1313 13;13 .p.m', 'decanatura', 'ayudadr a mostrar los objetos perdidos que se han acumulado', 2, 2, 2, '2019-1', 1, 2, 1),
+	(4, 'mucal niños', '17-17-1712 17:12.p.m', '17-17-1712 17:12.p.m', 'decano mucsica', 'orientan a los padres de familia para ubicar el lugar del evento y darle la bienbenida a los invitados', 8, 8, 8, '2019-1', 1, 2, 1);
 /*!40000 ALTER TABLE `convocatorias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.dependencia
@@ -111,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `dependencia` (
   CONSTRAINT `dependencia_ibfk_1` FOREIGN KEY (`EscuelaFK`) REFERENCES `escuela` (`EscuelaID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestores.dependencia: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla gestores.dependencia: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `dependencia` DISABLE KEYS */;
 INSERT INTO `dependencia` (`DependenciaID`, `Nombre`, `Estado`, `EscuelaFK`) VALUES
 	(1, 'Sistemas', 1, 1),
@@ -153,16 +144,15 @@ CREATE TABLE IF NOT EXISTS `estudiantes` (
   `Semestre` varchar(150) NOT NULL,
   `Estado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`EstudiantesID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestores.estudiantes: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla gestores.estudiantes: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
 INSERT INTO `estudiantes` (`EstudiantesID`, `Nombre`, `Apellidos`, `Correo`, `Clave`, `TipoDocumento`, `Documento`, `FechaNacimiento`, `Celular`, `Telefono`, `Escuela`, `Carreara`, `Semestre`, `Estado`) VALUES
-	(1, 'Mario', 'Bolaños', 'M@correo', '123', 'C.C', '1018460477', '12-12-1212', '3211232323', '6788787', 'Ciencias Exactas', 'Ingenieria Sistemas', '123', 1),
-	(2, 'Renan', 'Arias', 'R@correo', '1234', 'C.C', '123', '123', '123', '123', '123', '123', '123', 1),
+	(1, 'Mario', 'Bolaños', 'M@correo', '123', 'C.C', '1018460477', '12-12-1212', '3211232323', '6788787', 'Ciencias Exactas', 'Ingenieria Sistemas', '9', 1),
+	(2, 'Renan', 'Arias', 'R@correo', '1234', 'C.C', '1018460477', '12-12-1212', '3211232323', '6788787', 'Ciencias Exactas', 'Ingenieria Sistemas', '9', 1),
 	(3, 'Juan', 'Albarracin', 'J@correo', '321', 'C.C', '123', '123', '123', '123', '123', '123', '123', 1),
-	(4, 'Eduard', 'Numpaque', 'E@correo', '4321', 'C.C', '1018460477', '12-12-1212', '3211232323', '6788787', 'Ciencias Exactas', 'Ingenieria Sistemas', '123', 1),
-	(5, '98', '98', '98', '98', '89', '89', '89', '98', '98', '98', '98', '98', 1);
+	(4, 'Eduard', 'Numpaque', 'E@correo', '4321', 'C.C', '1018460477', '12-12-1212', '3211232323', '6788787', 'Ciencias Exactas', 'Ingenieria Sistemas', '123', 1);
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestores.principal
@@ -182,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `principal` (
 -- Volcando datos para la tabla gestores.principal: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `principal` DISABLE KEYS */;
 INSERT INTO `principal` (`PrincipalID`, `Nombre`, `Estado`, `EstudiantesFK`, `ConvocatoriasFK`) VALUES
-	(1, 'principal 1', 0, 3, 1),
+	(1, 'principal 1', 0, 2, 1),
 	(2, 'principal 2', 0, 1, 1),
 	(3, 'principal 3', 0, 2, 1),
 	(4, 'principal 4', 0, 4, 2);
@@ -206,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 /*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
 INSERT INTO `reserva` (`ReservaID`, `Nombre`, `Estado`, `EstudiantesFK`, `ConvocatoriasFK`) VALUES
 	(1, 'dasd', 1, 1, 1),
-	(2, 'asdsa', 1, 3, 1),
+	(2, 'asdsa', 1, 2, 1),
 	(3, 'qweq', 1, 2, 1),
 	(4, 'dasd', 0, 1, 2);
 /*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
@@ -228,8 +218,8 @@ CREATE TABLE IF NOT EXISTS `sanciones` (
 -- Volcando datos para la tabla gestores.sanciones: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `sanciones` DISABLE KEYS */;
 INSERT INTO `sanciones` (`SancionesID`, `Descripcion`, `NumeroConvocatria`, `ConInicial`, `ConFinal`, `Estado`, `EstudiantesFK`) VALUES
-	(1, 'NO se presento', 4, 1, 8, 1, 1),
-	(2, 'Incumplio con sus deberes', 2, 8, 9, 1, 1),
+	(1, 'NO se presento', 4, 1, 8, 1, 2),
+	(2, 'Incumplio con sus deberes', 2, 8, 9, 1, 2),
 	(3, 'esra es la des', 1, 2, 3, 1, 1),
 	(4, 'Cambio', 23, 23, 23, 1, 1);
 /*!40000 ALTER TABLE `sanciones` ENABLE KEYS */;
