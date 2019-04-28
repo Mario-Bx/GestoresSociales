@@ -1,4 +1,4 @@
-?<html>
+<html>
     <head>
         <title>Proyecyo</title>
 
@@ -36,6 +36,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>
+
+    <%
+        HttpSession misession = request.getSession(true);
+        if (misession.getAttribute("usuario") == null) {
+            response.sendRedirect("login.jsp");
+        }
+    %>
 
     <body>
 
@@ -154,12 +161,10 @@
                     document.getElementById("mySidebar").style.display = "block";
                     document.getElementById("myOverlay").style.display = "block";
                 }
-
                 function w3_close() {
                     document.getElementById("mySidebar").style.display = "none";
                     document.getElementById("myOverlay").style.display = "none";
                 }
-
                 // Modal Image Gallery
                 function onClick(element) {
                     document.getElementById("img01").src = element.src;
@@ -187,7 +192,6 @@
             <script type="text/javascript">
                 $().ready(function () {
                     $('[rel="tooltip"]').tooltip();
-
                     $('a.scroll-down').click(function (e) {
                         e.preventDefault();
                         scroll_target = $(this).data('href');
@@ -195,9 +199,7 @@
                             scrollTop: $(scroll_target).offset().top - 60
                         }, 1000);
                     });
-
                 });
-
                 function rotateCard(btn) {
                     var $card = $(btn).closest('.card-container');
                     console.log($card);
@@ -207,8 +209,6 @@
                         $card.addClass('hover');
                     }
                 }
-
-
             </script>
             <div class="w3-container">
 

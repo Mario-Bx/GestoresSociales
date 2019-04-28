@@ -27,7 +27,7 @@ public class UsuarioDAO1 {
 
     public Usuario1 getUsuarioById(String usuario) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from estudiantes where Correo=" + "\"" + usuario + "\"");
+        ResultSet rs = statement.executeQuery("select * from Estudiantes where Correo=" + "\"" + usuario + "\"");
         Usuario1 user = new Usuario1();
         if (rs.next()) {
             user.setUsuario(rs.getString("Correo"));

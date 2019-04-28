@@ -7,7 +7,7 @@ function crearFormAdministrador() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario AdministradorSv");
             console.log("*****************");
 
             $("#Administradorcrear").empty();
@@ -38,11 +38,6 @@ function crearFormAdministrador() {
                     'class="form-control" id="FechaNacimiento" placeholder="Ingrese FechaNacimiento">' +
                     '</div>' +
                     '<div class="form-group">' +
-                    '<label for="usr">Documento Administrador :</label>' +
-                    '<input type="text"' +
-                    'class="form-control" id="Documento" placeholder="Ingrese Documento">' +
-                    '</div>' +
-                    '<div class="form-group">' +
                     '<label for="usr">Telefono Administrador :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Telefono" placeholder="Ingrese Telefono">' +
@@ -51,6 +46,11 @@ function crearFormAdministrador() {
                     '<label for="usr">Celular Administrador :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Celular" placeholder="Ingrese Celular">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Estado Administrador :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
@@ -63,6 +63,7 @@ function crearFormAdministrador() {
             $("#Administradorcrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearAdministrador()">Crear3</button>'
                     );
+
         },
 
         error: function () {
@@ -78,11 +79,15 @@ function listaAdminLista() {
             console.log("Servicio Listar AdministradorSv");
             console.log(data);
 
-            PintarAdminLista(data);
-
+            if (data !== null) {
+                PintarAdminLista(data);
+            } else {
+                console.log("No existen Administrador");
+            }
         },
         error: function () {
             alert('Error function listaAdminLista');
+            console.log('Error function listaAdminLista');
         }
     });
 
@@ -99,23 +104,24 @@ function PintarAdminLista(listasDatos) {
 
     $("#Administradorlista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Administradorlista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>Apellidos</th>' +
-                '<th>Correo</th>' +
-                '<th>Clave</th>' +
-                '<th>FechaNacimiento</th>' +
-                '<th>Documento</th>' +
-                '<th>Telefono</th>' +
-                '<th>Celular</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Administradorlista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Nombre</th>' +
+            '<th>Apellidos</th>' +
+            '<th>Correo</th>' +
+            '<th>Clave</th>' +
+            '<th>FechaNacimiento</th>' +
+            '<th>Telefono</th>' +
+            '<th>Celular</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.AdministradorDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de AdministradorSv");
         listasDatos.AdministradorDTO.forEach(element => {
             $("#Administradorlista").append(
                     '<tr class="w3-hover-blue">' +
@@ -125,22 +131,42 @@ function PintarAdminLista(listasDatos) {
                     '<td>' + element.Correo + ' </td>' +
                     '<td>' + element.Clave + ' </td>' +
                     '<td>' + element.FechaNacimiento + ' </td>' +
-                    '<td>' + element.Documento + ' </td>' +
                     '<td>' + element.Telefono + ' </td>' +
                     '<td>' + element.Celular + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarAdminLista(' + element.AdministradorID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarAdminLista(' + element.AdministradorID + ')" class="btn btn-secondary" (click)="editarDato(item.AdministradorID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.AdministradorDTO;
+        console.log("Entro a Pintar Un AdministradorSv");
+        $("#Administradorlista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.AdministradorID + ' </td>' +
+                '<td>' + element.Nombre + ' </td>' +
+                '<td>' + element.Apellidos + ' </td>' +
+                '<td>' + element.Correo + ' </td>' +
+                '<td>' + element.Clave + ' </td>' +
+                '<td>' + element.FechaNacimiento + ' </td>' +
+                '<td>' + element.Telefono + ' </td>' +
+                '<td>' + element.Celular + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarAdminLista(' + element.AdministradorID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarAdminLista(' + element.AdministradorID + ')" class="btn btn-secondary" (click)="editarDato(item.AdministradorID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarAdminLista(idN) {
     $.ajax({
         url: api + "AdministradorSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro AdminLista: " + idN);
+    listaAdminLista()
 }
 function actualizarAdminLista(idN) {
     $.ajax({
@@ -154,20 +180,23 @@ function actualizarAdminLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  AdministradorSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="AdministradorID�" value="' + datoEdit.AdministradorID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="AdministradorID" value="' + datoEdit.AdministradorID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Nombre:</label>' +
@@ -190,10 +219,6 @@ function actualizarAdminLista(idN) {
                         '<input type="text" class="form-control" id="FechaNacimiento" value="' + datoEdit.FechaNacimiento + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">Documento:</label>' +
-                        '<input type="text" class="form-control" id="Documento" value="' + datoEdit.Documento + ' ">' +
-                        '</div>' +
-                        '<div class="form-group">' +
                         '<label for="usr">Telefono:</label>' +
                         '<input type="text" class="form-control" id="Telefono" value="' + datoEdit.Telefono + ' ">' +
                         '</div>' +
@@ -201,19 +226,24 @@ function actualizarAdminLista(idN) {
                         '<label for="usr">Celular:</label>' +
                         '<input type="text" class="form-control" id="Celular" value="' + datoEdit.Celular + ' ">' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarAdministrador()">Actualizar</button>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
+                        '</div>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarAdministrador(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
 
         },
         error: function () {
-            alert('Errror El formulario actualizarAdminLista');
+            alert('Error El formulario actualizarAdminLista');
         }
     });
 }
@@ -225,7 +255,7 @@ function crearFormEstudiantes() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario EstudiantesSv");
             console.log("*****************");
 
             $("#Estudiantescrear").empty();
@@ -251,6 +281,11 @@ function crearFormEstudiantes() {
                     'class="form-control" id="Clave" placeholder="Ingrese Clave">' +
                     '</div>' +
                     '<div class="form-group">' +
+                    '<label for="usr">TipoDocumento Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="TipoDocumento" placeholder="Ingrese TipoDocumento">' +
+                    '</div>' +
+                    '<div class="form-group">' +
                     '<label for="usr">Documento Estudiantes :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Documento" placeholder="Ingrese Documento">' +
@@ -261,14 +296,14 @@ function crearFormEstudiantes() {
                     'class="form-control" id="FechaNacimiento" placeholder="Ingrese FechaNacimiento">' +
                     '</div>' +
                     '<div class="form-group">' +
-                    '<label for="usr">Telefono Estudiantes :</label>' +
-                    '<input type="text"' +
-                    'class="form-control" id="Telefono" placeholder="Ingrese Telefono">' +
-                    '</div>' +
-                    '<div class="form-group">' +
                     '<label for="usr">Celular Estudiantes :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Celular" placeholder="Ingrese Celular">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Telefono Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Telefono" placeholder="Ingrese Telefono">' +
                     '</div>' +
                     '<div class="form-group">' +
                     '<label for="usr">Escuela Estudiantes :</label>' +
@@ -279,17 +314,29 @@ function crearFormEstudiantes() {
                     '<label for="usr">Carreara Estudiantes :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Carreara" placeholder="Ingrese Carreara">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Semestre Estudiantes :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Semestre" placeholder="Ingrese Semestre">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Estado Estudiantes :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
 
-            $("#Estudiantescrear").append(						);
+            $("#Estudiantescrear").append(
+                    );
 
 
 
             $("#Estudiantescrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearEstudiantes()">Crear3</button>'
                     );
+
         },
 
         error: function () {
@@ -305,11 +352,15 @@ function listaEstudiLista() {
             console.log("Servicio Listar EstudiantesSv");
             console.log(data);
 
-            PintarEstudiLista(data);
-
+            if (data !== null) {
+                PintarEstudiLista(data);
+            } else {
+                console.log("No existen Estudiantes");
+            }
         },
         error: function () {
             alert('Error function listaEstudiLista');
+            console.log('Error function listaEstudiLista');
         }
     });
 
@@ -326,25 +377,29 @@ function PintarEstudiLista(listasDatos) {
 
     $("#Estudianteslista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Estudianteslista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>Apellidos</th>' +
-                '<th>Correo</th>' +
-                '<th>Clave</th>' +
-                '<th>Documento</th>' +
-                '<th>FechaNacimiento</th>' +
-                '<th>Telefono</th>' +
-                '<th>Celular</th>' +
-                '<th>Escuela</th>' +
-                '<th>Carreara</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Estudianteslista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Nombre</th>' +
+            '<th>Apellidos</th>' +
+            '<th>Correo</th>' +
+            '<th>Clave</th>' +
+            '<th>TipoDocumento</th>' +
+            '<th>Documento</th>' +
+            '<th>FechaNacimiento</th>' +
+            '<th>Celular</th>' +
+            '<th>Telefono</th>' +
+            '<th>Escuela</th>' +
+            '<th>Carreara</th>' +
+            '<th>Semestre</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.EstudiantesDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de EstudiantesSv");
         listasDatos.EstudiantesDTO.forEach(element => {
             $("#Estudianteslista").append(
                     '<tr class="w3-hover-blue">' +
@@ -353,25 +408,53 @@ function PintarEstudiLista(listasDatos) {
                     '<td>' + element.Apellidos + ' </td>' +
                     '<td>' + element.Correo + ' </td>' +
                     '<td>' + element.Clave + ' </td>' +
+                    '<td>' + element.TipoDocumento + ' </td>' +
                     '<td>' + element.Documento + ' </td>' +
                     '<td>' + element.FechaNacimiento + ' </td>' +
-                    '<td>' + element.Telefono + ' </td>' +
                     '<td>' + element.Celular + ' </td>' +
+                    '<td>' + element.Telefono + ' </td>' +
                     '<td>' + element.Escuela + ' </td>' +
                     '<td>' + element.Carreara + ' </td>' +
+                    '<td>' + element.Semestre + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarEstudiLista(' + element.EstudiantesID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEstudiLista(' + element.EstudiantesID + ')" class="btn btn-secondary" (click)="editarDato(item.EstudiantesID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.EstudiantesDTO;
+        console.log("Entro a Pintar Un EstudiantesSv");
+        $("#Estudianteslista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.EstudiantesID + ' </td>' +
+                '<td>' + element.Nombre + ' </td>' +
+                '<td>' + element.Apellidos + ' </td>' +
+                '<td>' + element.Correo + ' </td>' +
+                '<td>' + element.Clave + ' </td>' +
+                '<td>' + element.TipoDocumento + ' </td>' +
+                '<td>' + element.Documento + ' </td>' +
+                '<td>' + element.FechaNacimiento + ' </td>' +
+                '<td>' + element.Celular + ' </td>' +
+                '<td>' + element.Telefono + ' </td>' +
+                '<td>' + element.Escuela + ' </td>' +
+                '<td>' + element.Carreara + ' </td>' +
+                '<td>' + element.Semestre + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarEstudiLista(' + element.EstudiantesID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEstudiLista(' + element.EstudiantesID + ')" class="btn btn-secondary" (click)="editarDato(item.EstudiantesID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarEstudiLista(idN) {
     $.ajax({
         url: api + "EstudiantesSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro EstudiLista: " + idN);
+    listaEstudiLista()
 }
 function actualizarEstudiLista(idN) {
     $.ajax({
@@ -385,20 +468,23 @@ function actualizarEstudiLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  EstudiantesSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="EstudiantesID�" value="' + datoEdit.EstudiantesID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="EstudiantesID" value="' + datoEdit.EstudiantesID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Nombre:</label>' +
@@ -417,6 +503,10 @@ function actualizarEstudiLista(idN) {
                         '<input type="text" class="form-control" id="Clave" value="' + datoEdit.Clave + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
+                        '<label for="usr">TipoDocumento:</label>' +
+                        '<input type="text" class="form-control" id="TipoDocumento" value="' + datoEdit.TipoDocumento + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
                         '<label for="usr">Documento:</label>' +
                         '<input type="text" class="form-control" id="Documento" value="' + datoEdit.Documento + ' ">' +
                         '</div>' +
@@ -425,12 +515,12 @@ function actualizarEstudiLista(idN) {
                         '<input type="text" class="form-control" id="FechaNacimiento" value="' + datoEdit.FechaNacimiento + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">Telefono:</label>' +
-                        '<input type="text" class="form-control" id="Telefono" value="' + datoEdit.Telefono + ' ">' +
-                        '</div>' +
-                        '<div class="form-group">' +
                         '<label for="usr">Celular:</label>' +
                         '<input type="text" class="form-control" id="Celular" value="' + datoEdit.Celular + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Telefono:</label>' +
+                        '<input type="text" class="form-control" id="Telefono" value="' + datoEdit.Telefono + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Escuela:</label>' +
@@ -440,19 +530,28 @@ function actualizarEstudiLista(idN) {
                         '<label for="usr">Carreara:</label>' +
                         '<input type="text" class="form-control" id="Carreara" value="' + datoEdit.Carreara + ' ">' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarEstudiantes()">Actualizar</button>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Semestre:</label>' +
+                        '<input type="text" class="form-control" id="Semestre" value="' + datoEdit.Semestre + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
+                        '</div>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarEstudiantes(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
 
         },
         error: function () {
-            alert('Errror El formulario actualizarEstudiLista');
+            alert('Error El formulario actualizarEstudiLista');
         }
     });
 }
@@ -464,7 +563,7 @@ function crearFormConvocatorias() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario ConvocatoriasSv");
             console.log("*****************");
 
             $("#Convocatoriascrear").empty();
@@ -485,11 +584,6 @@ function crearFormConvocatorias() {
                     'class="form-control" id="FechaFin" placeholder="Ingrese FechaFin">' +
                     '</div>' +
                     '<div class="form-group">' +
-                    '<label for="usr">Hora Convocatorias :</label>' +
-                    '<input type="text"' +
-                    'class="form-control" id="Hora" placeholder="Ingrese Hora">' +
-                    '</div>' +
-                    '<div class="form-group">' +
                     '<label for="usr">Encargado Convocatorias :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Encargado" placeholder="Ingrese Encargado">' +
@@ -503,14 +597,40 @@ function crearFormConvocatorias() {
                     '<label for="usr">HorasGanadas Convocatorias :</label>' +
                     '<input type="number"' +
                     'class="form-control" id="HorasGanadas" placeholder="Ingrese HorasGanadas">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">NoEstudienates Convocatorias :</label>' +
+                    '<input type="number"' +
+                    'class="form-control" id="NoEstudienates" placeholder="Ingrese NoEstudienates">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">NoReserva Convocatorias :</label>' +
+                    '<input type="number"' +
+                    'class="form-control" id="NoReserva" placeholder="Ingrese NoReserva">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">PeriodoAcademico Convocatorias :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="PeriodoAcademico" placeholder="Ingrese PeriodoAcademico">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Estado Convocatorias :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
 
             $("#Convocatoriascrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="AdministradorlistaSELECT"> ' +
+                    '<label for="usr">Administrador:</label>' +
+                    '<SELECT class="form-control" id="AdministradorlistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                    '<OPTION value="errror">Error</OPTION>' +
+                    '</SELECT>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Dependencia:</label>' +
+                    '<SELECT class="form-control" id="DependencialistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>'
@@ -521,7 +641,9 @@ function crearFormConvocatorias() {
             $("#Convocatoriascrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearConvocatorias()">Crear3</button>'
                     );
+
             selectAdministrador();
+            selectDependencia();
         },
 
         error: function () {
@@ -537,11 +659,15 @@ function listaConvocatoriaLista() {
             console.log("Servicio Listar ConvocatoriasSv");
             console.log(data);
 
-            PintarConvocatoriaLista(data);
-
+            if (data !== null) {
+                PintarConvocatoriaLista(data);
+            } else {
+                console.log("No existen Convocatorias");
+            }
         },
         error: function () {
             alert('Error function listaConvocatoriaLista');
+            console.log('Error function listaConvocatoriaLista');
         }
     });
 
@@ -558,22 +684,26 @@ function PintarConvocatoriaLista(listasDatos) {
 
     $("#Convocatoriaslista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Convocatoriaslista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>FechaInicio</th>' +
-                '<th>FechaFin</th>' +
-                '<th>Hora</th>' +
-                '<th>Encargado</th>' +
-                '<th>Descripcion</th>' +
-                '<th>HorasGanadas</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Convocatoriaslista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Nombre</th>' +
+            '<th>FechaInicio</th>' +
+            '<th>FechaFin</th>' +
+            '<th>Encargado</th>' +
+            '<th>Descripcion</th>' +
+            '<th>HorasGanadas</th>' +
+            '<th>NoEstudienates</th>' +
+            '<th>NoReserva</th>' +
+            '<th>PeriodoAcademico</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.ConvocatoriasDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de ConvocatoriasSv");
         listasDatos.ConvocatoriasDTO.forEach(element => {
             $("#Convocatoriaslista").append(
                     '<tr class="w3-hover-blue">' +
@@ -581,23 +711,48 @@ function PintarConvocatoriaLista(listasDatos) {
                     '<td>' + element.Nombre + ' </td>' +
                     '<td>' + element.FechaInicio + ' </td>' +
                     '<td>' + element.FechaFin + ' </td>' +
-                    '<td>' + element.Hora + ' </td>' +
                     '<td>' + element.Encargado + ' </td>' +
                     '<td>' + element.Descripcion + ' </td>' +
                     '<td>' + element.HorasGanadas + ' </td>' +
+                    '<td>' + element.NoEstudienates + ' </td>' +
+                    '<td>' + element.NoReserva + ' </td>' +
+                    '<td>' + element.PeriodoAcademico + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.ConvocatoriasDTO;
+        console.log("Entro a Pintar Un ConvocatoriasSv");
+        $("#Convocatoriaslista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.ConvocatoriasID + ' </td>' +
+                '<td>' + element.Nombre + ' </td>' +
+                '<td>' + element.FechaInicio + ' </td>' +
+                '<td>' + element.FechaFin + ' </td>' +
+                '<td>' + element.Encargado + ' </td>' +
+                '<td>' + element.Descripcion + ' </td>' +
+                '<td>' + element.HorasGanadas + ' </td>' +
+                '<td>' + element.NoEstudienates + ' </td>' +
+                '<td>' + element.NoReserva + ' </td>' +
+                '<td>' + element.PeriodoAcademico + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarConvocatoriaLista(idN) {
     $.ajax({
         url: api + "ConvocatoriasSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro ConvocatoriaLista: " + idN);
+    listaConvocatoriaLista()
 }
 function actualizarConvocatoriaLista(idN) {
     $.ajax({
@@ -611,20 +766,23 @@ function actualizarConvocatoriaLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  ConvocatoriasSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="ConvocatoriasID�" value="' + datoEdit.ConvocatoriasID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="ConvocatoriasID" value="' + datoEdit.ConvocatoriasID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Nombre:</label>' +
@@ -639,10 +797,6 @@ function actualizarConvocatoriaLista(idN) {
                         '<input type="text" class="form-control" id="FechaFin" value="' + datoEdit.FechaFin + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">Hora:</label>' +
-                        '<input type="text" class="form-control" id="Hora" value="' + datoEdit.Hora + ' ">' +
-                        '</div>' +
-                        '<div class="form-group">' +
                         '<label for="usr">Encargado:</label>' +
                         '<input type="text" class="form-control" id="Encargado" value="' + datoEdit.Encargado + ' ">' +
                         '</div>' +
@@ -655,25 +809,49 @@ function actualizarConvocatoriaLista(idN) {
                         '<input type="text" class="form-control" id="HorasGanadas" value="' + datoEdit.HorasGanadas + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="AdministradorlistaSELECT"> ' +
+                        '<label for="usr">NoEstudienates:</label>' +
+                        '<input type="text" class="form-control" id="NoEstudienates" value="' + datoEdit.NoEstudienates + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">NoReserva:</label>' +
+                        '<input type="text" class="form-control" id="NoReserva" value="' + datoEdit.NoReserva + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">PeriodoAcademico:</label>' +
+                        '<input type="text" class="form-control" id="PeriodoAcademico" value="' + datoEdit.PeriodoAcademico + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Administrador :</label>' +
+                        '<SELECT class="form-control" id="AdministradorlistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarConvocatorias()">Actualizar</button>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Dependencia :</label>' +
+                        '<SELECT class="form-control" id="DependencialistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                        '<OPTION value="errror">Error</OPTION>' +
+                        '</SELECT>' +
+                        '</div>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarConvocatorias(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
             selectAdministrador();
+            selectDependencia();
 
         },
         error: function () {
-            alert('Errror El formulario actualizarConvocatoriaLista');
+            alert('Error El formulario actualizarConvocatoriaLista');
         }
     });
 }
@@ -685,7 +863,7 @@ function crearFormBitacora() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario BitacoraSv");
             console.log("*****************");
 
             $("#Bitacoracrear").empty();
@@ -709,14 +887,19 @@ function crearFormBitacora() {
                     '<label for="usr">Descripcion Bitacora :</label>' +
                     '<input type="text"' +
                     'class="form-control" id="Descripcion" placeholder="Ingrese Descripcion">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Estado Bitacora :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
 
             $("#Bitacoracrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="EstudianteslistaSELECT"> ' +
+                    '<label for="usr">Estudiantes:</label>' +
+                    '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>'
@@ -727,6 +910,7 @@ function crearFormBitacora() {
             $("#Bitacoracrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearBitacora()">Crear3</button>'
                     );
+
             selectEstudiantes();
         },
 
@@ -743,11 +927,15 @@ function listaBitacoraLista() {
             console.log("Servicio Listar BitacoraSv");
             console.log(data);
 
-            PintarBitacoraLista(data);
-
+            if (data !== null) {
+                PintarBitacoraLista(data);
+            } else {
+                console.log("No existen Bitacora");
+            }
         },
         error: function () {
             alert('Error function listaBitacoraLista');
+            console.log('Error function listaBitacoraLista');
         }
     });
 
@@ -764,19 +952,21 @@ function PintarBitacoraLista(listasDatos) {
 
     $("#Bitacoralista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Bitacoralista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th>Fecha</th>' +
-                '<th>Hora</th>' +
-                '<th>Descripcion</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Bitacoralista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Nombre</th>' +
+            '<th>Fecha</th>' +
+            '<th>Hora</th>' +
+            '<th>Descripcion</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.BitacoraDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de BitacoraSv");
         listasDatos.BitacoraDTO.forEach(element => {
             $("#Bitacoralista").append(
                     '<tr class="w3-hover-blue">' +
@@ -785,19 +975,37 @@ function PintarBitacoraLista(listasDatos) {
                     '<td>' + element.Fecha + ' </td>' +
                     '<td>' + element.Hora + ' </td>' +
                     '<td>' + element.Descripcion + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarBitacoraLista(' + element.BitacoraID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarBitacoraLista(' + element.BitacoraID + ')" class="btn btn-secondary" (click)="editarDato(item.BitacoraID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.BitacoraDTO;
+        console.log("Entro a Pintar Un BitacoraSv");
+        $("#Bitacoralista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.BitacoraID + ' </td>' +
+                '<td>' + element.Nombre + ' </td>' +
+                '<td>' + element.Fecha + ' </td>' +
+                '<td>' + element.Hora + ' </td>' +
+                '<td>' + element.Descripcion + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarBitacoraLista(' + element.BitacoraID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarBitacoraLista(' + element.BitacoraID + ')" class="btn btn-secondary" (click)="editarDato(item.BitacoraID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarBitacoraLista(idN) {
     $.ajax({
         url: api + "BitacoraSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro BitacoraLista: " + idN);
+    listaBitacoraLista()
 }
 function actualizarBitacoraLista(idN) {
     $.ajax({
@@ -811,19 +1019,23 @@ function actualizarBitacoraLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  BitacoraSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="BitacoraID�" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="BitacoraID" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Nombre:</label>' +
@@ -842,24 +1054,30 @@ function actualizarBitacoraLista(idN) {
                         '<input type="text" class="form-control" id="Descripcion" value="' + datoEdit.Descripcion + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="EstudianteslistaSELECT"> ' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Estudiantes :</label>' +
+                        '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button class="btn btn-primary" onclick="EditarBitacora()">Actualizar</button>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarBitacora(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
+                        '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
             selectEstudiantes();
 
         },
         error: function () {
-            alert('Errror El formulario actualizarBitacoraLista');
+            alert('Error El formulario actualizarBitacoraLista');
         }
     });
 }
@@ -871,7 +1089,7 @@ function crearFormSanciones() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario SancionesSv");
             console.log("*****************");
 
             $("#Sancionescrear").empty();
@@ -895,14 +1113,19 @@ function crearFormSanciones() {
                     '<label for="usr">ConFinal Sanciones :</label>' +
                     '<input type="number"' +
                     'class="form-control" id="ConFinal" placeholder="Ingrese ConFinal">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Estado Sanciones :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
 
             $("#Sancionescrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="EstudianteslistaSELECT"> ' +
+                    '<label for="usr">Estudiantes:</label>' +
+                    '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>'
@@ -913,6 +1136,7 @@ function crearFormSanciones() {
             $("#Sancionescrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearSanciones()">Crear3</button>'
                     );
+
             selectEstudiantes();
         },
 
@@ -929,11 +1153,15 @@ function listaSancionesLista() {
             console.log("Servicio Listar SancionesSv");
             console.log(data);
 
-            PintarSancionesLista(data);
-
+            if (data !== null) {
+                PintarSancionesLista(data);
+            } else {
+                console.log("No existen Sanciones");
+            }
         },
         error: function () {
             alert('Error function listaSancionesLista');
+            console.log('Error function listaSancionesLista');
         }
     });
 
@@ -950,19 +1178,21 @@ function PintarSancionesLista(listasDatos) {
 
     $("#Sancioneslista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Sancioneslista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Descripcion</th>' +
-                '<th>NumeroConvocatria</th>' +
-                '<th>ConInicial</th>' +
-                '<th>ConFinal</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Sancioneslista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Descripcion</th>' +
+            '<th>NumeroConvocatria</th>' +
+            '<th>ConInicial</th>' +
+            '<th>ConFinal</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.SancionesDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de SancionesSv");
         listasDatos.SancionesDTO.forEach(element => {
             $("#Sancioneslista").append(
                     '<tr class="w3-hover-blue">' +
@@ -971,19 +1201,37 @@ function PintarSancionesLista(listasDatos) {
                     '<td>' + element.NumeroConvocatria + ' </td>' +
                     '<td>' + element.ConInicial + ' </td>' +
                     '<td>' + element.ConFinal + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarSancionesLista(' + element.SancionesID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarSancionesLista(' + element.SancionesID + ')" class="btn btn-secondary" (click)="editarDato(item.SancionesID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.SancionesDTO;
+        console.log("Entro a Pintar Un SancionesSv");
+        $("#Sancioneslista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.SancionesID + ' </td>' +
+                '<td>' + element.Descripcion + ' </td>' +
+                '<td>' + element.NumeroConvocatria + ' </td>' +
+                '<td>' + element.ConInicial + ' </td>' +
+                '<td>' + element.ConFinal + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarSancionesLista(' + element.SancionesID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarSancionesLista(' + element.SancionesID + ')" class="btn btn-secondary" (click)="editarDato(item.SancionesID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarSancionesLista(idN) {
     $.ajax({
         url: api + "SancionesSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro SancionesLista: " + idN);
+    listaSancionesLista()
 }
 function actualizarSancionesLista(idN) {
     $.ajax({
@@ -997,20 +1245,23 @@ function actualizarSancionesLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  SancionesSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="SancionesID�" value="' + datoEdit.SancionesID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="SancionesID" value="' + datoEdit.SancionesID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
                         '<label for="usr">Descripcion:</label>' +
@@ -1029,25 +1280,30 @@ function actualizarSancionesLista(idN) {
                         '<input type="text" class="form-control" id="ConFinal" value="' + datoEdit.ConFinal + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="EstudianteslistaSELECT"> ' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Estudiantes :</label>' +
+                        '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarSanciones()">Actualizar</button>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarSanciones(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
             selectEstudiantes();
 
         },
         error: function () {
-            alert('Errror El formulario actualizarSancionesLista');
+            alert('Error El formulario actualizarSancionesLista');
         }
     });
 }
@@ -1059,29 +1315,29 @@ function crearFormPrincipal() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario PrincipalSv");
             console.log("*****************");
 
             $("#Principalcrear").empty();
             $("#Principalcrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">Nombre Principal :</label>' +
-                    '<input type="text"' +
-                    'class="form-control" id="Nombre" placeholder="Ingrese Nombre">' +
+                    '<label for="usr">Estado Principal :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
 
             $("#Principalcrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="EstudianteslistaSELECT"> ' +
+                    '<label for="usr">Estudiantes:</label>' +
+                    '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>' +
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="ConvocatoriaslistaSELECT"> ' +
+                    '<label for="usr">Convocatorias:</label>' +
+                    '<SELECT class="form-control" id="ConvocatoriaslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>'
@@ -1092,6 +1348,7 @@ function crearFormPrincipal() {
             $("#Principalcrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearPrincipal()">Crear3</button>'
                     );
+
             selectEstudiantes();
             selectConvocatorias();
         },
@@ -1109,11 +1366,15 @@ function listaPrincipalLista() {
             console.log("Servicio Listar PrincipalSv");
             console.log(data);
 
-            PintarPrincipalLista(data);
-
+            if (data !== null) {
+                PintarPrincipalLista(data);
+            } else {
+                console.log("No existen Principal");
+            }
         },
         error: function () {
             alert('Error function listaPrincipalLista');
+            console.log('Error function listaPrincipalLista');
         }
     });
 
@@ -1130,38 +1391,52 @@ function PintarPrincipalLista(listasDatos) {
 
     $("#Principallista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Principallista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Principallista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.PrincipalDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de PrincipalSv");
         listasDatos.PrincipalDTO.forEach(element => {
             $("#Principallista").append(
                     '<tr class="w3-hover-blue">' +
                     '<td>' + element.PrincipalID + ' </td>' +
-                    '<td>' + element.Nombre + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarPrincipalLista(' + element.PrincipalID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarPrincipalLista(' + element.PrincipalID + ')" class="btn btn-secondary" (click)="editarDato(item.PrincipalID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.PrincipalDTO;
+        console.log("Entro a Pintar Un PrincipalSv");
+        $("#Principallista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.PrincipalID + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarPrincipalLista(' + element.PrincipalID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarPrincipalLista(' + element.PrincipalID + ')" class="btn btn-secondary" (click)="editarDato(item.PrincipalID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarPrincipalLista(idN) {
     $.ajax({
         url: api + "PrincipalSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro PrincipalLista: " + idN);
+    listaPrincipalLista()
 }
-function actualizarBitacoraLista(idN) {
+function actualizarPrincipalLista(idN) {
     $.ajax({
-        url: api + "BitacoraSv/" + idN,
+        url: api + "PrincipalSv/" + idN,
         type: "Get",
         success: function (data) {
             console.log(data);
@@ -1171,60 +1446,60 @@ function actualizarBitacoraLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  PrincipalSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
-                        '<form >' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="BitacoraID" value="' + datoEdit.BitacoraID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="PrincipalID" value="' + datoEdit.PrincipalID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">Nombre:</label>' +
-                        '<input type="text" class="form-control" id="Nombre" value="' + datoEdit.Nombre + ' ">' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">Fecha:</label>' +
-                        '<input type="text" class="form-control" id="Fecha" value="' + datoEdit.Fecha + ' ">' +
-                        '</div>' +
-                        '<div class="form-group">' +
-                        '<label for="usr">Hora:</label>' +
-                        '<input type="text" class="form-control" id="Hora" value="' + datoEdit.Hora + ' ">' +
-                        '</div>' +
-                        '<div class="form-group">' +
-                        '<label for="usr">Descripcion:</label>' +
-                        '<input type="text" class="form-control" id="Descripcion" value="' + datoEdit.Descripcion + ' ">' +
-                        '</div>' +
-                        '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="EstudianteslistaSELECT"> ' +
+                        '<label for="usr">Estudiantes :</label>' +
+                        '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button class="btn btn-primary" onclick="EditarBitacora(' + 1 + ')">Actualizar</button>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Convocatorias :</label>' +
+                        '<SELECT class="form-control" id="ConvocatoriaslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                        '<OPTION value="errror">Error</OPTION>' +
+                        '</SELECT>' +
+                        '</div>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarPrincipal(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
             selectEstudiantes();
+            selectConvocatorias();
 
         },
         error: function () {
-            alert('Errror El formulario actualizarBitacoraLista');
+            alert('Error El formulario actualizarPrincipalLista');
         }
     });
 }
+
 function crearFormReserva() {
     $.ajax({
         url: api + "ReservaSv",
@@ -1232,29 +1507,29 @@ function crearFormReserva() {
         success: function (data) {
 
             console.log("*****************");
-            console.log("Funcion Pintar Formulario");
+            console.log("Funcion Pintar Formulario ReservaSv");
             console.log("*****************");
 
             $("#Reservacrear").empty();
             $("#Reservacrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">Nombre Reserva :</label>' +
-                    '<input type="text"' +
-                    'class="form-control" id="Nombre" placeholder="Ingrese Nombre">' +
+                    '<label for="usr">Estado Reserva :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
                     '</div>'
                     );
 
 
             $("#Reservacrear").append(
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="EstudianteslistaSELECT"> ' +
+                    '<label for="usr">Estudiantes:</label>' +
+                    '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>' +
                     '<div class="form-group">' +
-                    '<label for="usr">deporte:</label>' +
-                    '<SELECT id="ConvocatoriaslistaSELECT"> ' +
+                    '<label for="usr">Convocatorias:</label>' +
+                    '<SELECT class="form-control" id="ConvocatoriaslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                     '<OPTION value="errror">Error</OPTION>' +
                     '</SELECT>' +
                     '</div>'
@@ -1265,6 +1540,7 @@ function crearFormReserva() {
             $("#Reservacrear").append(
                     '<button type="submit" class="btn btn-primary" onclick="crearReserva()">Crear3</button>'
                     );
+
             selectEstudiantes();
             selectConvocatorias();
         },
@@ -1282,11 +1558,15 @@ function listaReservaLista() {
             console.log("Servicio Listar ReservaSv");
             console.log(data);
 
-            PintarReservaLista(data);
-
+            if (data !== null) {
+                PintarReservaLista(data);
+            } else {
+                console.log("No existen Reserva");
+            }
         },
         error: function () {
             alert('Error function listaReservaLista');
+            console.log('Error function listaReservaLista');
         }
     });
 
@@ -1303,34 +1583,48 @@ function PintarReservaLista(listasDatos) {
 
     $("#Reservalista").empty();
 
-    if (listasDatos != null) {
-        console.log("Prueba2 " + listasDatos.length);
-        $("#Reservalista").append('<thead>' +
-                '<tr class="w3-light-grey w3-hover-red">' +
-                '<th>id</th>' +
-                '<th>Nombre</th>' +
-                '<th colspan=2>Acciones</th>' +
-                '</tr>' +
-                '</thead>');
 
+    $("#Reservalista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.ReservaDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de ReservaSv");
         listasDatos.ReservaDTO.forEach(element => {
             $("#Reservalista").append(
                     '<tr class="w3-hover-blue">' +
                     '<td>' + element.ReservaID + ' </td>' +
-                    '<td>' + element.Nombre + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
                     '<td><button type="submit" class="btn btn-secondary" onclick="borrarReservaLista(' + element.ReservaID + ')"><i class="fa fa-trash"></i></button></td>' +
                     '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarReservaLista(' + element.ReservaID + ')" class="btn btn-secondary" (click)="editarDato(item.ReservaID)"><i class="fa fa-edit"></i></button></td>' +
-                    '</tr>');
+                    '</tr>'
+                    );
         });
+    } else {
+        var element = listasDatos.ReservaDTO;
+        console.log("Entro a Pintar Un ReservaSv");
+        $("#Reservalista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.ReservaID + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarReservaLista(' + element.ReservaID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarReservaLista(' + element.ReservaID + ')" class="btn btn-secondary" (click)="editarDato(item.ReservaID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
     }
+
 }
 function borrarReservaLista(idN) {
     $.ajax({
         url: api + "ReservaSv/" + idN,
-
         type: "Delete"
     });
-    console.log("borar: " + idN);
+    console.log("Se borro ReservaLista: " + idN);
+    listaReservaLista()
 }
 function actualizarReservaLista(idN) {
     $.ajax({
@@ -1344,44 +1638,48 @@ function actualizarReservaLista(idN) {
             var b = "'none'";
 
             $("#id02").empty();
-            if (datoEdit != null) {
-                console.log("Prueba2 " + datoEdit);
+            if (datoEdit !== null) {
+                console.log("Acutualizar  ReservaSv: " + idN);
                 $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
                         '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
                         '<header class="w3-container w3-blue">' +
                         '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
                         '<h2>Editar </h2>' +
                         '</header>' +
-                        '<div class="container">' +
+                        '<div class="w3-container">' +
                         '<br>' +
-                        '<form action="/action_page.php">' +
+                        '<form>' +
                         '<div class="form-group">' +
                         '<label for="usr">Identificador:</label>' +
-                        '<input type="text" class="form-control" id="ReservaID�" value="' + datoEdit.ReservaID + '" readonly="readonly">' +
+                        '<input type="text" class="form-control" id="ReservaID" value="' + datoEdit.ReservaID + '" readonly="readonly">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">Nombre:</label>' +
-                        '<input type="text" class="form-control" id="Nombre" value="' + datoEdit.Nombre + ' ">' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="EstudianteslistaSELECT"> ' +
+                        '<label for="usr">Estudiantes :</label>' +
+                        '<SELECT class="form-control" id="EstudianteslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
                         '<div class="form-group">' +
-                        '<label for="usr">deporte:</label>' +
-                        '<SELECT id="ConvocatoriaslistaSELECT"> ' +
+                        '<label for="usr">Convocatorias :</label>' +
+                        '<SELECT class="form-control" id="ConvocatoriaslistaSELECT style="height: calc(2.25rem + 10px)"> ' +
                         '<OPTION value="errror">Error</OPTION>' +
                         '</SELECT>' +
                         '</div>' +
-                        '<button type="submit" class="btn btn-primary" onclick="EditarReserva()">Actualizar</button>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarReserva(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
                         '</form>' +
                         '</div>' +
                         '<div class="w3-container w3-light-grey w3-padding">' +
                         '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
                         '</div>' +
-                        '</div>');
+                        '</div>'
+                        );
             }
 
             selectEstudiantes();
@@ -1389,12 +1687,547 @@ function actualizarReservaLista(idN) {
 
         },
         error: function () {
-            alert('Errror El formulario actualizarReservaLista');
+            alert('Error El formulario actualizarReservaLista');
+        }
+    });
+}
+
+function crearFormEscuela() {
+    $.ajax({
+        url: api + "EscuelaSv",
+        type: "Get",
+        success: function (data) {
+
+            console.log("*****************");
+            console.log("Funcion Pintar Formulario EscuelaSv");
+            console.log("*****************");
+
+            $("#Escuelacrear").empty();
+            $("#Escuelacrear").append(
+                    '<div class="form-group">' +
+                    '<label for="usr">Nombre Escuela :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Nombre" placeholder="Ingrese Nombre">' +
+                    '</div>'
+                    );
+
+
+            $("#Escuelacrear").append(+
+                    '<div class="form-group">' +
+                    '<label for="usr">Administrador:</label>' +
+                    '<SELECT class="form-control" id="AdministradorlistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                    '<OPTION value="errror">Error</OPTION>' +
+                    '</SELECT>' +
+                    '</div>'
+                    );
+
+
+
+            $("#Escuelacrear").append(
+                    '<button type="submit" class="btn btn-primary" onclick="crearEscuela()">Crear3</button>'
+                    );
+
+            selectAdministrador();
+        },
+
+        error: function () {
+            alert('Error function selectEscuela');
+        }
+    });
+}
+function listaEscuelaLista() {
+    $.ajax({
+        url: api + "EscuelaSv",
+        type: "Get",
+        success: function (data) {
+            console.log("Servicio Listar EscuelaSv");
+            console.log(data);
+
+            if (data !== null) {
+                PintarEscuelaLista(data);
+            } else {
+                console.log("No existen Escuela");
+            }
+        },
+        error: function () {
+            alert('Error function listaEscuelaLista');
+            console.log('Error function listaEscuelaLista');
+        }
+    });
+
+}
+
+
+function PintarEscuelaLista(listasDatos) {
+    console.log("Pintar la Lista de EscuelaSv");
+
+
+    var m = "'id02'";
+    var b = "'block'";
+    var e = "'empty'";
+
+    $("#Escuelalista").empty();
+
+
+    $("#Escuelalista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Nombre</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.EscuelaDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de EscuelaSv");
+        listasDatos.EscuelaDTO.forEach(element => {
+            $("#Escuelalista").append(
+                    '<tr class="w3-hover-blue">' +
+                    '<td>' + element.EscuelaID + ' </td>' +
+                    '<td>' + element.Nombre + ' </td>' +
+                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarEscuelaLista(' + element.EscuelaID + ')"><i class="fa fa-trash"></i></button></td>' +
+                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEscuelaLista(' + element.EscuelaID + ')" class="btn btn-secondary" (click)="editarDato(item.EscuelaID)"><i class="fa fa-edit"></i></button></td>' +
+                    '</tr>'
+                    );
+        });
+    } else {
+        var element = listasDatos.EscuelaDTO;
+        console.log("Entro a Pintar Un EscuelaSv");
+        $("#Escuelalista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.EscuelaID + ' </td>' +
+                '<td>' + element.Nombre + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarEscuelaLista(' + element.EscuelaID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEscuelaLista(' + element.EscuelaID + ')" class="btn btn-secondary" (click)="editarDato(item.EscuelaID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
+    }
+
+}
+function borrarEscuelaLista(idN) {
+    $.ajax({
+        url: api + "EscuelaSv/" + idN,
+        type: "Delete"
+    });
+    console.log("Se borro EscuelaLista: " + idN);
+    listaEscuelaLista()
+}
+function actualizarEscuelaLista(idN) {
+    $.ajax({
+        url: api + "EscuelaSv/" + idN,
+        type: "Get",
+        success: function (data) {
+            console.log(data);
+            var datoEdit = data;
+
+            var m = "'id02'";
+            var b = "'none'";
+
+            $("#id02").empty();
+            if (datoEdit !== null) {
+                console.log("Acutualizar  EscuelaSv: " + idN);
+                $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
+                        '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
+                        '<header class="w3-container w3-blue">' +
+                        '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
+                        '<h2>Editar </h2>' +
+                        '</header>' +
+                        '<div class="w3-container">' +
+                        '<br>' +
+                        '<form>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Identificador:</label>' +
+                        '<input type="text" class="form-control" id="EscuelaID" value="' + datoEdit.EscuelaID + '" readonly="readonly">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Nombre:</label>' +
+                        '<input type="text" class="form-control" id="Nombre" value="' + datoEdit.Nombre + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Administrador :</label>' +
+                        '<SELECT class="form-control" id="AdministradorlistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                        '<OPTION value="errror">Error</OPTION>' +
+                        '</SELECT>' +
+                        '</div>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarEscuela(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
+                        '</form>' +
+                        '</div>' +
+                        '<div class="w3-container w3-light-grey w3-padding">' +
+                        '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
+                        '</div>' +
+                        '</div>'
+                        );
+            }
+
+            selectAdministrador();
+
+        },
+        error: function () {
+            alert('Error El formulario actualizarEscuelaLista');
+        }
+    });
+}
+
+function crearFormDependencia() {
+    $.ajax({
+        url: api + "DependenciaSv",
+        type: "Get",
+        success: function (data) {
+
+            console.log("*****************");
+            console.log("Funcion Pintar Formulario DependenciaSv");
+            console.log("*****************");
+
+            $("#Dependenciacrear").empty();
+            $("#Dependenciacrear").append(
+                    '<div class="form-group">' +
+                    '<label for="usr">Nombre Dependencia :</label>' +
+                    '<input type="text"' +
+                    'class="form-control" id="Nombre" placeholder="Ingrese Nombre">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="usr">Estado Dependencia :</label>' +
+                    '<input type="radio"' +
+                    'class="form-control" id="Estado" placeholder="Ingrese Estado">' +
+                    '</div>'
+                    );
+
+
+            $("#Dependenciacrear").append(
+                    '<div class="form-group">' +
+                    '<label for="usr">Escuela:</label>' +
+                    '<SELECT class="form-control" id="EscuelalistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                    '<OPTION value="errror">Error</OPTION>' +
+                    '</SELECT>' +
+                    '</div>'
+                    );
+
+
+
+            $("#Dependenciacrear").append(
+                    '<button type="submit" class="btn btn-primary" onclick="crearDependencia()">Crear3</button>'
+                    );
+
+            selectEscuela();
+        },
+
+        error: function () {
+            alert('Error function selectDependencia');
+        }
+    });
+}
+function listaDependenciaLista() {
+    $.ajax({
+        url: api + "DependenciaSv",
+        type: "Get",
+        success: function (data) {
+            console.log("Servicio Listar DependenciaSv");
+            console.log(data);
+
+            if (data !== null) {
+                PintarDependenciaLista(data);
+            } else {
+                console.log("No existen Dependencia");
+            }
+        },
+        error: function () {
+            alert('Error function listaDependenciaLista');
+            console.log('Error function listaDependenciaLista');
+        }
+    });
+
+}
+
+
+function PintarDependenciaLista(listasDatos) {
+    console.log("Pintar la Lista de DependenciaSv");
+
+
+    var m = "'id02'";
+    var b = "'block'";
+    var e = "'empty'";
+
+    $("#Dependencialista").empty();
+
+
+    $("#Dependencialista").append('<thead>' +
+            '<tr class="w3-light-grey w3-hover-red">' +
+            '<th>id</th>' +
+            '<th>Nombre</th>' +
+            '<th>Estado</th>' +
+            '<th colspan=2>Acciones</th>' +
+            '</tr>' +
+            '</thead>');
+
+    if (listasDatos.DependenciaDTO instanceof Array !== false) {
+        console.log("Entro a Pintar la Lista de DependenciaSv");
+        listasDatos.DependenciaDTO.forEach(element => {
+            $("#Dependencialista").append(
+                    '<tr class="w3-hover-blue">' +
+                    '<td>' + element.DependenciaID + ' </td>' +
+                    '<td>' + element.Nombre + ' </td>' +
+                    '<td>' + element.Estado + ' </td>' +
+                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarDependenciaLista(' + element.DependenciaID + ')"><i class="fa fa-trash"></i></button></td>' +
+                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarDependenciaLista(' + element.DependenciaID + ')" class="btn btn-secondary" (click)="editarDato(item.DependenciaID)"><i class="fa fa-edit"></i></button></td>' +
+                    '</tr>'
+                    );
+        });
+    } else {
+        var element = listasDatos.DependenciaDTO;
+        console.log("Entro a Pintar Un DependenciaSv");
+        $("#Dependencialista").append(
+                '<tr class="w3-hover-blue">' +
+                '<td>' + element.DependenciaID + ' </td>' +
+                '<td>' + element.Nombre + ' </td>' +
+                '<td>' + element.Estado + ' </td>' +
+                '<td><button type="submit" class="btn btn-secondary" onclick="borrarDependenciaLista(' + element.DependenciaID + ')"><i class="fa fa-trash"></i></button></td>' +
+                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarDependenciaLista(' + element.DependenciaID + ')" class="btn btn-secondary" (click)="editarDato(item.DependenciaID)"><i class="fa fa-edit"></i></button></td>' +
+                '</tr>'
+                );
+    }
+
+}
+function borrarDependenciaLista(idN) {
+    $.ajax({
+        url: api + "DependenciaSv/" + idN,
+        type: "Delete"
+    });
+    console.log("Se borro DependenciaLista: " + idN);
+    listaDependenciaLista()
+}
+function actualizarDependenciaLista(idN) {
+    $.ajax({
+        url: api + "DependenciaSv/" + idN,
+        type: "Get",
+        success: function (data) {
+            console.log(data);
+            var datoEdit = data;
+
+            var m = "'id02'";
+            var b = "'none'";
+
+            $("#id02").empty();
+            if (datoEdit !== null) {
+                console.log("Acutualizar  DependenciaSv: " + idN);
+                $("#id02").append(
+                        '<br>' +
+                        '<br>' +
+                        '<br>' +
+                        '<div class="w3-modal-content w3-card-4 w3-animate-zoom">' +
+                        '<header class="w3-container w3-blue">' +
+                        '<span onclick="document.getElementById(' + m + ').style.display=' + b + '" class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>' +
+                        '<h2>Editar </h2>' +
+                        '</header>' +
+                        '<div class="w3-container">' +
+                        '<br>' +
+                        '<form>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Identificador:</label>' +
+                        '<input type="text" class="form-control" id="DependenciaID" value="' + datoEdit.DependenciaID + '" readonly="readonly">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Nombre:</label>' +
+                        '<input type="text" class="form-control" id="Nombre" value="' + datoEdit.Nombre + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Estado:</label>' +
+                        '<input type="text" class="form-control" id="Estado" value="' + datoEdit.Estado + ' ">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label for="usr">Escuela :</label>' +
+                        '<SELECT class="form-control" id="EscuelalistaSELECT style="height: calc(2.25rem + 10px)"> ' +
+                        '<OPTION value="errror">Error</OPTION>' +
+                        '</SELECT>' +
+                        '</div>' +
+                        '<button type="submit" class="btn btn-primary" onclick="EditarDependencia(), document.getElementById(' + m + ').style.display=' + b + '">Actualizar</button>' +
+                        '</form>' +
+                        '</div>' +
+                        '<div class="w3-container w3-light-grey w3-padding">' +
+                        '<button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById(' + m + ').style.display=' + b + '">Close</button>' +
+                        '</div>' +
+                        '</div>'
+                        );
+            }
+
+            selectEscuela();
+
+        },
+        error: function () {
+            alert('Error El formulario actualizarDependenciaLista');
         }
     });
 }
 
 
+function selectEscuela() {
+    $.ajax({
+        url: api + "EscuelaSv",
+        type: "Get",
+        success: function (data) {
+
+            var listasDatos = data;
+            console.log(listasDatos);
+            console.log("*****************");
+            console.log(listasDatos.EscuelaDTO);
+            console.log("*****************");
+
+            $("#EscuelalistaSELECT").empty();
+            if (listasDatos !== null) {
+                listasDatos.EscuelaDTO.forEach(element => {
+                    $("#EscuelalistaSELECT").append(
+                            '<OPTION value="' + element.EscuelaID + '">' + element.Nombre + '</OPTION>'
+                            );
+                });
+            }
+        },
+        error: function () {
+            alert('Error function selectEscuela');
+        }
+    });
+}
+function crearEscuela() {
+
+    console.log("Servicio Crear EscuelaSv");
+    var Escuela = '{' +
+            '"Nombre": "' + $("#Nombre").val() + '"'
+
+            + ', ' +
+            '"AdministradorFk": {"AdministradorID": "' + $("#AdministradorlistaSELECT").val() + '"}'
+
+
+            + '}';
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: api + "EscuelaSv",
+        data: Escuela,
+        dataType: "json",
+        success: function (data) {
+            console.log("Felicidades ha creado EscuelaSv");
+            listaEscuela();
+        },
+        error: function (data) {
+            alert('Error En el Servicio Crear EscuelaSv');
+        }
+    });
+}
+
+function EditarEscuela() {
+
+    console.log("Servicio Editar");
+    var Escuela = '{' +
+            '"EscuelaID": "' + $("#EscuelaID").val() + '"' + ', ' +
+            '"Nombre": "' + $("#Nombre").val() + '"'
+
+            + ', ' +
+            '"AdministradorFk": {"AdministradorID": "' + $("#AdministradorlistaSELECT").val() + '"}'
+
+            + '}';
+
+    console.log(Escuela);
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        url: api + "EscuelaSv",
+        data: Escuela,
+        dataType: "json",
+        success: function (data) {
+            console.log("Se enviaron los datos para actualizar la informacion");
+            console.log(data);
+            listaEscuela();
+        },
+        error: function (data) {
+            alert('Error En el Servicio Actualizar Informacion');
+        }
+    });
+
+}
+function selectDependencia() {
+    $.ajax({
+        url: api + "DependenciaSv",
+        type: "Get",
+        success: function (data) {
+
+            var listasDatos = data;
+            console.log(listasDatos);
+            console.log("*****************");
+            console.log(listasDatos.DependenciaDTO);
+            console.log("*****************");
+
+            $("#DependencialistaSELECT").empty();
+            if (listasDatos !== null) {
+                listasDatos.DependenciaDTO.forEach(element => {
+                    $("#DependencialistaSELECT").append(
+                            '<OPTION value="' + element.DependenciaID + '">' + element.Nombre + '</OPTION>'
+                            );
+                });
+            }
+        },
+        error: function () {
+            alert('Error function selectDependencia');
+        }
+    });
+}
+function crearDependencia() {
+
+    console.log("Servicio Crear DependenciaSv");
+    var Dependencia = '{' +
+            '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EscuelaFk": {"EscuelaID": "' + $("#EscuelalistaSELECT").val() + '"}' + ', ' +
+            +'}';
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: api + "DependenciaSv",
+        data: Dependencia,
+        dataType: "json",
+        success: function (data) {
+            console.log("Felicidades ha creado DependenciaSv");
+            listaDependencia();
+        },
+        error: function (data) {
+            alert('Error En el Servicio Crear DependenciaSv');
+        }
+    });
+}
+
+function EditarDependencia() {
+
+    console.log("Servicio Editar");
+    var Dependencia = '{' +
+            '"DependenciaID": "' + $("#DependenciaID").val() + '"' + ', ' +
+            '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EscuelaFk": {"EscuelaID": "' + $("#EscuelalistaSELECT").val() + '"}' + ', ' +
+            +'}';
+
+    console.log(Dependencia);
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        url: api + "DependenciaSv",
+        data: Dependencia,
+        dataType: "json",
+        success: function (data) {
+            console.log("Se enviaron los datos para actualizar la informacion");
+            console.log(data);
+            listaDependencia();
+        },
+        error: function (data) {
+            alert('Error En el Servicio Actualizar Informacion');
+        }
+    });
+
+}
 function selectAdministrador() {
     $.ajax({
         url: api + "AdministradorSv",
@@ -1404,12 +2237,11 @@ function selectAdministrador() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.AdministradorDTO[0].Nombre);
+            console.log(listasDatos.AdministradorDTO);
             console.log("*****************");
 
             $("#AdministradorlistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#AdministradorlistaSELECT").append('<OPTION value="'+element.AdministradorID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.AdministradorDTO.forEach(element => {
                     $("#AdministradorlistaSELECT").append(
                             '<OPTION value="' + element.AdministradorID + '">' + element.Nombre + '</OPTION>'
@@ -1424,20 +2256,21 @@ function selectAdministrador() {
 }
 function crearAdministrador() {
 
-    console.log("crearDeporte");
+    console.log("Servicio Crear AdministradorSv");
     var Administrador = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Apellidos": "' + $("#Apellidos").val() + '"' + ', ' +
             '"Correo": "' + $("#Correo").val() + '"' + ', ' +
             '"Clave": "' + $("#Clave").val() + '"' + ', ' +
             '"FechaNacimiento": "' + $("#FechaNacimiento").val() + '"' + ', ' +
-            '"Documento": "' + $("#Documento").val() + '"' + ', ' +
             '"Telefono": "' + $("#Telefono").val() + '"' + ', ' +
-            '"Celular": "' + $("#Celular").val() + '"'
+            '"Celular": "' + $("#Celular").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+
+
 
             + '}';
-
-    console.log(Administrador);
 
     $.ajax({
         type: "POST",
@@ -1446,10 +2279,11 @@ function crearAdministrador() {
         data: Administrador,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado AdministradorSv");
+            listaAdministrador();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar AdministradorSv');
+            alert('Error En el Servicio Crear AdministradorSv');
         }
     });
 }
@@ -1464,9 +2298,12 @@ function EditarAdministrador() {
             '"Correo": "' + $("#Correo").val() + '"' + ', ' +
             '"Clave": "' + $("#Clave").val() + '"' + ', ' +
             '"FechaNacimiento": "' + $("#FechaNacimiento").val() + '"' + ', ' +
-            '"Documento": "' + $("#Documento").val() + '"' + ', ' +
             '"Telefono": "' + $("#Telefono").val() + '"' + ', ' +
-            '"Celular": "' + $("#Celular").val() + '"'
+            '"Celular": "' + $("#Celular").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+
+
             + '}';
 
     console.log(Administrador);
@@ -1479,6 +2316,7 @@ function EditarAdministrador() {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaAdministrador();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1495,12 +2333,11 @@ function selectEstudiantes() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.EstudiantesDTO[0].Nombre);
+            console.log(listasDatos.EstudiantesDTO);
             console.log("*****************");
 
             $("#EstudianteslistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#EstudianteslistaSELECT").append('<OPTION value="'+element.EstudiantesID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.EstudiantesDTO.forEach(element => {
                     $("#EstudianteslistaSELECT").append(
                             '<OPTION value="' + element.EstudiantesID + '">' + element.Nombre + '</OPTION>'
@@ -1515,22 +2352,23 @@ function selectEstudiantes() {
 }
 function crearEstudiantes() {
 
-    console.log("crearDeporte");
+    console.log("Servicio Crear EstudiantesSv");
     var Estudiantes = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Apellidos": "' + $("#Apellidos").val() + '"' + ', ' +
             '"Correo": "' + $("#Correo").val() + '"' + ', ' +
             '"Clave": "' + $("#Clave").val() + '"' + ', ' +
+            '"TipoDocumento": "' + $("#TipoDocumento").val() + '"' + ', ' +
             '"Documento": "' + $("#Documento").val() + '"' + ', ' +
             '"FechaNacimiento": "' + $("#FechaNacimiento").val() + '"' + ', ' +
-            '"Telefono": "' + $("#Telefono").val() + '"' + ', ' +
             '"Celular": "' + $("#Celular").val() + '"' + ', ' +
+            '"Telefono": "' + $("#Telefono").val() + '"' + ', ' +
             '"Escuela": "' + $("#Escuela").val() + '"' + ', ' +
-            '"Carreara": "' + $("#Carreara").val() + '"'
+            '"Carreara": "' + $("#Carreara").val() + '"' + ', ' +
+            '"Semestre": "' + $("#Semestre").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
 
             + '}';
-
-    console.log(Estudiantes);
 
     $.ajax({
         type: "POST",
@@ -1539,10 +2377,11 @@ function crearEstudiantes() {
         data: Estudiantes,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado EstudiantesSv");
+            listaEstudiantes();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar EstudiantesSv');
+            alert('Error En el Servicio Crear EstudiantesSv');
         }
     });
 }
@@ -1556,12 +2395,17 @@ function EditarEstudiantes() {
             '"Apellidos": "' + $("#Apellidos").val() + '"' + ', ' +
             '"Correo": "' + $("#Correo").val() + '"' + ', ' +
             '"Clave": "' + $("#Clave").val() + '"' + ', ' +
+            '"TipoDocumento": "' + $("#TipoDocumento").val() + '"' + ', ' +
             '"Documento": "' + $("#Documento").val() + '"' + ', ' +
             '"FechaNacimiento": "' + $("#FechaNacimiento").val() + '"' + ', ' +
-            '"Telefono": "' + $("#Telefono").val() + '"' + ', ' +
             '"Celular": "' + $("#Celular").val() + '"' + ', ' +
+            '"Telefono": "' + $("#Telefono").val() + '"' + ', ' +
             '"Escuela": "' + $("#Escuela").val() + '"' + ', ' +
-            '"Carreara": "' + $("#Carreara").val() + '"'
+            '"Carreara": "' + $("#Carreara").val() + '"' + ', ' +
+            '"Semestre": "' + $("#Semestre").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+
             + '}';
 
     console.log(Estudiantes);
@@ -1574,6 +2418,7 @@ function EditarEstudiantes() {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaEstudiantes();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1590,12 +2435,11 @@ function selectConvocatorias() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.ConvocatoriasDTO[0].Nombre);
+            console.log(listasDatos.ConvocatoriasDTO);
             console.log("*****************");
 
             $("#ConvocatoriaslistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#ConvocatoriaslistaSELECT").append('<OPTION value="'+element.ConvocatoriasID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.ConvocatoriasDTO.forEach(element => {
                     $("#ConvocatoriaslistaSELECT").append(
                             '<OPTION value="' + element.ConvocatoriasID + '">' + element.Nombre + '</OPTION>'
@@ -1610,19 +2454,25 @@ function selectConvocatorias() {
 }
 function crearConvocatorias() {
 
-    console.log("crearDeporte");
+    console.log("Servicio Crear ConvocatoriasSv");
     var Convocatorias = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"FechaInicio": "' + $("#FechaInicio").val() + '"' + ', ' +
             '"FechaFin": "' + $("#FechaFin").val() + '"' + ', ' +
-            '"Hora": "' + $("#Hora").val() + '"' + ', ' +
             '"Encargado": "' + $("#Encargado").val() + '"' + ', ' +
             '"Descripcion": "' + $("#Descripcion").val() + '"' + ', ' +
-            '"HorasGanadas": "' + $("#HorasGanadas").val() + '"'
+            '"HorasGanadas": "' + $("#HorasGanadas").val() + '"' + ', ' +
+            '"NoEstudienates": "' + $("#NoEstudienates").val() + '"' + ', ' +
+            '"NoReserva": "' + $("#NoReserva").val() + '"' + ', ' +
+            '"PeriodoAcademico": "' + $("#PeriodoAcademico").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"AdministradorFk": {"AdministradorID": "' + $("#AdministradorlistaSELECT").val() + '"}' + ', ' +
+            '"DependenciaFk": {"DependenciaID": "' + $("#DependencialistaSELECT").val() + '"}'
+
 
             + '}';
-
-    console.log(Convocatorias);
 
     $.ajax({
         type: "POST",
@@ -1631,10 +2481,11 @@ function crearConvocatorias() {
         data: Convocatorias,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado ConvocatoriasSv");
+            listaConvocatorias();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar ConvocatoriasSv');
+            alert('Error En el Servicio Crear ConvocatoriasSv');
         }
     });
 }
@@ -1647,10 +2498,18 @@ function EditarConvocatorias() {
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"FechaInicio": "' + $("#FechaInicio").val() + '"' + ', ' +
             '"FechaFin": "' + $("#FechaFin").val() + '"' + ', ' +
-            '"Hora": "' + $("#Hora").val() + '"' + ', ' +
             '"Encargado": "' + $("#Encargado").val() + '"' + ', ' +
             '"Descripcion": "' + $("#Descripcion").val() + '"' + ', ' +
-            '"HorasGanadas": "' + $("#HorasGanadas").val() + '"'
+            '"HorasGanadas": "' + $("#HorasGanadas").val() + '"' + ', ' +
+            '"NoEstudienates": "' + $("#NoEstudienates").val() + '"' + ', ' +
+            '"NoReserva": "' + $("#NoReserva").val() + '"' + ', ' +
+            '"PeriodoAcademico": "' + $("#PeriodoAcademico").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"AdministradorFk": {"AdministradorID": "' + $("#AdministradorlistaSELECT").val() + '"}' + ', ' +
+            '"DependenciaFk": {"DependenciaID": "' + $("#DependencialistaSELECT").val() + '"}'
+
             + '}';
 
     console.log(Convocatorias);
@@ -1663,6 +2522,7 @@ function EditarConvocatorias() {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaConvocatorias();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1679,12 +2539,11 @@ function selectBitacora() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.BitacoraDTO[0].Nombre);
+            console.log(listasDatos.BitacoraDTO);
             console.log("*****************");
 
             $("#BitacoralistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#BitacoralistaSELECT").append('<OPTION value="'+element.BitacoraID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.BitacoraDTO.forEach(element => {
                     $("#BitacoralistaSELECT").append(
                             '<OPTION value="' + element.BitacoraID + '">' + element.Nombre + '</OPTION>'
@@ -1699,16 +2558,19 @@ function selectBitacora() {
 }
 function crearBitacora() {
 
-    console.log("crearDeporte");
+    console.log("Servicio Crear BitacoraSv");
     var Bitacora = '{' +
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Fecha": "' + $("#Fecha").val() + '"' + ', ' +
             '"Hora": "' + $("#Hora").val() + '"' + ', ' +
-            '"Descripcion": "' + $("#Descripcion").val() + '"'
+            '"Descripcion": "' + $("#Descripcion").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}'
+
 
             + '}';
-
-    console.log(Bitacora);
 
     $.ajax({
         type: "POST",
@@ -1717,15 +2579,16 @@ function crearBitacora() {
         data: Bitacora,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado BitacoraSv");
+            listaBitacora();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar BitacoraSv');
+            alert('Error En el Servicio Crear BitacoraSv');
         }
     });
 }
 
-function EditarBitacora(idG) {
+function EditarBitacora() {
 
     console.log("Servicio Editar");
     var Bitacora = '{' +
@@ -1733,10 +2596,13 @@ function EditarBitacora(idG) {
             '"Nombre": "' + $("#Nombre").val() + '"' + ', ' +
             '"Fecha": "' + $("#Fecha").val() + '"' + ', ' +
             '"Hora": "' + $("#Hora").val() + '"' + ', ' +
-            '"Descripcion": "' + $("#Descripcion").val() + '",' +
-            '"EstudiantesFk":' + '{' +
-            '"EstudiantesID":' + '"' + idG + '" ' + '}' +
-            '}';
+            '"Descripcion": "' + $("#Descripcion").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}'
+
+            + '}';
 
     console.log(Bitacora);
     $.ajax({
@@ -1748,6 +2614,7 @@ function EditarBitacora(idG) {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaBitacora();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1764,12 +2631,11 @@ function selectSanciones() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.SancionesDTO[0].Nombre);
+            console.log(listasDatos.SancionesDTO);
             console.log("*****************");
 
             $("#SancioneslistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#SancioneslistaSELECT").append('<OPTION value="'+element.SancionesID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.SancionesDTO.forEach(element => {
                     $("#SancioneslistaSELECT").append(
                             '<OPTION value="' + element.SancionesID + '">' + element.Nombre + '</OPTION>'
@@ -1784,16 +2650,19 @@ function selectSanciones() {
 }
 function crearSanciones() {
 
-    console.log("crearDeporte");
+    console.log("Servicio Crear SancionesSv");
     var Sanciones = '{' +
             '"Descripcion": "' + $("#Descripcion").val() + '"' + ', ' +
             '"NumeroConvocatria": "' + $("#NumeroConvocatria").val() + '"' + ', ' +
             '"ConInicial": "' + $("#ConInicial").val() + '"' + ', ' +
-            '"ConFinal": "' + $("#ConFinal").val() + '"'
+            '"ConFinal": "' + $("#ConFinal").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}'
+
 
             + '}';
-
-    console.log(Sanciones);
 
     $.ajax({
         type: "POST",
@@ -1802,10 +2671,11 @@ function crearSanciones() {
         data: Sanciones,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado SancionesSv");
+            listaSanciones();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar SancionesSv');
+            alert('Error En el Servicio Crear SancionesSv');
         }
     });
 }
@@ -1818,7 +2688,12 @@ function EditarSanciones() {
             '"Descripcion": "' + $("#Descripcion").val() + '"' + ', ' +
             '"NumeroConvocatria": "' + $("#NumeroConvocatria").val() + '"' + ', ' +
             '"ConInicial": "' + $("#ConInicial").val() + '"' + ', ' +
-            '"ConFinal": "' + $("#ConFinal").val() + '"'
+            '"ConFinal": "' + $("#ConFinal").val() + '"' + ', ' +
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}'
+
             + '}';
 
     console.log(Sanciones);
@@ -1831,6 +2706,7 @@ function EditarSanciones() {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaSanciones();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1847,12 +2723,11 @@ function selectPrincipal() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.PrincipalDTO[0].Nombre);
+            console.log(listasDatos.PrincipalDTO);
             console.log("*****************");
 
             $("#PrincipallistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#PrincipallistaSELECT").append('<OPTION value="'+element.PrincipalID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.PrincipalDTO.forEach(element => {
                     $("#PrincipallistaSELECT").append(
                             '<OPTION value="' + element.PrincipalID + '">' + element.Nombre + '</OPTION>'
@@ -1865,15 +2740,18 @@ function selectPrincipal() {
         }
     });
 }
-function crearPrincipal(idGestor, idConvocatoria) {
+function crearPrincipal() {
 
-    console.log("CrearPrincipal");
+    console.log("Servicio Crear PrincipalSv");
     var Principal = '{' +
-            '"Nombre": "' + $("#Nombre").val() + '"'
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}' + ', ' +
+            '"ConvocatoriasFk": {"ConvocatoriasID": "' + $("#ConvocatoriaslistaSELECT").val() + '"}'
+
 
             + '}';
-
-    console.log(Principal);
 
     $.ajax({
         type: "POST",
@@ -1882,10 +2760,11 @@ function crearPrincipal(idGestor, idConvocatoria) {
         data: Principal,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado PrincipalSv");
+            listaPrincipal();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar PrincipalSv');
+            alert('Error En el Servicio Crear PrincipalSv');
         }
     });
 }
@@ -1895,7 +2774,12 @@ function EditarPrincipal() {
     console.log("Servicio Editar");
     var Principal = '{' +
             '"PrincipalID": "' + $("#PrincipalID").val() + '"' + ', ' +
-            '"Nombre": "' + $("#Nombre").val() + '"'
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}' + ', ' +
+            '"ConvocatoriasFk": {"ConvocatoriasID": "' + $("#ConvocatoriaslistaSELECT").val() + '"}'
+
             + '}';
 
     console.log(Principal);
@@ -1908,6 +2792,7 @@ function EditarPrincipal() {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaPrincipal();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1924,12 +2809,11 @@ function selectReserva() {
             var listasDatos = data;
             console.log(listasDatos);
             console.log("*****************");
-            console.log(listasDatos.ReservaDTO[0].Nombre);
+            console.log(listasDatos.ReservaDTO);
             console.log("*****************");
 
             $("#ReservalistaSELECT").empty();
-            if (listasDatos != null) {
-                //$("#ReservalistaSELECT").append('<OPTION value="'+element.ReservaID+'">'+element.Nombre+'</OPTION>');
+            if (listasDatos !== null) {
                 listasDatos.ReservaDTO.forEach(element => {
                     $("#ReservalistaSELECT").append(
                             '<OPTION value="' + element.ReservaID + '">' + element.Nombre + '</OPTION>'
@@ -1944,13 +2828,16 @@ function selectReserva() {
 }
 function crearReserva() {
 
-    console.log("crearDeporte");
+    console.log("Servicio Crear ReservaSv");
     var Reserva = '{' +
-            '"Nombre": "' + $("#Nombre").val() + '"'
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}' + ', ' +
+            '"ConvocatoriasFk": {"ConvocatoriasID": "' + $("#ConvocatoriaslistaSELECT").val() + '"}'
+
 
             + '}';
-
-    console.log(Reserva);
 
     $.ajax({
         type: "POST",
@@ -1959,10 +2846,11 @@ function crearReserva() {
         data: Reserva,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            console.log("Felicidades ha creado ReservaSv");
+            listaReserva();
         },
         error: function (data) {
-            alert('Error En el Servicio Crar ReservaSv');
+            alert('Error En el Servicio Crear ReservaSv');
         }
     });
 }
@@ -1972,7 +2860,12 @@ function EditarReserva() {
     console.log("Servicio Editar");
     var Reserva = '{' +
             '"ReservaID": "' + $("#ReservaID").val() + '"' + ', ' +
-            '"Nombre": "' + $("#Nombre").val() + '"'
+            '"Estado": "' + $("#Estado").val() + '"'
+
+            + ', ' +
+            '"EstudiantesFk": {"EstudiantesID": "' + $("#EstudianteslistaSELECT").val() + '"}' + ', ' +
+            '"ConvocatoriasFk": {"ConvocatoriasID": "' + $("#ConvocatoriaslistaSELECT").val() + '"}'
+
             + '}';
 
     console.log(Reserva);
@@ -1985,6 +2878,7 @@ function EditarReserva() {
         success: function (data) {
             console.log("Se enviaron los datos para actualizar la informacion");
             console.log(data);
+            listaReserva();
         },
         error: function (data) {
             alert('Error En el Servicio Actualizar Informacion');
@@ -1992,39 +2886,3 @@ function EditarReserva() {
     });
 
 }
-
-
-function InscribirGestor(idG, idC) {
-
-    console.log("CrearPrincipal--------->" + idG + "" + idC);
-    var Principal = '{' +
-            '"Nombre": ' + '" P' + idG + idC + '",' +
-            '"EstudiantesFk":' + '{' +
-            '"EstudiantesID":' + '"' + idG + '" ' + '},' +
-            '"ConvocatoriasFk":' + '{' +
-            '"ConvocatoriasID" :' + '"' + idC + '"' +
-            '}' +
-            '}';
-
-    console.log(Principal);
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: api + "PrincipalSv",
-        data: Principal,
-        dataType: "json",
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (data) {
-            alert('Error En el Servicio Crar PrincipalSv');
-        }
-    });
-
-
-
-
-}
-
-

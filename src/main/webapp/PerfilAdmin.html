@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
     <head>
         <title>Perfil Administrador</title>
 
@@ -17,7 +17,7 @@
         <script src="js/FgTarjetaCon.js "></script>
         <script src="js/FgTarjetaSancion.js "></script>
 
-        <!-- w3schools.com -->
+        <!-- w3schools.com -->  
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -35,12 +35,12 @@
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
 
         <!-- Llamado de Funciones -->
+        <!-- Id del administrador -->
         <script>
-            $(document).ready(PinPerfilAdmin(<%out.print(request.getAttribute("id"));%>));
+            $(document).ready(PinPerfilAdmin(2));
             $(document).ready(listaTarjetaEst());
             $(document).ready(listaTarjetaSan());
         </script>
-
     </head>
 
     <body>
@@ -106,7 +106,7 @@
                         <hr style="width:50px;border:5px solid red" class="w3-round">
 
                         <!-- Id del administrador, id de la escuela del administrador -->
-                        <button onclick="document.getElementById('id02').style.display = 'block', FormConvocatoria(<%out.print(request.getAttribute("id"));%>, 1)" class="w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                        <button onclick="document.getElementById('id02').style.display = 'block', FormConvocatoria(2, 1)" class="w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
                             Agregar  <i class="fa fa-plus-square" ></i>
                         </button>
                     </div>
@@ -181,10 +181,11 @@
 
         <!-- W3.CSS Container -->
         <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px">
-            <p class="w3-right">Powered by <a href="" title="W3.CSS" target="_blank" class="w3-hover-opacity">Mario Bolaños</a></p>
+            <p class="w3-right">Powered by <a href="" title="W3.CSS" target="_blank" class="w3-hover-opacity">Mario BolaÃ±os</a></p>
             <hr>
             <p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p>
         </div>
+
 
         <script>
             // Script to open and close sidebar
@@ -192,10 +193,12 @@
                 document.getElementById("mySidebar").style.display = "block";
                 document.getElementById("myOverlay").style.display = "block";
             }
+
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
                 document.getElementById("myOverlay").style.display = "none";
             }
+
             // Modal Image Gallery
             function onClick(element) {
                 document.getElementById("img01").src = element.src;
@@ -223,6 +226,7 @@
 
         <script>
             document.getElementsByClassName("tablink")[0].click();
+
             function openCity2(evt, cityName) {
                 var i, x, tablinks;
                 x = document.getElementsByClassName("city2");
