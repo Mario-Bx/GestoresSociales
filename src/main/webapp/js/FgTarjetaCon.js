@@ -4,7 +4,7 @@
 
 var api = "http://localhost:8090/indexRest/rest/";
 
-function PintarTarjetaCon(listasDatos) {
+function PintarTarjetaCon(listasDatos, idAdm) {
     console.log("Pintar la Lista de ConvocatoriasSv");
     $("#TarjetaCon").empty();
     
@@ -45,8 +45,8 @@ function PintarTarjetaCon(listasDatos) {
                             '</div>' +
                             '<hr>'+
                             '<div class="w3-show-inline-block">'+
-                                    '<button class="w3-btn w3-ripple w3-cyan w3-hover-purple" onclick="document.getElementById('+m+').style.display = '+b+', ActualizarConv('+element.ConvocatoriasID+')">Editar <i class="fa fa-edit"></i></button>'+
-                                    '<button class="w3-btn w3-ripple w3-red w3-hover-purple" onclick="borrarCon('+element.ConvocatoriasID+')">Eliminar <i class="fa fa-trash"></i></button>'+
+                                    '<button class="w3-btn w3-ripple w3-cyan w3-hover-purple" onclick="document.getElementById('+m+').style.display = '+b+', ActualizarConv('+element.ConvocatoriasID+'), PinPerfilAdmin('+idAdm+')">Editar <i class="fa fa-edit"></i></button>'+
+                                    '<button class="w3-btn w3-ripple w3-red w3-hover-purple" onclick="borrarCon('+element.ConvocatoriasID+'), PinPerfilAdmin('+idAdm+')">Eliminar <i class="fa fa-trash"></i></button>'+
                                     '<button class="w3-btn w3-ripple w3-pink w3-hover-purple" onclick="document.getElementById('+c+').style.display = '+b+', DetallesCon('+element.ConvocatoriasID+')">Detalles <i class="fa fa-external-link"></i></button>'+
                                 '</div>'+
                             '</div>'+
@@ -88,8 +88,8 @@ function PintarTarjetaCon(listasDatos) {
                             '</div>' +
                             '<hr>'+
                             '<div class="w3-show-inline-block">'+
-                                    '<button class="w3-btn w3-ripple w3-cyan w3-hover-purple" onclick="document.getElementById('+m+').style.display = '+b+', ActualizarConv('+listasDatos.ConvocatoriasID+')">Editar <i class="fa fa-edit"></i></button>'+
-                                    '<button class="w3-btn w3-ripple w3-red w3-hover-purple" onclick="borrarCon('+listasDatos.ConvocatoriasID+')">Eliminar <i class="fa fa-trash"></i></button>'+
+                                    '<button class="w3-btn w3-ripple w3-cyan w3-hover-purple" onclick="document.getElementById('+m+').style.display = '+b+', ActualizarConv('+listasDatos.ConvocatoriasID+'), PinPerfilAdmin('+idAdm+')">Editar <i class="fa fa-edit"></i></button>'+
+                                    '<button class="w3-btn w3-ripple w3-red w3-hover-purple" onclick="borrarCon('+listasDatos.ConvocatoriasID+'), PinPerfilAdmin('+idAdm+')">Eliminar <i class="fa fa-trash"></i></button>'+
                                     '<button class="w3-btn w3-ripple w3-pink w3-hover-purple" onclick="document.getElementById('+c+').style.display = '+b+', DetallesCon('+listasDatos.ConvocatoriasID+')">Detalles <i class="fa fa-external-link"></i></button>'+
                                 '</div>'+
                             '</div>'+
@@ -106,6 +106,7 @@ function borrarCon(idN) {
         type: "Delete"
     });
     console.log("Se borra la Convocatoria: #" + idN);
+    PinPerfilAdmin();
 }
 
 function FormConvocatoria(idA, iDEsc) {
@@ -233,14 +234,13 @@ function crearConv(idAdm) {
             console.log(data);
             console.log("SFelicidades HAcreado una Convocatoria");
             alert('Felicidades HAcreado una Convocatoria');
-            PinPerfilAdmin(idAdm);
         },
         error: function () {
             alert('Error En el Servicio Crar ConvocatoriasSv');
             console.log("Error En el Servicio Crar ConvocatoriasSv");
         }
     });
-    
+    PinPerfilAdmin(idAdm);
 }
             
 function BuscarEscuela(idN) {
