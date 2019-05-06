@@ -13,6 +13,7 @@ function listaTarjetaEst() {
 
             if (data !== null) {
                 PintarTarjetaEstu(data);
+                Pintarinforme(data);
             } else {
                 console.log("No existen estudiantes");
             }
@@ -116,7 +117,101 @@ function PintarTarjetaEstu(listasDatos) {
     }
 }
 
+function Pintarinforme(listasDatos) {
+    console.log("Pintar la Lista de EstudiantesSv");
+    $("#Informe").empty();
 
+    if (listasDatos.EstudiantesDTO instanceof  Array !== false) {
+        console.log("Entro a Pintar la lista de EstudiantesSv");
+
+        listasDatos.EstudiantesDTO.forEach(element => {
+            $("#Informe").append(
+                    '<head>'+
+'<style>'+
+'table {'+
+  'font-family: arial, sans-serif;'+
+  'border-collapse: collapse;'+
+  'width: 100%;'+
+'}'+
+
+'td, th {'+
+  'border: 1px solid #dddddd;'+
+  'text-align: left;'+
+  'padding: 8px;'+
+'}'+
+
+'tr:nth-child(even) {'+
+  'background-color: #dddddd;'+
+'}'+
+'</style>'+
+'</head>'+
+'<body>'+
+
+
+'<table>'+
+
+'<tr>'+
+'  <td>'+element.EstudiantesID+'</td>'+
+  '  <td>'+element.Nombre+'</td>'+
+  '  <td>'+element.Apellidos+'</td>'+
+  '  <td>'+element.Correo+'y</td>'+
+    '  <td>'+element.TipoDocumento+  element.Documento+'y</td>'+
+      '  <td>'+element.FechaNacimiento+'y</td>'+
+        '  <td>'+element.Celular+'y</td>'+
+          '  <td>'+element.Telefono+'y</td>'+
+            '  <td>'+element.Escuela+'y</td>'+
+              '  <td>'+element.Carreara+'y</td>'+
+                '  <td>'+element.Semestre+'y</td>'+
+  '</tr>'+
+'</table>'+
+'</body>'
+                 );
+        });
+    } else {
+        var element = listasDatos.EstudiantesDTO;
+        console.log("Entro a Pintar Un EstudiantesSv");
+        $("#Informe").append(
+                   '<head>'+
+'<style>'+
+'table {'+
+  'font-family: arial, sans-serif;'+
+  'border-collapse: collapse;'+
+  'width: 100%;'+
+'}'+
+
+'td, th {'+
+  'border: 1px solid #dddddd;'+
+  'text-align: left;'+
+  'padding: 8px;'+
+'}'+
+
+'tr:nth-child(even) {'+
+  'background-color: #dddddd;'+
+'}'+
+'</style>'+
+'</head>'+
+'<body>'+
+
+
+'<table>'+
+
+'<tr>'+
+  '  <td>'+element.Nombre+'</td>'+
+  '  <td>'+element.Apellidos+'</td>'+
+  '  <td>'+element.Correo+'y</td>'+
+    '  <td>'+element.TipoDocumento+  element.Documento+'y</td>'+
+      '  <td>'+element.FechaNacimiento+'y</td>'+
+        '  <td>'+element.Celular+'y</td>'+
+          '  <td>'+element.Telefono+'y</td>'+
+            '  <td>'+element.Escuela+'y</td>'+
+              '  <td>'+element.Carreara+'y</td>'+
+                '  <td>'+element.Semestre+'y</td>'+
+  '</tr>'+
+'</table>'+
+'</body>'
+                );
+    }
+}
 function FormEstudiente() {
     $.ajax({
         url: api + "AdministradorSv/1",

@@ -131,6 +131,33 @@
 
                     </div>
                 </div>
+                            
+            <div id="Informes" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <div  class="w3-container w3-center">
+              
+                        <h1 class="w3-xxxlarge w3-text-red"><b>Informes</b></h1>
+                   <div  class="w3-container w3-left ">     
+                     <div class="w3-bar w3-black">
+                <button class="w3-bar-item w3-button tablink w3-blue" >Estudiantes</button>
+                <button class="w3-bar-item w3-button tablink" >Convocatorias</button>
+                <button class="w3-bar-item w3-button tablink" >Sanciones</button>
+               
+            </div>
+                       </div>
+  
+                        <!-- Id del administrador-->
+                        <button onclick="document.getElementById('id02').style " class="w3-center w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                        Descargar  
+                        </button>
+                    </div>
+                    
+                    <hr> 
+                    <div  id="Informe" class="w3-container w3-center">
+
+                    </div>
+                </div>                  
+                            
+                            
             </div>
 
             <!-- Modal -->
