@@ -120,6 +120,7 @@ function PintarTarjetaEstu(listasDatos) {
 function Pintarinforme(listasDatos) {
     console.log("Pintar la Lista de EstudiantesSv");
     $("#Informe").empty();
+  
 
     if (listasDatos.EstudiantesDTO instanceof  Array !== false) {
         console.log("Entro a Pintar la lista de EstudiantesSv");
@@ -211,6 +212,24 @@ function Pintarinforme(listasDatos) {
 '</body>'
                 );
     }
+     
+    
+    
+  
+}
+function excel(){
+      var tmpElemento = document.createElement('a');
+    // obtenemos la información desde el div que lo contiene en el html
+    // Obtenemos la información de la tabla
+    var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
+    var tabla_div = document.getElementById('allDataGrid');
+    var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+    tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
+    // Asignamos el nombre a nuestro EXCEL
+    tmpElemento.download = 'GestoresSociales.xls';
+    // Simulamos el click al elemento creado para descargarlo
+    tmpElemento.click();
+    
 }
 function FormEstudiente() {
     $.ajax({
