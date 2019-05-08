@@ -689,7 +689,6 @@ function PintarConvocatoriaLista(listasDatos) {
             '<th>NoReserva</th>' +
             '<th>PeriodoAcademico</th>' +
             '<th>Estado</th>' +
-            '<th colspan=2>Acciones</th>' +
             '</tr>' +
             '</thead>');
 

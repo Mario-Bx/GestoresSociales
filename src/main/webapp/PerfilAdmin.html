@@ -70,7 +70,7 @@
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones')">Sanciones</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Informes')">Informes</button>
             </div>
-            <span>Company Name</span>
+            
         </header>
 
         <!-- Overlay effect when opening sidebar on small screens -->
@@ -144,8 +144,8 @@
                         <h1 class="w3-xxxlarge w3-text-red"><b>Informes</b></h1>
                    <div  class="w3-container w3-left ">     
                      <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-blue" onclick="openCity3(event, 'ListaE')">Estudiantes</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaC')">Convocatorias</button>
+                 <button class="w3-bar-item w3-button tablink w3-blue" onclick="openCity3(event, 'ListaE')">Estudiantes</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaC')"  >Convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaS')">Sanciones</button>
                
             </div>
@@ -162,26 +162,39 @@
                     
                    
                 </div>
-                 <div id="ListaE" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                 <div id="ListaE" class="w3-container w3-card w3-white w3-margin-bottom city3 " style="display:none">
+                     <div  class="w3-container w3-center">
+                         <hr style="width:50px;border:5px solid red" class="w3-round">
                     <div  id="Estudianteslista" class="w3-container w3-center">
 
                     </div>
                           <hr> 
                          </div>
+                     </div>
                     <hr>
-                    <div id="ListaC" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    
+                    <div id="ListaC" class="w3-container w3-card w3-white w3-margin-bottom city3 " style="display:none">
+                        <div  class="w3-container w3-center">
+                            <hr style="width:50px;border:5px solid red" class="w3-round">
                        <div  id="Convocatoriaslista" class="w3-container w3-center">
 
                     </div>
                          <hr> 
                          </div>
+                        </div>
                     <hr>
-                    <div id="ListaS" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    
+                    <div id="ListaS" class="w3-container w3-card w3-white w3-margin-bottom city3 " style="display:none">
+                        <div  class="w3-container w3-center">
+                            <hr style="width:50px;border:5px solid red" class="w3-round">
                       <div  id="Sancioneslista" class="w3-container w3-center">
 
                     </div>
                          <hr> 
                      </div>
+                         </div>
+                                             </div>
+
                 
             </div>
 
@@ -229,7 +242,7 @@
             </div>
 
             <!-- End page content -->
-        </div>
+     
 
         <!-- W3.CSS Container -->
         <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px">
@@ -294,7 +307,7 @@
             }
         </script>
         
-          <script>
+         <script>
             document.getElementsByClassName("tablink")[0].click();
 
             function openCity3(evt, cityName) {
@@ -311,5 +324,6 @@
                 evt.currentTarget.classList.add("w3-light-grey");
             }
         </script>
+        
     </body>
 </html>

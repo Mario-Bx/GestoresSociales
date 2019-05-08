@@ -13,7 +13,7 @@ function listaTarjetaEst() {
 
             if (data !== null) {
                 PintarTarjetaEstu(data);
-                Pintarinforme(data);
+                
             } else {
                 console.log("No existen estudiantes");
             }
@@ -122,7 +122,7 @@ function excel(){
     // obtenemos la información desde el div que lo contiene en el html
     // Obtenemos la información de la tabla
     var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
-    var tabla_div = document.getElementById('allDataGrid');
+    var tabla_div = document.getElementById('Estudianteslista');
     var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
     tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
     // Asignamos el nombre a nuestro EXCEL
@@ -131,6 +131,9 @@ function excel(){
     tmpElemento.click();
     
 }
+
+
+
 function FormEstudiente() {
     $.ajax({
         url: api + "AdministradorSv/1",
