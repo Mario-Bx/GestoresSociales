@@ -380,12 +380,10 @@ function PintarEstudiLista(listasDatos) {
 
     $("#Estudianteslista").append('<thead>' +
             '<tr class="w3-light-grey w3-hover-red">' +
-            '<th>id</th>' +
+            '<th>id</th>' +"    "+
             '<th>Nombre</th>' +
             '<th>Apellidos</th>' +
             '<th>Correo</th>' +
-            '<th>Clave</th>' +
-            '<th>TipoDocumento</th>' +
             '<th>Documento</th>' +
             '<th>FechaNacimiento</th>' +
             '<th>Celular</th>' +
@@ -393,8 +391,7 @@ function PintarEstudiLista(listasDatos) {
             '<th>Escuela</th>' +
             '<th>Carreara</th>' +
             '<th>Semestre</th>' +
-            '<th>Estado</th>' +
-            '<th colspan=2>Acciones</th>' +
+           
             '</tr>' +
             '</thead>');
 
@@ -407,9 +404,7 @@ function PintarEstudiLista(listasDatos) {
                     '<td>' + element.Nombre + ' </td>' +
                     '<td>' + element.Apellidos + ' </td>' +
                     '<td>' + element.Correo + ' </td>' +
-                    '<td>' + element.Clave + ' </td>' +
-                    '<td>' + element.TipoDocumento + ' </td>' +
-                    '<td>' + element.Documento + ' </td>' +
+                    '<td>' + element.TipoDocumento +element.Documento+ ' </td>' +
                     '<td>' + element.FechaNacimiento + ' </td>' +
                     '<td>' + element.Celular + ' </td>' +
                     '<td>' + element.Telefono + ' </td>' +
@@ -417,8 +412,6 @@ function PintarEstudiLista(listasDatos) {
                     '<td>' + element.Carreara + ' </td>' +
                     '<td>' + element.Semestre + ' </td>' +
                     '<td>' + element.Estado + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarEstudiLista(' + element.EstudiantesID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEstudiLista(' + element.EstudiantesID + ')" class="btn btn-secondary" (click)="editarDato(item.EstudiantesID)"><i class="fa fa-edit"></i></button></td>' +
                     '</tr>'
                     );
         });
@@ -441,8 +434,6 @@ function PintarEstudiLista(listasDatos) {
                 '<td>' + element.Carreara + ' </td>' +
                 '<td>' + element.Semestre + ' </td>' +
                 '<td>' + element.Estado + ' </td>' +
-                '<td><button type="submit" class="btn btn-secondary" onclick="borrarEstudiLista(' + element.EstudiantesID + ')"><i class="fa fa-trash"></i></button></td>' +
-                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEstudiLista(' + element.EstudiantesID + ')" class="btn btn-secondary" (click)="editarDato(item.EstudiantesID)"><i class="fa fa-edit"></i></button></td>' +
                 '</tr>'
                 );
     }
