@@ -41,7 +41,9 @@
             $(document).ready(listaTarjetaEst());
             $(document).ready(listaTarjetaSan());
             $(document).ready(listaEstudiLista());
-       
+            $(document).ready(listaConvocatoriaLista());
+             $(document).ready( listaSancionesLista());
+      
         </script>
     </head>
 
@@ -142,9 +144,9 @@
                         <h1 class="w3-xxxlarge w3-text-red"><b>Informes</b></h1>
                    <div  class="w3-container w3-left ">     
                      <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-blue" >Estudiantes</button>
-                <button class="w3-bar-item w3-button tablink" >Convocatorias</button>
-                <button class="w3-bar-item w3-button tablink" >Sanciones</button>
+                <button class="w3-bar-item w3-button tablink w3-blue" onclick="openCity3(event, 'ListaE')">Estudiantes</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaC')">Convocatorias</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaS')">Sanciones</button>
                
             </div>
                        </div>
@@ -157,12 +159,29 @@
                     
                     <hr> 
                     
+                    
+                   
+                </div>
+                 <div id="ListaE" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
                     <div  id="Estudianteslista" class="w3-container w3-center">
 
                     </div>
-                       
-                    
-                </div>
+                          <hr> 
+                         </div>
+                    <hr>
+                    <div id="ListaC" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                       <div  id="Convocatoriaslista" class="w3-container w3-center">
+
+                    </div>
+                         <hr> 
+                         </div>
+                    <hr>
+                    <div id="ListaS" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                      <div  id="Sancioneslista" class="w3-container w3-center">
+
+                    </div>
+                         <hr> 
+                     </div>
                 
             </div>
 
@@ -263,6 +282,24 @@
             function openCity2(evt, cityName) {
                 var i, x, tablinks;
                 x = document.getElementsByClassName("city2");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < x.length; i++) {
+                    tablinks[i].classList.remove("w3-light-grey");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.classList.add("w3-light-grey");
+            }
+        </script>
+        
+          <script>
+            document.getElementsByClassName("tablink")[0].click();
+
+            function openCity3(evt, cityName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("city3");
                 for (i = 0; i < x.length; i++) {
                     x[i].style.display = "none";
                 }

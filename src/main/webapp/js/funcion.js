@@ -709,8 +709,6 @@ function PintarConvocatoriaLista(listasDatos) {
                     '<td>' + element.NoReserva + ' </td>' +
                     '<td>' + element.PeriodoAcademico + ' </td>' +
                     '<td>' + element.Estado + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
                     '</tr>'
                     );
         });
@@ -1193,8 +1191,6 @@ function PintarSancionesLista(listasDatos) {
                     '<td>' + element.ConInicial + ' </td>' +
                     '<td>' + element.ConFinal + ' </td>' +
                     '<td>' + element.Estado + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarSancionesLista(' + element.SancionesID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarSancionesLista(' + element.SancionesID + ')" class="btn btn-secondary" (click)="editarDato(item.SancionesID)"><i class="fa fa-edit"></i></button></td>' +
                     '</tr>'
                     );
         });
