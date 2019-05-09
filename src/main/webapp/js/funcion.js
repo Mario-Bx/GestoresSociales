@@ -1,5 +1,48 @@
 var api = "http://localhost:8090/indexRest/rest/";
 
+function excel1(){
+      var tmpElemento = document.createElement('a');
+    // obtenemos la información desde el div que lo contiene en el html
+    // Obtenemos la información de la tabla
+    var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
+    var tabla_div = document.getElementById('Convocatoriaslista2');
+    var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+    tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
+    // Asignamos el nombre a nuestro EXCEL
+    tmpElemento.download = 'Convocatorias.xls';
+    // Simulamos el click al elemento creado para descargarlo
+    tmpElemento.click();
+    
+}
+function excel2(){
+      var tmpElemento = document.createElement('a');
+    // obtenemos la información desde el div que lo contiene en el html
+    // Obtenemos la información de la tabla
+    var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
+    var tabla_div = document.getElementById('Sancioneslista2');
+    var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+    tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
+    // Asignamos el nombre a nuestro EXCEL
+    tmpElemento.download = 'Sanciones.xls';
+    // Simulamos el click al elemento creado para descargarlo
+    tmpElemento.click();
+    }
+
+function excel3(){
+      var tmpElemento = document.createElement('a');
+    // obtenemos la información desde el div que lo contiene en el html
+    // Obtenemos la información de la tabla
+    var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
+    var tabla_div = document.getElementById('Estudianteslista2');
+    var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+    tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
+    // Asignamos el nombre a nuestro EXCEL
+    tmpElemento.download = 'Estudiantes.xls';
+    // Simulamos el click al elemento creado para descargarlo
+    tmpElemento.click();
+    
+}
+
 function crearFormAdministrador() {
     $.ajax({
         url: api + "AdministradorSv",
@@ -375,17 +418,15 @@ function PintarEstudiLista(listasDatos) {
     var b = "'block'";
     var e = "'empty'";
 
-    $("#Estudianteslista").empty();
+    $("#Estudianteslista2").empty();
 
 
-    $("#Estudianteslista").append('<thead>' +
+    $("#Estudianteslista2").append('<thead>' +
             '<tr class="w3-light-grey w3-hover-red">' +
-            '<th>id</th>' +
+            '<th>id</th>' +"    "+
             '<th>Nombre</th>' +
             '<th>Apellidos</th>' +
             '<th>Correo</th>' +
-            '<th>Clave</th>' +
-            '<th>TipoDocumento</th>' +
             '<th>Documento</th>' +
             '<th>FechaNacimiento</th>' +
             '<th>Celular</th>' +
@@ -393,23 +434,20 @@ function PintarEstudiLista(listasDatos) {
             '<th>Escuela</th>' +
             '<th>Carreara</th>' +
             '<th>Semestre</th>' +
-            '<th>Estado</th>' +
-            '<th colspan=2>Acciones</th>' +
+           
             '</tr>' +
             '</thead>');
 
     if (listasDatos.EstudiantesDTO instanceof Array !== false) {
         console.log("Entro a Pintar la Lista de EstudiantesSv");
         listasDatos.EstudiantesDTO.forEach(element => {
-            $("#Estudianteslista").append(
+            $("#Estudianteslista2").append(
                     '<tr class="w3-hover-blue">' +
                     '<td>' + element.EstudiantesID + ' </td>' +
                     '<td>' + element.Nombre + ' </td>' +
                     '<td>' + element.Apellidos + ' </td>' +
                     '<td>' + element.Correo + ' </td>' +
-                    '<td>' + element.Clave + ' </td>' +
-                    '<td>' + element.TipoDocumento + ' </td>' +
-                    '<td>' + element.Documento + ' </td>' +
+                    '<td>' + element.TipoDocumento +element.Documento+ ' </td>' +
                     '<td>' + element.FechaNacimiento + ' </td>' +
                     '<td>' + element.Celular + ' </td>' +
                     '<td>' + element.Telefono + ' </td>' +
@@ -417,15 +455,13 @@ function PintarEstudiLista(listasDatos) {
                     '<td>' + element.Carreara + ' </td>' +
                     '<td>' + element.Semestre + ' </td>' +
                     '<td>' + element.Estado + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarEstudiLista(' + element.EstudiantesID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEstudiLista(' + element.EstudiantesID + ')" class="btn btn-secondary" (click)="editarDato(item.EstudiantesID)"><i class="fa fa-edit"></i></button></td>' +
                     '</tr>'
                     );
         });
     } else {
         var element = listasDatos.EstudiantesDTO;
         console.log("Entro a Pintar Un EstudiantesSv");
-        $("#Estudianteslista").append(
+        $("#Estudianteslista2").append(
                 '<tr class="w3-hover-blue">' +
                 '<td>' + element.EstudiantesID + ' </td>' +
                 '<td>' + element.Nombre + ' </td>' +
@@ -441,8 +477,6 @@ function PintarEstudiLista(listasDatos) {
                 '<td>' + element.Carreara + ' </td>' +
                 '<td>' + element.Semestre + ' </td>' +
                 '<td>' + element.Estado + ' </td>' +
-                '<td><button type="submit" class="btn btn-secondary" onclick="borrarEstudiLista(' + element.EstudiantesID + ')"><i class="fa fa-trash"></i></button></td>' +
-                '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarEstudiLista(' + element.EstudiantesID + ')" class="btn btn-secondary" (click)="editarDato(item.EstudiantesID)"><i class="fa fa-edit"></i></button></td>' +
                 '</tr>'
                 );
     }
@@ -682,10 +716,11 @@ function PintarConvocatoriaLista(listasDatos) {
     var b = "'block'";
     var e = "'empty'";
 
-    $("#Convocatoriaslista").empty();
+    $("#Convocatoriaslista2").empty();
 
 
-    $("#Convocatoriaslista").append('<thead>' +
+    $("#Convocatoriaslista2").append(
+            '<thead>' +
             '<tr class="w3-light-grey w3-hover-red">' +
             '<th>id</th>' +
             '<th>Nombre</th>' +
@@ -698,14 +733,13 @@ function PintarConvocatoriaLista(listasDatos) {
             '<th>NoReserva</th>' +
             '<th>PeriodoAcademico</th>' +
             '<th>Estado</th>' +
-            '<th colspan=2>Acciones</th>' +
             '</tr>' +
             '</thead>');
 
     if (listasDatos.ConvocatoriasDTO instanceof Array !== false) {
         console.log("Entro a Pintar la Lista de ConvocatoriasSv");
         listasDatos.ConvocatoriasDTO.forEach(element => {
-            $("#Convocatoriaslista").append(
+            $("#Convocatoriaslista2").append(
                     '<tr class="w3-hover-blue">' +
                     '<td>' + element.ConvocatoriasID + ' </td>' +
                     '<td>' + element.Nombre + ' </td>' +
@@ -718,15 +752,13 @@ function PintarConvocatoriaLista(listasDatos) {
                     '<td>' + element.NoReserva + ' </td>' +
                     '<td>' + element.PeriodoAcademico + ' </td>' +
                     '<td>' + element.Estado + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarConvocatoriaLista(' + element.ConvocatoriasID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarConvocatoriaLista(' + element.ConvocatoriasID + ')" class="btn btn-secondary" (click)="editarDato(item.ConvocatoriasID)"><i class="fa fa-edit"></i></button></td>' +
                     '</tr>'
                     );
         });
     } else {
         var element = listasDatos.ConvocatoriasDTO;
         console.log("Entro a Pintar Un ConvocatoriasSv");
-        $("#Convocatoriaslista").append(
+        $("#Convocatoriaslista2").append(
                 '<tr class="w3-hover-blue">' +
                 '<td>' + element.ConvocatoriasID + ' </td>' +
                 '<td>' + element.Nombre + ' </td>' +
@@ -1176,10 +1208,10 @@ function PintarSancionesLista(listasDatos) {
     var b = "'block'";
     var e = "'empty'";
 
-    $("#Sancioneslista").empty();
+    $("#Sancioneslista2").empty();
 
 
-    $("#Sancioneslista").append('<thead>' +
+    $("#Sancioneslista2").append('<thead>' +
             '<tr class="w3-light-grey w3-hover-red">' +
             '<th>id</th>' +
             '<th>Descripcion</th>' +
@@ -1187,14 +1219,13 @@ function PintarSancionesLista(listasDatos) {
             '<th>ConInicial</th>' +
             '<th>ConFinal</th>' +
             '<th>Estado</th>' +
-            '<th colspan=2>Acciones</th>' +
             '</tr>' +
             '</thead>');
 
     if (listasDatos.SancionesDTO instanceof Array !== false) {
         console.log("Entro a Pintar la Lista de SancionesSv");
         listasDatos.SancionesDTO.forEach(element => {
-            $("#Sancioneslista").append(
+            $("#Sancioneslista2").append(
                     '<tr class="w3-hover-blue">' +
                     '<td>' + element.SancionesID + ' </td>' +
                     '<td>' + element.Descripcion + ' </td>' +
@@ -1202,15 +1233,13 @@ function PintarSancionesLista(listasDatos) {
                     '<td>' + element.ConInicial + ' </td>' +
                     '<td>' + element.ConFinal + ' </td>' +
                     '<td>' + element.Estado + ' </td>' +
-                    '<td><button type="submit" class="btn btn-secondary" onclick="borrarSancionesLista(' + element.SancionesID + ')"><i class="fa fa-trash"></i></button></td>' +
-                    '<td><button onclick="document.getElementById(' + m + ').style.display=' + b + ', actualizarSancionesLista(' + element.SancionesID + ')" class="btn btn-secondary" (click)="editarDato(item.SancionesID)"><i class="fa fa-edit"></i></button></td>' +
                     '</tr>'
                     );
         });
     } else {
         var element = listasDatos.SancionesDTO;
         console.log("Entro a Pintar Un SancionesSv");
-        $("#Sancioneslista").append(
+        $("#Sancioneslista2").append(
                 '<tr class="w3-hover-blue">' +
                 '<td>' + element.SancionesID + ' </td>' +
                 '<td>' + element.Descripcion + ' </td>' +

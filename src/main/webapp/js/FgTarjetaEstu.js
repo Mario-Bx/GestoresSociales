@@ -13,6 +13,7 @@ function listaTarjetaEst() {
 
             if (data !== null) {
                 PintarTarjetaEstu(data);
+                
             } else {
                 console.log("No existen estudiantes");
             }
@@ -115,7 +116,6 @@ function PintarTarjetaEstu(listasDatos) {
                 );
     }
 }
-
 
 function FormEstudiente() {
     $.ajax({
