@@ -40,7 +40,7 @@ function PintarConvocatoriaLista2(listasDatos, idg) {
 
         listasDatos.ConvocatoriasDTO.forEach(element => {
             $("#Convocatoriaslista").append(
-                    ' <div  class="col-md-4 col-sm-6 ">' +
+                    '<div  class="col-md-4 col-sm-6 ">' +
                     '<div class="card-container w3-card">' +
                     '<div class="card">' +
                     '<div class="front">' +
@@ -54,22 +54,21 @@ function PintarConvocatoriaLista2(listasDatos, idg) {
                     '<h4>' + element.Descripcion + '</h4>' +
                     '</div>' +
                     '</div>' +
-                    '<div class="back">' +
+                    '<div class="back w3-pale-blue w3-responsive">' +
                     '<div class="header">' +
                     '<h5 class="motto">Gestores Sociales Universidad Sergio Arboleda</h5>' +
                     '</div>' +
+                     '<div class="w3-container">' +
                     '<h4 class="text-center">Ubicacion: Biblioteca Universidad Sergio Arboleda??</h4>' +
                     '<h4 class="text-center">' + element.Hora + '</h4>' +
                     '<h4 class="text-center">Hora de fin: 6:00 PM agregar</h4>' +
                     '<h4 class="text-center">Horas reconocidas:' + element.HorasGanadas + '</h4>' +
                     '<h4 class="text-center">Responsable:' + element.Encargado + '</h4>' +
-                    '<div class="stats-container">' +
-                    '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary"><a onclick="InscribirGestor(' + idg + ',' + element.ConvocatoriasID + ')">Inscribirse</a></button></h4>' +
                     '</div>' +
-                    '<div class="stats">' +
-                    '<h4><button type="button" class="btn btn-outline-primary">Ver</button></h4>' +
-                    '</div>' +
+                    '<div class="w3-show-inline-block">' +
+                    '<button class="w3-btn w3-ripple w3-cyan w3-hover-purple w3-border-red w3-round-large"  onclick="InscribirGestor(' + idg + ',' + element.ConvocatoriasID + ')">Inscribir</button>' +
+                    '<button class="w3-btn w3-ripple w3-cyan w3-hover-purple w3-border-red w3-round" >Ver</button>' +
+                    
                     '</div> ' +
                     '</div>' +
                     '</div>' +

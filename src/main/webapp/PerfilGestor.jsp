@@ -2,13 +2,18 @@
     <head>
         <title>Proyecyo</title>
 
-        <meta charset="utf-8">
+       <meta charset="utf-8">
         <!-- Bootstrap 4 -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+        <!-- Funciones pera datos -->
+        <script src="js/funcion.js"></script>
+        <script src="js/PintarGestor.js"></script>
+        <script src="js/TarjetaConvocatoria.js"></script>   
 
         <!-- w3schools.com -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -17,15 +22,15 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <!-- Funciones pera datos -->
-        <script src="js/funcion.js"></script>
-        <script src="js/PintarGestor.js"></script>
-        <script src="js/TarjetaConvocatoria.js"></script>   
+        <!-- Tarjetas EStudiantes -->
+        <link rel="stylesheet" href="css/blogstyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
 
-        <!-- Tarjetas -->
-        <link href='css/bootstrap.css' rel='stylesheet' />
-        <link href='css/rotating-card.css' rel='stylesheet' />
-        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <link href='css/bootstrap.css' rel='stylesheet'/>
+        <link href='css/rotating-card.css' rel='stylesheet'/>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
 
         <script>
             $(document).ready(listaConvocatoriaLista(<%out.print(request.getAttribute("id"));%>));
@@ -47,24 +52,13 @@
     <body>
 
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-indigo w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
+         <nav class="w3-sidebar w3-indigo w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
             <br>
-            <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-            <div class="w3-container">
+            <a onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Cerrar Menu</a>
+
+            <!-- Div Pintar Perfil -->
+            <div id="InfoGestor" class="w3-container">
             </div>
-            <div class="w3-white w3-text-grey w3-card-4">
-                <div class="w3-display-container">
-                    <center>
-                        <img src="https://image.flaticon.com/icons/svg/149/149071.svg" style="width:40%" alt="Avatar">
-                    </center>
-                </div>
-                <div id="InfoGestor" class="w3-container">
-
-
-
-
-                </div>
-            </div><br>
         </nav>
 
 
@@ -106,7 +100,7 @@
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
                         <br>
-                        <div id ="MisConvocatoriaslista" class="w3-container">
+                        <div id ="MisConvocatoriaslista" class="w3-container w3-center">
 
 
 
@@ -120,7 +114,7 @@
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
                         <br>
-                        <div  id="Convocatoriaslista" class="w3-container">
+                        <div  id="Convocatoriaslista" class="w3-container w3-center">
 
                         </div>	
                         <br>
@@ -138,7 +132,7 @@
                     <hr style="width:50px;border:5px solid blue" class="w3-round">
                     <div class="w3-responsive">
                         <br>
-                        <div id="MisBitacoralista" class="w3-container">
+                        <div id="MisBitacoralista" class="w3-container w3-center">
 
                         </div>	
                         <br>

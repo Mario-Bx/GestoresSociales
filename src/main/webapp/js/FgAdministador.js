@@ -28,18 +28,13 @@ function PinPerfilAdmin(idN) {
                         '<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-' + color + '"></i>' + DatoPerfil.Correo + '</p>' +
                         '<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-' + color + '"></i>' + DatoPerfil.Telefono + '</p>' +
                         '<hr>' +
-                        '<p>Horas Completadas</p>' +
-                        '<div class="w3-light-grey w3-round-xlarge w3-small">' +
-                        '<div class="w3-container w3-center w3-round-xlarge w3-' + color + '" style="width:90%">90%</div>' +
-                        '</div>' +
-                        '</div>' +
+                        
                         '<br>' +
                         '</div>' +
                         '<a href="cerrarsesion.jsp" class="w3-bar-item w3-button">Cerrar sesion</a>'
                         );
             }
-
-            if (data.list_Convocatorias !== undefined) {
+            if (data.list_Convocatorias !== unded) {
                 PintarTarjetaCon(data.list_Convocatorias, idN);
             } else {
                 $("#TarjetaRes").empty();

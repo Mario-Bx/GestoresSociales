@@ -16,7 +16,7 @@ function PintarTarjetaCon(listasDatos, idAdm) {
         console.log("Se entro a pintar la lista de convocatorias");
         listasDatos.forEach(element => {
             $("#TarjetaCon").append(
-                    ' <div  class="col-md-4 col-sm-6 ">' +
+                    '<div  class="col-md-4 col-sm-6 ">' +
                     '<div class="card-container w3-card w3-hover-aqua">' +
                     '<div class="card">' +
                     '<div class="front">' +

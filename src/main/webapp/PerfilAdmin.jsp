@@ -46,7 +46,7 @@
     <body>
 
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
+        <nav class="w3-sidebar w3-indigo w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
             <br>
             <a onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Cerrar Menu</a>
 
@@ -58,10 +58,10 @@
 
 
         <!-- Top menu on small screens -->
-        <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
-            <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()"><i class='glyphicon glyphicon-th' style='font-size:36px'></i></a>
+        <header class="w3-container w3-top w3-hide-large w3-indigo w3-xlarge w3-padding">
+            <a href="javascript:void(0)" class="w3-button w3-indigo w3-margin-right" onclick="w3_open()"><i class='glyphicon glyphicon-th' style='font-size:36px'></i></a>
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event, 'Estudiantes')">Estudiantes</button>
+                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Estudiantes')">Estudiantes</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Convocatorias')">Convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones')">Sanciones</button>
             </div>
@@ -75,7 +75,7 @@
         <div class="w3-main" style="margin-left:340px;margin-right:40px">
             <br />
             <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event, 'Estudiantes')">Estudiantes</button>
+                <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Estudiantes')">Estudiantes</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Convocatorias')">Convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones')">Sanciones</button>
             </div>
@@ -86,9 +86,9 @@
                 <!-- Right Column -->
                 <div id="Estudiantes" class="w3-container w3-card w3-white w3-margin-bottom city">
                     <div  class="w3-container w3-center">
-                        <h1 class="w3-xxxlarge w3-text-red"><b>Estudiantes</b></h1>
+                        <h1 class="w3-xxxlarge w3-text-indigo"><b>Estudiantes</b></h1>
                         <hr style="width:50px;border:5px solid red" class="w3-round">
-                        <button onclick="document.getElementById('id02').style.display = 'block', FormEstudiente()" class="w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                        <button onclick="document.getElementById('id02').style.display = 'block', FormEstudiente()" class="w3-btn w3-ripple w3-round-xlarge w3-hover-indigo w3-purple">
                             Agregar  <i class="fa fa-plus-square" ></i>
                         </button>
                     </div>
@@ -102,11 +102,11 @@
 
                 <div id="Convocatorias" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
                     <div  class="w3-container w3-center">
-                        <h1 class="w3-xxxlarge w3-text-red"><b>Convocatorias</b></h1>
+                        <h1 class="w3-xxxlarge w3-text-indigo"><b>Convocatorias</b></h1>
                         <hr style="width:50px;border:5px solid red" class="w3-round">
 
                         <!-- Id del administrador, id de la escuela del administrador -->
-                        <button onclick="document.getElementById('id02').style.display = 'block', FormConvocatoria(<%out.print(request.getAttribute("id"));%>, 1)" class="w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                        <button onclick="document.getElementById('id02').style.display = 'block', FormConvocatoria(<%out.print(request.getAttribute("id"));%>, 1)" class="w3-btn w3-ripple w3-round-xlarge w3-hover-indigo w3-purple">
                             Agregar  <i class="fa fa-plus-square" ></i>
                         </button>
                     </div>
@@ -119,10 +119,10 @@
 
                 <div id="Sanciones" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
                     <div  class="w3-container w3-center">
-                        <h1 class="w3-xxxlarge w3-text-red"><b>Sanciones</b></h1>
+                        <h1 class="w3-xxxlarge w3-text-indigo"><b>Sanciones</b></h1>
                         <hr style="width:50px;border:5px solid red" class="w3-round">
                         <!-- Id del administrador-->
-                        <button onclick="document.getElementById('id02').style.display = 'block', FormSancion()" class="w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                        <button onclick="document.getElementById('id02').style.display = 'block', FormSancion()" class="w3-btn w3-ripple w3-round-xlarge w3-hover-indigo w3-purple">
                             Agregar  <i class="fa fa-plus-square" ></i>
                         </button>
                     </div>
@@ -214,10 +214,10 @@
                 }
                 tablinks = document.getElementsByClassName("tablink");
                 for (i = 0; i < x.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace("w3-red", "");
+                    tablinks[i].className = tablinks[i].className.replace("w3-indigo", "");
                 }
                 document.getElementById(cityName).style.display = "block";
-                evt.currentTarget.className += " w3-red";
+                evt.currentTarget.className += " w3-indigo";
             }
         </script>
 
