@@ -39,6 +39,9 @@
             $(document).ready(PinPerfilAdmin(<%out.print(request.getAttribute("id"));%>));
             $(document).ready(listaTarjetaEst());
             $(document).ready(listaTarjetaSan());
+            $(document).ready(listaEstudiLista());
+            $(document).ready(listaConvocatoriaLista());
+            $(document).ready(listaSancionesLista());
         </script>
 
     </head>
@@ -64,6 +67,7 @@
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Estudiantes')">Estudiantes</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Convocatorias')">Convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones')">Sanciones</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Informes')">Informes</button>
             </div>
             <span>Company Name</span>
         </header>
@@ -78,6 +82,7 @@
                 <button class="w3-bar-item w3-button tablink w3-indigo" onclick="openCity(event, 'Estudiantes')">Estudiantes</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Convocatorias')">Convocatorias</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Sanciones')">Sanciones</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Informes')">Informes</button>
             </div>
 
             <!-- Header -->
@@ -131,33 +136,76 @@
 
                     </div>
                 </div>
-                            
-            <div id="Informes" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
-                    <div  class="w3-container w3-center">
-              
-                        <h1 class="w3-xxxlarge w3-text-red"><b>Informes</b></h1>
-                   <div  class="w3-container w3-left ">     
-                     <div class="w3-bar w3-black">
-                <button class="w3-bar-item w3-button tablink w3-blue" >Estudiantes</button>
-                <button class="w3-bar-item w3-button tablink" >Convocatorias</button>
-                <button class="w3-bar-item w3-button tablink" >Sanciones</button>
-               
-            </div>
-                       </div>
-  
-                        <!-- Id del administrador-->
-                        <button onclick="document.getElementById('id02').style " class="w3-center w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
-                        Descargar  
-                        </button>
-                    </div>
-                    
-                    <hr> 
-                    <div  id="Informe" class="w3-container w3-center">
 
+                <div id="Informes" class="w3-container w3-card w3-white w3-margin-bottom city" style="display:none">
+                    <div  class="w3-container w3-center">
+
+                        <h1 class="w3-xxxlarge w3-text-red"><b>Informes</b></h1>
+                        <div  class="w3-container w3-left ">     
+                            <div class="w3-bar w3-black">
+                                <button class="w3-bar-item w3-button tablink w3-blue" onclick="openCity3(event, 'ListaE')">Estudiantes</button>
+                                <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaC')"  >Convocatorias</button>
+                                <button class="w3-bar-item w3-button tablink" onclick="openCity3(event, 'ListaS')">Sanciones</button>
+
+                            </div>
+
+                        </div>
+                        <div id="ListaE" class="w3-container w3-card w3-white w3-margin-bottom city3 " style="display:none">
+                            <div  class="w3-container w3-center">
+                                <hr style="width:50px;border:5px solid red" class="w3-round">
+                                <button onclick="excel3()" class="w3-center w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                                    Descargar  
+                                </button>
+                                 <hr>
+                                <div  id="Estudianteslista" class="w3-responsive w3-center">
+                                    <table id="Estudianteslista2" class="w3-table-all" style="width:100%"> </table>
+                                </div>
+                                <hr> 
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div id="ListaC" class="w3-container w3-card w3-white w3-margin-bottom city3 " style="display:none">
+                            <div  class="w3-container w3-center">
+                                <hr style="width:50px;border:5px solid red" class="w3-round">
+                                <button onclick="excel1()" class="w3-center w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                                    Descargar  
+                                </button>
+                                 <hr>
+                                <div  id="Convocatoriaslista" class="w3-responsive w3-center">
+
+                                    <table id="Convocatoriaslista2" class="w3-table-all" style="width:100%">
+
+                                    </table>
+                                </div>
+                                <hr> 
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div id="ListaS" class="w3-container w3-card w3-white w3-margin-bottom city3 " style="display:none">
+                            <div  class="w3-container w3-center">
+                                <hr style="width:50px;border:5px solid red" class="w3-round">
+                                <button onclick="excel2()" class="w3-center w3-btn w3-ripple w3-round-xlarge w3-hover-red w3-purple">
+                                    Descargar  
+                                </button>
+                                <hr>
+                                <div  id="Sancioneslista" class="w3-container w3-center">
+                                    <table id="Sancioneslista2" class="w3-table-all" style="width:100%">
+
+                                    </table>
+                                </div>
+                                <hr> 
+                            </div>
+                        </div>
                     </div>
-                </div>                  
-                            
-                            
+
+                    <!-- Id del administrador-->
+
+                </div>
+             
+
+
             </div>
 
             <!-- Modal -->
@@ -253,6 +301,23 @@
             function openCity2(evt, cityName) {
                 var i, x, tablinks;
                 x = document.getElementsByClassName("city2");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < x.length; i++) {
+                    tablinks[i].classList.remove("w3-light-grey");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.classList.add("w3-light-grey");
+            }
+        </script>
+        <script>
+            document.getElementsByClassName("tablink")[0].click();
+
+            function openCity3(evt, cityName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("city3");
                 for (i = 0; i < x.length; i++) {
                     x[i].style.display = "none";
                 }
