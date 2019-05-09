@@ -117,23 +117,6 @@ function PintarTarjetaEstu(listasDatos) {
     }
 }
 
-function excel(){
-      var tmpElemento = document.createElement('a');
-    // obtenemos la información desde el div que lo contiene en el html
-    // Obtenemos la información de la tabla
-    var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
-    var tabla_div = document.getElementById('Estudianteslista');
-    var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-    tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
-    // Asignamos el nombre a nuestro EXCEL
-    tmpElemento.download = 'GestoresSociales.xls';
-    // Simulamos el click al elemento creado para descargarlo
-    tmpElemento.click();
-    
-}
-
-
-
 function FormEstudiente() {
     $.ajax({
         url: api + "AdministradorSv/1",

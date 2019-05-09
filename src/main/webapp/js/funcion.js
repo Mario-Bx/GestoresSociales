@@ -1,5 +1,20 @@
 var api = "http://localhost:8090/indexRest/rest/";
 
+function excel(){
+      var tmpElemento = document.createElement('a');
+    // obtenemos la información desde el div que lo contiene en el html
+    // Obtenemos la información de la tabla
+    var data_type = 'data:application/vnd.ms-excel;charset=UTF-8';
+    var tabla_div = document.getElementById('Convocatoriaslista2');
+    var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+    tmpElemento.href = data_type + ', ' + encodeURI("\ufeff"+tabla_div.outerHTML+"\r\n");
+    // Asignamos el nombre a nuestro EXCEL
+    tmpElemento.download = 'GestoresSociales.xls';
+    // Simulamos el click al elemento creado para descargarlo
+    tmpElemento.click();
+    
+}
+
 function crearFormAdministrador() {
     $.ajax({
         url: api + "AdministradorSv",
@@ -673,10 +688,11 @@ function PintarConvocatoriaLista(listasDatos) {
     var b = "'block'";
     var e = "'empty'";
 
-    $("#Convocatoriaslista").empty();
+    $("#Convocatoriaslista2").empty();
 
 
-    $("#Convocatoriaslista").append('<thead>' +
+    $("#Convocatoriaslista2").append(
+            '<thead>' +
             '<tr class="w3-light-grey w3-hover-red">' +
             '<th>id</th>' +
             '<th>Nombre</th>' +
@@ -695,7 +711,7 @@ function PintarConvocatoriaLista(listasDatos) {
     if (listasDatos.ConvocatoriasDTO instanceof Array !== false) {
         console.log("Entro a Pintar la Lista de ConvocatoriasSv");
         listasDatos.ConvocatoriasDTO.forEach(element => {
-            $("#Convocatoriaslista").append(
+            $("#Convocatoriaslista2").append(
                     '<tr class="w3-hover-blue">' +
                     '<td>' + element.ConvocatoriasID + ' </td>' +
                     '<td>' + element.Nombre + ' </td>' +
@@ -714,7 +730,7 @@ function PintarConvocatoriaLista(listasDatos) {
     } else {
         var element = listasDatos.ConvocatoriasDTO;
         console.log("Entro a Pintar Un ConvocatoriasSv");
-        $("#Convocatoriaslista").append(
+        $("#Convocatoriaslista2").append(
                 '<tr class="w3-hover-blue">' +
                 '<td>' + element.ConvocatoriasID + ' </td>' +
                 '<td>' + element.Nombre + ' </td>' +
