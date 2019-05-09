@@ -34,7 +34,7 @@ function PinPerfilAdmin(idN) {
                         '<a href="cerrarsesion.jsp" class="w3-bar-item w3-button">Cerrar sesion</a>'
                         );
             }
-            if (data.list_Convocatorias !== unded) {
+            if (data.list_Convocatorias !== undefined) {
                 PintarTarjetaCon(data.list_Convocatorias, idN);
             } else {
                 $("#TarjetaRes").empty();
